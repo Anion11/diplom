@@ -1,0 +1,36 @@
+@use 'src/app/styles/utils/variables' as *;
+@use 'src/app/styles/utils/media' as *;
+
+.wrapper {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100vh;
+  margin: 0 auto;
+
+  font-family: $font;
+  color: $black;
+
+  background: $bg;
+
+  main {
+    display: flex;
+    flex: 1 0;
+    flex-direction: column;
+    padding-bottom: 90px;
+
+    @include media-laptop {
+      padding-bottom: 60px;
+    }
+
+    @include media-tablet {
+      padding-bottom: 50px;
+    }
+
+    > div {
+      flex: 1;
+    }
+  }
+}

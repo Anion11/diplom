@@ -1,0 +1,155 @@
+@use '@/app/styles/utils/variables' as *;
+@use '@/app/styles/utils/media' as *;
+
+.header {
+  padding-top: 8px;
+
+  @include media-laptop {
+    padding-top: 4px;
+  }
+
+  &__topWrapper {
+    padding-bottom: 8px;
+    border-bottom: 1px solid $grey40;
+
+    @include media-laptop {
+      padding-bottom: 0;
+      border: 0;
+    }
+  }
+
+  &__top {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    &Menu {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+
+      @include media-laptop {
+        display: none;
+      }
+    }
+
+    &Item {
+      a {
+        color: $black;
+
+        &:hover {
+          color: $primary;
+          text-decoration: none;
+        }
+      }
+
+      &_active {
+        a {
+          color: $primary;
+        }
+      }
+    }
+
+    &Right {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin-left: auto;
+
+      @include media-laptop {
+        gap: 14px;
+      }
+    }
+  }
+
+  &__tel {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    color: $primary;
+
+    @include media-tablet {
+      display: none;
+    }
+
+    &:hover {
+      color: $primary-50;
+      text-decoration: none;
+    }
+
+    svg {
+      flex-shrink: 0;
+      width: 18px;
+      height: 50px;
+    }
+  }
+
+  &__logo {
+    display: block;
+    flex-shrink: 0;
+    width: 175px;
+    height: 58px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      color: $primary;
+      transition: 0.3s all;
+    }
+
+    &:hover {
+      svg {
+        color: $primary-50;
+      }
+    }
+  }
+
+  &__botWrapper {
+    padding-top: 20px;
+  }
+
+  &__bot {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+
+    &Menu {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    &Item {
+      a {
+        color: $black;
+
+        &:hover {
+          color: $primary;
+          text-decoration: none;
+        }
+      }
+    }
+
+    &Insurance {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+
+      margin-left: auto;
+
+      color: #fba148;
+
+      &:hover {
+        color: #ff8000;
+        text-decoration: none;
+      }
+
+      svg {
+        flex-shrink: 0;
+        width: 22px;
+        height: 22px;
+      }
+    }
+  }
+}

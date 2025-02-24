@@ -1,0 +1,7 @@
+@use '@/app/styles/utils/variables' as *;
+@use '@/app/styles/utils/media' as *;
+
+.footer {
+  height: 100px;
+  background: $black;
+}

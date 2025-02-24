@@ -1,0 +1,9 @@
+# игнорировать все файлы в node_modules
+node_modules
+
+# игнорировать папку dist
+dist
+
+# Игнорировать файлы
+*.md
+.eslintrc.yml

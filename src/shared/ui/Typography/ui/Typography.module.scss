@@ -1,0 +1,114 @@
+@use '@/app/styles/utils/variables' as *;
+@use '@/app/styles/utils/media' as *;
+@use '@/app/styles/utils/fonts' as *;
+
+.ui-h1 {
+  font-size: 36px;
+  line-height: 120%;
+
+  @include media-laptop {
+    font-size: 26px;
+  }
+
+  @include media-tablet {
+    font-size: 22px;
+  }
+}
+
+.ui-h2 {
+  font-size: 30px;
+  line-height: 130%;
+
+  @include media-laptop {
+    font-size: 24px;
+  }
+
+  @include media-tablet {
+    font-size: 20px;
+  }
+}
+
+.ui-h3 {
+  font-size: 28px;
+  line-height: 120%;
+
+  @include media-laptop {
+    font-size: 22px;
+  }
+
+  @include media-tablet {
+    font-size: 18px;
+  }
+}
+
+.ui-h4 {
+  font-size: 24px;
+  line-height: 140%;
+
+  @include media-laptop {
+    font-size: 18px;
+  }
+}
+
+.ui-h5 {
+  font-size: 20px;
+  line-height: 140%;
+
+  @include media-laptop {
+    font-size: 18px;
+  }
+}
+
+.ui-p1 {
+  font-size: 18px;
+  line-height: 140%;
+
+  &--mb15 {
+    margin-bottom: 15px;
+
+    @include media-laptop {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.ui-p2 {
+  font-size: 16px;
+  line-height: 140%;
+}
+
+.ui-p3 {
+  font-size: 14px;
+  line-height: 140%;
+
+  @include media-laptop {
+    font-size: 13px;
+  }
+}
+
+.ui-p4 {
+  font-size: 13px;
+  line-height: 140%;
+
+  @include media-tablet {
+    font-size: 11px;
+  }
+}
+
+.bold {
+  &--400 {
+    font-weight: 400;
+  }
+
+  &--600 {
+    font-weight: 600;
+  }
+
+  &--700 {
+    font-weight: 700;
+  }
+
+  &--300 {
+    font-weight: 300;
+  }
+}

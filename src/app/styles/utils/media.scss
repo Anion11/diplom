@@ -1,0 +1,31 @@
+@use 'variables' as *;
+
+@mixin media-laptop {
+  @media (max-width: $mediaWidthTablet) {
+    @content;
+  }
+}
+
+@mixin media-tablet {
+  @media (max-width: $mediaWidthMob) {
+    @content;
+  }
+}
+
+@mixin media-custom($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin media-hover() {
+  &:active {
+    @content;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}

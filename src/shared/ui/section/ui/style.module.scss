@@ -1,0 +1,16 @@
+@use 'src/app/styles/utils/variables' as *;
+@use 'src/app/styles/utils/media' as *;
+
+.section {
+  &:not(:first-child) {
+    margin-top: 80px;
+
+    @include media-laptop {
+      margin-top: 60px;
+    }
+
+    @include media-tablet {
+      margin-top: 50px;
+    }
+  }
+}

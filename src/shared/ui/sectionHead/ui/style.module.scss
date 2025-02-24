@@ -1,0 +1,30 @@
+@use 'src/app/styles/utils/variables' as *;
+@use 'src/app/styles/utils/media' as *;
+
+.sectionHead {
+  &:not(:last-child) {
+    margin-bottom: 40px;
+
+    @include media-laptop {
+      margin-bottom: 35px;
+    }
+
+    @include media-tablet {
+      margin-bottom: 25px;
+    }
+  }
+
+  &_small {
+    &:not(:last-child) {
+      margin-bottom: 30px;
+
+      @include media-laptop {
+        margin-bottom: 25px;
+      }
+
+      @include media-tablet {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
