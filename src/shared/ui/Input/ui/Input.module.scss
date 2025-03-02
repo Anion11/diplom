@@ -1,0 +1,102 @@
+@use '@/app/styles/utils/variables' as *;
+@use '@/app/styles/utils/media' as *;
+
+.inputWrapper {
+}
+
+.input {
+  --p-left: 16px;
+  --p-right: 16px;
+  --label-p-x: 4px;
+
+  position: relative;
+
+  input {
+    width: 100%;
+    padding: 13px var(--p-right) 13px var(--p-left);
+
+    color: $black;
+
+    background: $white;
+    border: 0;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: inset 0 0 0 1px $grey40;
+
+    transition: all 0.3s;
+
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
+    &:focus {
+      box-shadow: inset 0 0 0 2px $primary-50;
+
+      ~ label {
+        top: -15px;
+        left: 0;
+        transform: translateY(0);
+
+        font-size: 12px;
+        color: $grey80;
+
+        background: transparent;
+      }
+    }
+
+    &[disabled] {
+      pointer-events: none;
+      opacity: 0.15;
+      background: $grey80;
+      box-shadow: none;
+    }
+  }
+
+  label {
+    pointer-events: none;
+
+    position: absolute;
+    top: 50%;
+    left: calc(var(--p-left) - var(--label-p-x));
+    transform: translateY(-50%);
+
+    overflow: hidden;
+
+    max-width: calc(100% - var(--p-left) - var(--p-right));
+
+    color: $grey80;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    transition: all 0.3s;
+  }
+
+  &__error {
+    margin-top: 4px;
+    color: $error;
+  }
+
+  &_invalid {
+    input {
+      box-shadow: inset 0 0 0 1px $error;
+    }
+
+    label {
+      color: $error;
+    }
+  }
+
+  &_filled {
+    input {
+      ~ label {
+        top: -15px;
+        left: 0;
+        transform: translateY(0);
+
+        font-size: 12px;
+
+        background: transparent;
+      }
+    }
+  }
+}

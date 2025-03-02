@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router-dom';
 
-import { Layout, MainPage, NotFoundPage } from '@/pages';
+import { Layout, Login, MainPage, NotFoundPage } from '@/pages';
 
 const routes: RouteObject[] = [
   {
@@ -12,7 +12,8 @@ const routes: RouteObject[] = [
       // { path: '/pdf-view/:uuid', element: <PDFView /> }
     ]
   },
-  { path: '/login', element: <div>Логин</div> }
+  { path: '/login', element: <Login /> },
+  { path: '/reg', element: <div>Форма регистрации</div> }
 ];
 
 const authRoutes: RouteObject[] = [

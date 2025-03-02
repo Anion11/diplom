@@ -14,7 +14,11 @@ import { useAuthContext } from '@/shared/hooks/useAuthContext.ts';
 const App = (): ReactElement => {
   const { user } = useAuthContext();
   const routesMap = useMemo(() => (user ? authRoutes : routes), [user]);
-  const router = createBrowserRouter(routesMap);
+  const router = createBrowserRouter(routesMap, {
+    future: {
+      v7_startTransition: true
+    }
+  });
   useInterceptor();
   return <RouterProvider router={router} />;
 };

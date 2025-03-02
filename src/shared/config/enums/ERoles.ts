@@ -1,6 +1,6 @@
 enum ERoles {
   Admin = 'ADMIN',
   User = 'USER',
-  Moder = 'MODERATOR'
+  Staff = 'STAFF'
 }
 export default ERoles;

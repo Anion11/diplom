@@ -41,12 +41,6 @@ const useAuth = () => {
     localStorage.removeItem('user');
   };
 
-  // const login = (token: string) => {
-  //   setToken(token);
-  //   localStorage.setItem('authToken', token);
-  //   setIsAuth(true);
-  // };
-
   return { token, isAuth, logout, login, user };
 };
 

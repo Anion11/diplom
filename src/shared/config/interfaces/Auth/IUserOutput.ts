@@ -5,5 +5,4 @@ export interface IUserOutput {
   name: string;
   username: string;
   roles: ERoles[];
-  isBlocked: boolean;
 }

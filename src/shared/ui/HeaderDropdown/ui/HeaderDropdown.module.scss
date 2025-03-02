@@ -1,0 +1,56 @@
+@use '@/app/styles/utils/variables' as *;
+@use '@/app/styles/utils/media' as *;
+
+.dropdown {
+  pointer-events: none;
+  cursor: default;
+
+  position: absolute;
+  left: 0;
+  transform: translateY(10px);
+
+  width: 100%;
+  min-height: 250px;
+  padding: 30px 0 50px;
+
+  color: $black;
+
+  visibility: hidden;
+  opacity: 0;
+  background: #ffffff;
+  box-shadow: $lightSmallShadow;
+
+  transition: all 0.3s;
+
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(2, 24%) 1fr;
+    gap: 105px;
+    align-items: start;
+  }
+
+  &__title {
+    cursor: text;
+    width: fit-content;
+    margin-bottom: 16px;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    a {
+      width: fit-content;
+      color: $black;
+
+      &:hover {
+        text-decoration: none;
+      }
+
+      @include media-hover {
+        color: $primary;
+      }
+    }
+  }
+}
