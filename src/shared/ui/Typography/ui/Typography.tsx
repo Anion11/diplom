@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import styles from './Typography.module.scss';
 
 import ETypographyType from '@/shared/config/enums/ETypgraphyType.ts';
-import { ITypographyProps } from '@/shared/ui/Typography/ui/interfaces/ITypographyProps.ts';
+import { ITypographyProps } from '@/shared/ui/typography/ui/interfaces/ITypographyProps';
 
 const Typography: React.FC<PropsWithChildren<ITypographyProps>> = ({
   children,

@@ -1,10 +1,23 @@
-import Button from './Button/ui/Button';
-import HeaderDropdown from './HeaderDropdown/ui/HeaderDropdown';
-import Inner from './Inner/ui/Inner';
-import Input from './Input/ui/Input';
-import Section from './Section/ui/Section';
-import SectionHead from './SectionHead/ui/SectionHead';
-import Typography from './Typography/ui/Typography';
-import Wrapper from './Wrapper/Wrapper';
+import Button from './button/ui/Button';
+import HeaderDropdown from './header-dropdown/ui/HeaderDropdown';
+import Inner from './inner/ui/Inner';
+import Input from './input/ui/Input';
+import PageLoader from './page-loader/ui/PageLoader';
+import Section from './section/ui/Section';
+import SectionHead from './section-head/ui/SectionHead';
+import Tabs from './tabs/ui/Tabs';
+import Typography from './typography/ui/Typography';
+import Wrapper from './wrapper/Wrapper';
 
-export { Typography, Section, SectionHead, Button, Wrapper, Inner, HeaderDropdown, Input };
+export {
+  Typography,
+  Section,
+  SectionHead,
+  Button,
+  Wrapper,
+  Inner,
+  HeaderDropdown,
+  Input,
+  PageLoader,
+  Tabs
+};

@@ -1,19 +1,18 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import Loading from '@/shared/Loading/ui/Loading.tsx';
-import { Wrapper } from '@/shared/ui';
-import { Footer, Header } from '@/widgets';
+import { PageLoader, Wrapper } from '@/shared/ui';
+import { WidgetFooter, WidgetHeader } from '@/widgets';
 
 const Layout = () => {
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={<PageLoader />}>
       <Wrapper>
-        <Header />
+        <WidgetHeader />
         <main>
           <Outlet />
         </main>
-        <Footer />
+        <WidgetFooter />
       </Wrapper>
     </Suspense>
   );

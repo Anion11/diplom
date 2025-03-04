@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import { ISection } from '../model/ISection';
 
-import styles from './style.module.scss';
+import styles from './Section.module.scss';
 
 const Section: FC<ISection> = props => {
   const { children, className, id } = props;

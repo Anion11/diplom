@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import clsx from 'clsx';
 
-import Typography from '../../Typography/ui/Typography';
+import Typography from '../../typography/ui/Typography';
 import { ITabs } from '../model/ITabs';
 
 import style from './Tabs.module.scss';

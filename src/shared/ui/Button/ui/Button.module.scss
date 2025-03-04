@@ -16,6 +16,7 @@
   color: $white;
   text-align: center;
   text-decoration: none;
+  text-wrap: nowrap;
 
   background: $primary-50;
   border: 0;
@@ -37,6 +38,11 @@
     flex-shrink: 0;
     width: 18px;
     height: 18px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &_mob-w100 {
@@ -54,8 +60,24 @@
     background: transparent;
     border: 2px solid $primary;
 
-    &:hover {
+    @include media-hover {
       color: $white;
+    }
+  }
+
+  &_outline {
+    padding: 0;
+    color: $primary;
+    background: transparent;
+    border: 0;
+
+    span {
+      line-height: 1;
+    }
+
+    &:hover {
+      color: $primary-50;
+      background: none;
     }
   }
 }

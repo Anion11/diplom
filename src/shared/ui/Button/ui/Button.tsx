@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 
-import Typography from '../../Typography/ui/Typography';
+import Typography from '../../typography/ui/Typography';
 import { EButtonTypes, IButton } from '../model/IButton';
 
 import styles from './Button.module.scss';
@@ -27,28 +27,14 @@ const Button: FC<IButton> = props => {
             to={link ? link : '/'}
             onClick={onClick}
           >
-            {leftIcon && (
-              <div className={styles.button__icon}>
-                <img
-                  src={leftIcon}
-                  alt=""
-                />
-              </div>
-            )}
+            {leftIcon && <div className={styles.button__icon}>{leftIcon}</div>}
             <Typography
               type={ETypographyType.p1}
               className={styles.button__text}
             >
               {text}
             </Typography>
-            {rightIcon && (
-              <div className={styles.button__icon}>
-                <img
-                  src={rightIcon}
-                  alt=""
-                />
-              </div>
-            )}
+            {rightIcon && <div className={styles.button__icon}>{rightIcon}</div>}
           </Link>
         );
       default:
@@ -56,33 +42,21 @@ const Button: FC<IButton> = props => {
           <button
             className={clsx(
               styles.button,
-              mods && styles[`button_${mods}`],
+              Array.isArray(mods)
+                ? mods.map(mod => styles[`button_${mod}`]).join(' ')
+                : mods && styles[`button_${mods}`],
               className && className
             )}
             onClick={onClick}
           >
-            {leftIcon && (
-              <div className={styles.button__icon}>
-                <img
-                  src={leftIcon}
-                  alt=""
-                />
-              </div>
-            )}
+            {leftIcon && <div className={styles.button__icon}>{leftIcon}</div>}
             <Typography
               type={ETypographyType.p1}
               className={styles.button__text}
             >
               {text}
             </Typography>
-            {rightIcon && (
-              <div className={styles.button__icon}>
-                <img
-                  src={rightIcon}
-                  alt=""
-                />
-              </div>
-            )}
+            {rightIcon && <div className={styles.button__icon}>{rightIcon}</div>}
           </button>
         );
     }

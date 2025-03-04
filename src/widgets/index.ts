@@ -1,7 +1,6 @@
-import LoginFormEmail from './LoginFormEmail/ui/LoginFormEmail';
-import LoginFormTel from './LoginFormTel/ui/LoginFormTel';
+import WidgetFooter from '@/widgets/WidgetFooter/ui/WidgetFooter';
+import WidgetHeader from '@/widgets/WidgetHeader/ui/WidgetHeader';
+import WidgetLoginEmail from '@/widgets/WidgetLoginEmail/ui/WidgetLoginEmail';
+import WidgetLoginPhone from '@/widgets/WidgetLoginPhone/ui/WidgetLoginPhone';
 
-import Footer from '@/widgets/Footer/ui/Footer';
-import Header from '@/widgets/Header/ui/Header.tsx';
-
-export { Header, Footer, LoginFormEmail, LoginFormTel };
+export { WidgetHeader, WidgetFooter, WidgetLoginEmail, WidgetLoginPhone };

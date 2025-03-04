@@ -6,8 +6,8 @@ export interface IButton {
   type?: EButtonTypes;
   mods?: string[] | string;
   text?: string;
-  leftIcon?: string;
-  rightIcon?: string;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
   link?: string;
   onClick?: () => void;
   className?: string;
