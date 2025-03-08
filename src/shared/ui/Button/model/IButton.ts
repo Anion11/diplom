@@ -11,4 +11,5 @@ export interface IButton {
   link?: string;
   onClick?: () => void;
   className?: string;
+  disabled?: boolean;
 }

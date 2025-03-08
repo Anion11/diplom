@@ -22,8 +22,12 @@ const LoginFormPhone = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors }
-  } = useForm<ILoginFormPhone>({ defaultValues, resolver: yupResolver(authPhoneScheme) });
+    formState: { errors, isValid, touchedFields }
+  } = useForm<ILoginFormPhone>({
+    defaultValues,
+    resolver: yupResolver(authPhoneScheme),
+    mode: 'onTouched'
+  });
 
   const onSubmit = (data: ILoginFormPhone) => {
     loginRequest(data);
@@ -62,7 +66,7 @@ const LoginFormPhone = () => {
             type="password"
             {...field}
             placeholder="Введите пароль"
-            error={errors.password?.message}
+            error={touchedFields.password ? errors.password?.message : undefined}
             formError={formError}
             onChange={e => {
               field.onChange(e);
@@ -75,6 +79,7 @@ const LoginFormPhone = () => {
         <Button
           className={styles.form__btn}
           text="Войти"
+          disabled={!isValid}
         ></Button>
         {formError && (
           <div className={styles.form__error}>

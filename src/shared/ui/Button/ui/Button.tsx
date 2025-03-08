@@ -10,7 +10,7 @@ import styles from './Button.module.scss';
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 
 const Button: FC<IButton> = props => {
-  const { text, leftIcon, rightIcon, type, onClick, link, className, mods } = props;
+  const { text, leftIcon, rightIcon, type, onClick, link, className, mods, disabled } = props;
 
   const renderButton = () => {
     switch (type) {
@@ -48,6 +48,7 @@ const Button: FC<IButton> = props => {
               className && className
             )}
             onClick={onClick}
+            disabled={disabled}
           >
             {leftIcon && <div className={styles.button__icon}>{leftIcon}</div>}
             <Typography

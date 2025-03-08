@@ -22,11 +22,12 @@ const LoginFormEmail = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors }
+    formState: { errors, isValid, touchedFields }
   } = useForm<ILoginFormEmail>({
     defaultValues,
     resolver: yupResolver(authEmailScheme),
-    shouldUnregister: true
+    shouldUnregister: true,
+    mode: 'onTouched'
   });
 
   const onSubmit = (data: ILoginFormEmail) => {
@@ -48,7 +49,7 @@ const LoginFormEmail = () => {
             type="email"
             {...field}
             placeholder="Введите E-mail"
-            error={errors.email?.message}
+            error={touchedFields.email ? errors.email?.message : undefined}
             formError={formError}
             onChange={e => {
               field.onChange(e);
@@ -66,7 +67,7 @@ const LoginFormEmail = () => {
             type="password"
             {...field}
             placeholder="Введите пароль"
-            error={errors.password?.message}
+            error={touchedFields.password ? errors.password?.message : undefined}
             formError={formError}
             onChange={e => {
               field.onChange(e);
@@ -79,6 +80,7 @@ const LoginFormEmail = () => {
         <Button
           className={styles.form__btn}
           text="Войти"
+          disabled={!isValid}
         ></Button>
         {formError && (
           <div className={styles.form__error}>

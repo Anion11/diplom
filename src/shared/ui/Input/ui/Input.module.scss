@@ -1,6 +1,9 @@
 @use '@/app/styles/utils/variables' as *;
 @use '@/app/styles/utils/media' as *;
 
+.inputWrapper {
+}
+
 .input {
   --p-left: 16px;
   --p-right: 16px;
@@ -117,6 +120,12 @@
 
         background: transparent;
       }
+    }
+  }
+
+  &_password {
+    input {
+      padding-right: 50px;
     }
   }
 }

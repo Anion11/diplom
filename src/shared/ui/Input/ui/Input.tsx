@@ -21,7 +21,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     onChange,
     error,
     disabled = false,
-    formError
+    formError,
+    onBlur
   } = props;
 
   const [showPassword, setShowPassword] = useState(false);
@@ -43,10 +44,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           styles.input,
           error && styles.input_invalid,
           formError && styles.input_invalid,
-          value && styles.input_filled
+          value && styles.input_filled,
+          type === 'password' && styles.input_password
         )}
       >
         {type === 'tel' ? (
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-expect-error
           <InputMask
             id={id}
             name={name}
@@ -57,6 +61,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             maskChar="_"
             className={styles.input__field}
             inputRef={ref}
+            onBlur={onBlur}
           />
         ) : (
           <input
@@ -67,6 +72,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             ref={ref}
             onChange={handleChange}
             disabled={disabled}
+            onBlur={onBlur}
           />
         )}
         <label htmlFor={id}>{placeholder}</label>

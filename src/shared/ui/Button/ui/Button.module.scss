@@ -34,6 +34,12 @@
     background: $primary-40;
   }
 
+  &[disabled] {
+    cursor: default;
+    color: $black;
+    background: $grey50;
+  }
+
   &__icon {
     flex-shrink: 0;
     width: 18px;
