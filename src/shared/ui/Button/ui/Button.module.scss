@@ -67,7 +67,17 @@
     border: 2px solid $primary;
 
     @include media-hover {
-      color: $white;
+      color: $primary-50;
+      background: transparent;
+      border-color: $primary-50;
+    }
+
+    &.button_hover_filled {
+      @include media-hover {
+        color: $white;
+        background: $primary-40;
+        border-color: $primary-40;
+      }
     }
   }
 

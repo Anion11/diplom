@@ -2,36 +2,36 @@ import { Controller, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { ILoginFormEmail } from '../model/ILoginFormEmail';
-import { authEmailScheme } from '../model/LoginFormEmailScheme';
-import useLoginEmail from '../model/useLoginEmail';
+import { IRegistrationFormPhone } from '../model/IRegistrationFormPhone';
+import { regPhoneScheme } from '../model/RegistrationFormPhoneScheme';
+import useLoginPhone from '../model/useRegistrationPhone';
 
-import styles from './LoginFormEmail.module.scss';
+import styles from './RegistrationFormPhone.module.scss';
 
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import { Button, Input, Typography } from '@/shared/ui';
 
-const LoginFormEmail = () => {
-  const { formError, clearFormError, loginRequest } = useLoginEmail();
+const RegistrationFormPhone = () => {
+  const { formError, clearFormError, regRequest } = useLoginPhone();
 
-  const defaultValues: ILoginFormEmail = {
-    email: '',
-    password: ''
+  const defaultValues: IRegistrationFormPhone = {
+    phone: '+7 (___) ___-__-__',
+    password: '',
+    passwordRepeat: ''
   };
 
   const {
     control,
     handleSubmit,
     formState: { errors, isValid, touchedFields }
-  } = useForm<ILoginFormEmail>({
+  } = useForm<IRegistrationFormPhone>({
     defaultValues,
-    resolver: yupResolver(authEmailScheme),
-    shouldUnregister: true,
+    resolver: yupResolver(regPhoneScheme),
     mode: 'onTouched'
   });
 
-  const onSubmit = (data: ILoginFormEmail) => {
-    loginRequest(data);
+  const onSubmit = (data: IRegistrationFormPhone) => {
+    regRequest(data);
   };
 
   return (
@@ -41,18 +41,18 @@ const LoginFormEmail = () => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <Controller
-        name="email"
+        name="phone"
         control={control}
         render={({ field }) => (
           <Input
-            id="email"
-            type="email"
+            id="phone"
+            type="tel"
             {...field}
-            placeholder="Введите E-mail"
-            error={touchedFields.email ? errors.email?.message : undefined}
+            placeholder="Введите номер телефона"
+            error={errors.phone?.message}
             formError={formError}
-            onChange={e => {
-              field.onChange(e);
+            onChange={(value: string) => {
+              field.onChange(value);
               clearFormError();
             }}
           />
@@ -76,10 +76,28 @@ const LoginFormEmail = () => {
           />
         )}
       />
+      <Controller
+        name="passwordRepeat"
+        control={control}
+        render={({ field }) => (
+          <Input
+            id="passwordRepeat"
+            type="password"
+            {...field}
+            placeholder="Введите пароль"
+            error={touchedFields.passwordRepeat ? errors.passwordRepeat?.message : undefined}
+            formError={formError}
+            onChange={e => {
+              field.onChange(e);
+              clearFormError();
+            }}
+          />
+        )}
+      />
       <div className={styles.form__btns}>
         <Button
           className={styles.form__btn}
-          text="Войти"
+          text="Зарегистрироваться"
           disabled={!isValid}
         ></Button>
         {formError && (
@@ -89,7 +107,7 @@ const LoginFormEmail = () => {
         )}
         <div className={styles.form__foot}>
           <Typography type={ETypographyType.p1}>
-            Еще нет аккаунта? <Link to={'/registration'}>Зарегистрироваться</Link>
+            Уже есть аккаунт? <Link to={'/login'}>Войти</Link>
           </Typography>
         </div>
       </div>
@@ -97,4 +115,4 @@ const LoginFormEmail = () => {
   );
 };
 
-export default LoginFormEmail;
+export default RegistrationFormPhone;

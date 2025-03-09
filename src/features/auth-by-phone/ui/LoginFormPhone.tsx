@@ -1,4 +1,5 @@
 import { Controller, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { ILoginFormPhone } from '../model/ILoginFormPhone';
@@ -9,7 +10,6 @@ import styles from './LoginFormPhone.module.scss';
 
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import { Button, Input, Typography } from '@/shared/ui';
-import { EButtonTypes } from '@/shared/ui/button/model/IButton';
 
 const LoginFormPhone = () => {
   const { formError, clearFormError, loginRequest } = useLoginPhone();
@@ -87,13 +87,9 @@ const LoginFormPhone = () => {
           </div>
         )}
         <div className={styles.form__foot}>
-          <Typography type={ETypographyType.p1}>Еще нет аккаунта? Зарегистрируйтесь!</Typography>
-          <Button
-            type={EButtonTypes.LINK}
-            link="/reg"
-            className={styles.form__reg}
-            text="Зарегистрироваться"
-          ></Button>
+          <Typography type={ETypographyType.p1}>
+            Еще нет аккаунта? <Link to={'/registration'}>Зарегистрироваться</Link>
+          </Typography>
         </div>
       </div>
     </form>

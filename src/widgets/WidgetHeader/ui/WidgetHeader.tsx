@@ -101,7 +101,7 @@ const WidgetHeader: FC = () => {
                   />
                 ) : (
                   <Button
-                    mods={['empty', 'pd-xs']}
+                    mods={['empty', 'pd-xs', 'hover_filled']}
                     text="Войти"
                     type={EButtonTypes.LINK}
                     link="/login"

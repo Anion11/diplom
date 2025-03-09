@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './WidgetFooter.module.scss';
@@ -6,7 +7,7 @@ import Logo from '@/shared/assets/icon_logo.svg?react';
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import { Inner, Typography } from '@/shared/ui';
 
-const WidgetFooter = () => {
+const WidgetFooter: FC = () => {
   return (
     <footer className={styles.footer}>
       <Inner>

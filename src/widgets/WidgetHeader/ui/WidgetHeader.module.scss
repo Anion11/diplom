@@ -13,6 +13,10 @@
     border-bottom: 1px solid $grey40;
 
     @include media-laptop {
+      padding-bottom: 4px;
+    }
+
+    @include media-custom(1023px) {
       padding-bottom: 0;
       border: 0;
     }
@@ -32,7 +36,7 @@
       gap: 20px;
       align-items: center;
 
-      @include media-laptop {
+      @include media-custom(1023px) {
         display: none;
       }
     }
@@ -129,7 +133,7 @@
     align-items: center;
     justify-content: space-between;
 
-    @include media-laptop {
+    @include media-custom(1023px) {
       display: none;
     }
 
@@ -201,7 +205,7 @@
       display: none;
       color: $secondary;
 
-      @include media-laptop {
+      @include media-custom(1023px) {
         display: flex;
       }
     }

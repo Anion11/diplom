@@ -12,8 +12,7 @@
     flex-direction: column;
     margin-top: 10px;
 
-    button,
-    a {
+    button {
       padding: 10px 24px;
 
       @include media-tablet {
@@ -23,23 +22,19 @@
   }
 
   &__foot {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-
     margin-top: 25px;
     padding-top: 20px;
-
     text-align: center;
-
     border-top: 1px solid $grey40;
-  }
 
-  &__reg {
-    background: $secondary-2;
+    a {
+      display: inline;
+      width: fit-content;
+      color: $primary;
 
-    @include media-hover {
-      background: $secondary;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 

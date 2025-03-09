@@ -1,24 +1,24 @@
 import { Link, useNavigate } from 'react-router-dom';
 
-import styles from './login.module.scss';
+import styles from './Registration.module.scss';
 
 import Logo from '@/shared/assets/icon_logo.svg?react';
 import ArrowLeft from '@/shared/assets/icons/icon_arrow-left.svg?react';
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import { Button, Inner, Tabs, Typography, Wrapper } from '@/shared/ui';
-import { WidgetLoginEmail, WidgetLoginPhone } from '@/widgets';
+import { WidgetRegistrationEmail, WidgetRegistrationPhone } from '@/widgets';
 
-const Login = () => {
+const Registration = () => {
   const navigate = useNavigate();
 
   const tabs = [
     {
       label: 'Номер телефона',
-      content: <WidgetLoginPhone />
+      content: <WidgetRegistrationPhone />
     },
     {
       label: 'E-mail',
-      content: <WidgetLoginEmail />
+      content: <WidgetRegistrationEmail />
     }
   ];
 
@@ -28,12 +28,12 @@ const Login = () => {
 
   return (
     <Wrapper>
-      <div className={styles.loginWrapper}>
+      <div className={styles.regWrapper}>
         <Inner>
-          <div className={styles.login}>
-            <div className={styles.login__body}>
+          <div className={styles.reg}>
+            <div className={styles.reg__body}>
               <Link
-                className={styles.login__logo}
+                className={styles.reg__logo}
                 to={'/'}
               >
                 <Logo />
@@ -42,11 +42,11 @@ const Login = () => {
                 tag="h1"
                 bold={700}
                 type={ETypographyType.h1}
-                className={styles.login__title}
+                className={styles.reg__title}
               >
-                Вход в личный кабинет
+                Регистрация в личном кабинете
               </Typography>
-              <div className={styles.login__tabs}>
+              <div className={styles.reg__tabs}>
                 <Tabs tabs={tabs} />
               </div>
               <Button
@@ -63,4 +63,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Registration;

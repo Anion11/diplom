@@ -1,7 +1,7 @@
 @use 'src/app/styles/utils/variables' as *;
 @use 'src/app/styles/utils/media' as *;
 
-.loginWrapper {
+.regWrapper {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -18,7 +18,7 @@
   }
 }
 
-.login {
+.reg {
   position: relative;
 
   &__title {

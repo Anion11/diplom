@@ -2,36 +2,37 @@ import { Controller, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { ILoginFormEmail } from '../model/ILoginFormEmail';
-import { authEmailScheme } from '../model/LoginFormEmailScheme';
-import useLoginEmail from '../model/useLoginEmail';
+import { IRegistrationFormEmail } from '../model/IRegistrationFormEmail';
+import { regEmailScheme } from '../model/RegistrationFormEmailScheme';
+import useRegistrationEmail from '../model/useRegistrationEmail';
 
-import styles from './LoginFormEmail.module.scss';
+import styles from './RegistrationFormEmail.module.scss';
 
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import { Button, Input, Typography } from '@/shared/ui';
 
-const LoginFormEmail = () => {
-  const { formError, clearFormError, loginRequest } = useLoginEmail();
+const RegistrationFormEmail = () => {
+  const { formError, clearFormError, regRequest } = useRegistrationEmail();
 
-  const defaultValues: ILoginFormEmail = {
+  const defaultValues: IRegistrationFormEmail = {
     email: '',
-    password: ''
+    password: '',
+    passwordRepeat: ''
   };
 
   const {
     control,
     handleSubmit,
     formState: { errors, isValid, touchedFields }
-  } = useForm<ILoginFormEmail>({
+  } = useForm<IRegistrationFormEmail>({
     defaultValues,
-    resolver: yupResolver(authEmailScheme),
+    resolver: yupResolver(regEmailScheme),
     shouldUnregister: true,
     mode: 'onTouched'
   });
 
-  const onSubmit = (data: ILoginFormEmail) => {
-    loginRequest(data);
+  const onSubmit = (data: IRegistrationFormEmail) => {
+    regRequest(data);
   };
 
   return (
@@ -76,10 +77,28 @@ const LoginFormEmail = () => {
           />
         )}
       />
+      <Controller
+        name="passwordRepeat"
+        control={control}
+        render={({ field }) => (
+          <Input
+            id="passwordRepeat"
+            type="password"
+            {...field}
+            placeholder="Введите пароль"
+            error={touchedFields.passwordRepeat ? errors.passwordRepeat?.message : undefined}
+            formError={formError}
+            onChange={e => {
+              field.onChange(e);
+              clearFormError();
+            }}
+          />
+        )}
+      />
       <div className={styles.form__btns}>
         <Button
           className={styles.form__btn}
-          text="Войти"
+          text="Зарегистрироваться"
           disabled={!isValid}
         ></Button>
         {formError && (
@@ -89,7 +108,7 @@ const LoginFormEmail = () => {
         )}
         <div className={styles.form__foot}>
           <Typography type={ETypographyType.p1}>
-            Еще нет аккаунта? <Link to={'/registration'}>Зарегистрироваться</Link>
+            Уже есть аккаунт? <Link to={'/login'}>Войти</Link>
           </Typography>
         </div>
       </div>
@@ -97,4 +116,4 @@ const LoginFormEmail = () => {
   );
 };
 
-export default LoginFormEmail;
+export default RegistrationFormEmail;
