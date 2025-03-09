@@ -1,0 +1,143 @@
+@use 'src/app/styles/utils/variables' as *;
+@use 'src/app/styles/utils/media' as *;
+
+.navbar {
+  position: fixed;
+  z-index: 300;
+  bottom: 0;
+  left: 0;
+
+  display: none;
+
+  width: 100%;
+  padding: 9px 35px;
+
+  background: #ffffff;
+  border-radius: 20px 20px 0 0;
+  box-shadow: $bigShadow;
+
+  @include media-custom(1023px) {
+    display: block;
+  }
+
+  @include media-tablet {
+    padding: 9px 20px;
+  }
+
+  @include media-custom(374px) {
+    padding: 9px 10px;
+  }
+
+  &__menu {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    @include media-custom(374px) {
+      gap: 15px;
+    }
+  }
+
+  &__item {
+    flex: 1 0;
+
+    a {
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      width: 50px;
+      height: 50px;
+      margin: 0 auto;
+      padding: 0;
+
+      background: $primary;
+      border: unset;
+      border-radius: 50%;
+
+      @include media-custom(374px) {
+        width: 48px;
+        height: 48px;
+      }
+
+      span {
+        transform-origin: center;
+
+        display: block;
+
+        width: 18px;
+        height: 2px;
+
+        background-color: $white;
+        border-radius: 4px;
+
+        transition: 0.3s;
+
+        &:not(:last-child) {
+          margin-bottom: 4px;
+        }
+      }
+    }
+
+    &_active {
+      button {
+        span {
+          &:first-child {
+            transform: rotate(45deg);
+            margin-bottom: -2px;
+          }
+
+          &:nth-child(2) {
+            display: none;
+          }
+
+          &:last-child {
+            transform: rotate(-45deg);
+          }
+        }
+      }
+    }
+  }
+
+  &__button {
+    display: grid;
+    gap: 1px;
+    align-items: center;
+    justify-items: center;
+
+    width: 100%;
+    padding: 0;
+
+    text-align: center;
+
+    background: unset;
+    border: unset;
+  }
+
+  &__icon {
+    width: 26px;
+    height: 26px;
+    color: $primary;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__modal {
+    bottom: 40px !important;
+
+    &Content {
+      padding-bottom: 50px !important;
+    }
+  }
+}

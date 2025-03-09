@@ -34,7 +34,7 @@ const NotFound = () => {
                 >
                   Запрашиваемая страница не&nbsp;найдена. <br />
                   Пожалуйста, проверьте правильность введённого адреса
-                  <span>или&nbsp;вернитесь на&nbsp;главную страницу</span>:
+                  <span> или&nbsp;вернитесь на&nbsp;главную страницу</span>:
                 </Typography>
               </div>
               <div className={styles.notFoundPage__button}>

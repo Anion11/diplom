@@ -1,9 +1,15 @@
+import { FC } from 'react';
+
 import styles from './style.module.scss';
 
-const Main = () => {
+import { Inner } from '@/shared/ui';
+
+const Main: FC = () => {
   return (
     <>
-      <div className={styles.main}></div>
+      <div className={styles.main}>
+        <Inner></Inner>
+      </div>
     </>
   );
 };

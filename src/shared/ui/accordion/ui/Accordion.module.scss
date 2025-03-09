@@ -1,0 +1,93 @@
+@use '@/app/styles/utils/variables' as *;
+@use '@/app/styles/utils/media' as *;
+
+.accordion {
+  overflow: hidden;
+  color: $white;
+  background: $black-50;
+  border-radius: 12px;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+
+    @include media-laptop {
+      margin-bottom: 15px;
+    }
+
+    @include media-tablet {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__button {
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px 28px;
+
+    @include media-laptop {
+      padding: 18px 24px;
+    }
+
+    @include media-tablet {
+      padding: 16px 20px;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      color: $white;
+      transition: all 0.3s;
+
+      @include media-laptop {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  &__arrow {
+    transition: all 0.3s;
+  }
+
+  &__panel {
+    padding: 0 28px 20px;
+
+    @include media-laptop {
+      padding: 0 24px 18px;
+    }
+
+    @include media-tablet {
+      padding: 0 20px 16px;
+    }
+  }
+
+  &_transparent {
+    color: $black;
+    background: transparent;
+    border-radius: 0;
+
+    .accordion__button {
+      padding: 20px 0;
+
+      @include media-tablet {
+        padding: 15px 0;
+      }
+
+      svg {
+        color: $black;
+      }
+    }
+
+    .accordion__panel {
+      padding: 0 0 20px;
+
+      @include media-tablet {
+        padding: 0 0 15px;
+      }
+    }
+  }
+}

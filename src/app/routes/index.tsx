@@ -9,6 +9,8 @@ const routes: RouteObject[] = [
     children: [
       { path: '*', element: <NotFoundPage /> },
       { path: '/', element: <MainPage /> }
+      // { path: '/help', element:  },
+      // { path: '/contacts', element:  }
     ]
   },
   { path: '/login', element: <LoginPage /> },

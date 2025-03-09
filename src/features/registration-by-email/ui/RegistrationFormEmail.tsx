@@ -85,7 +85,7 @@ const RegistrationFormEmail = () => {
             id="passwordRepeat"
             type="password"
             {...field}
-            placeholder="Введите пароль"
+            placeholder="Повторите пароль"
             error={touchedFields.passwordRepeat ? errors.passwordRepeat?.message : undefined}
             formError={formError}
             onChange={e => {

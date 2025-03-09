@@ -1,3 +1,4 @@
+import Accordion from './accordion/ui/Accordion';
 import Button from './button/ui/Button';
 import HeaderDropdown from './header-dropdown/ui/HeaderDropdown';
 import Inner from './inner/ui/Inner';
@@ -19,5 +20,6 @@ export {
   HeaderDropdown,
   Input,
   PageLoader,
-  Tabs
+  Tabs,
+  Accordion
 };
