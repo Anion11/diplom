@@ -1,0 +1,31 @@
+@use '@/app/styles/utils/variables' as *;
+@use '@/app/styles/utils/media' as *;
+
+.list {
+  li {
+    position: relative;
+    padding-left: 15px;
+
+    &::before {
+      content: '';
+
+      position: absolute;
+      top: calc((0.6em + 6px) / 2);
+      left: 0;
+
+      width: 6px;
+      height: 6px;
+
+      background: currentColor;
+      border-radius: 50%;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+
+      @include media-laptop {
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+@use '@/app/styles/utils/variables' as *;
+@use '@/app/styles/utils/media' as *;
+
+.insured {
+  display: flex;
+  flex-direction: column;
+
+  padding: 24px 20px;
+
+  background: $white;
+  border-radius: 8px;
+  box-shadow: $lightSmallShadow;
+
+  &__head {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+
+      @include media-laptop {
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  &__descr {
+    color: $grey80;
+
+    &:not(:last-child) {
+      margin-bottom: 24px;
+
+      @include media-laptop {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  &__foot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+
+    margin-top: auto;
+
+    color: $primary-50;
+
+    a {
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}

@@ -23,6 +23,7 @@
     cursor: pointer;
 
     display: flex;
+    gap: 5px;
     align-items: center;
     justify-content: space-between;
 
@@ -37,9 +38,13 @@
     }
 
     svg {
+      flex-shrink: 0;
+
       width: 20px;
       height: 20px;
+
       color: $white;
+
       transition: all 0.3s;
 
       @include media-laptop {

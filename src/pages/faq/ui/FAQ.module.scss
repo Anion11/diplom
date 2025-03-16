@@ -1,0 +1,34 @@
+@use 'src/app/styles/utils/variables' as *;
+@use 'src/app/styles/utils/media' as *;
+
+.faq {
+  margin-top: 30px;
+
+  @include media-laptop {
+    margin-top: 25px;
+  }
+
+  p {
+    &:not(:last-child) {
+      margin-bottom: 15px;
+
+      @include media-laptop {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  ul {
+    &:not(:last-child) {
+      margin-bottom: 15px;
+
+      @include media-laptop {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  a {
+    color: $primary-50;
+  }
+}

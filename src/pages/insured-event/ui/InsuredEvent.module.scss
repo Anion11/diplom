@@ -1,0 +1,10 @@
+@use 'src/app/styles/utils/variables' as *;
+@use 'src/app/styles/utils/media' as *;
+
+.insured {
+  margin-top: 30px;
+
+  @include media-laptop {
+    margin-top: 25px;
+  }
+}

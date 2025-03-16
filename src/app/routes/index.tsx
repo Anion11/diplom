@@ -1,6 +1,16 @@
 import { RouteObject } from 'react-router-dom';
 
-import { Layout, LoginPage, MainPage, NotFoundPage, RegistrationPage } from '@/pages';
+import {
+  ContactsPage,
+  FAQPage,
+  InsuredEventPage,
+  InsuredEventParentPage,
+  Layout,
+  LoginPage,
+  MainPage,
+  NotFoundPage,
+  RegistrationPage
+} from '@/pages';
 
 const routes: RouteObject[] = [
   {
@@ -8,9 +18,20 @@ const routes: RouteObject[] = [
     element: <Layout />,
     children: [
       { path: '*', element: <NotFoundPage /> },
-      { path: '/', element: <MainPage /> }
-      // { path: '/help', element:  },
-      // { path: '/contacts', element:  }
+      { path: '/', element: <MainPage /> },
+      {
+        path: '/insured-event',
+        element: <InsuredEventPage />,
+        children: [
+          { index: true, element: <InsuredEventParentPage /> },
+          { path: 'osago', element: <div>осаго</div> },
+          { path: 'kasko', element: <div>каско</div> },
+          { path: 'property', element: <div>квартира и дом</div> },
+          { path: 'health', element: <div>здоровье</div> }
+        ]
+      },
+      { path: '/faq', element: <FAQPage /> },
+      { path: '/contacts', element: <ContactsPage /> }
     ]
   },
   { path: '/login', element: <LoginPage /> },

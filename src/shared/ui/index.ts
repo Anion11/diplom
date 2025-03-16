@@ -3,6 +3,7 @@ import Button from './button/ui/Button';
 import HeaderDropdown from './header-dropdown/ui/HeaderDropdown';
 import Inner from './inner/ui/Inner';
 import Input from './input/ui/Input';
+import List from './list/ui/List';
 import PageLoader from './page-loader/ui/PageLoader';
 import Section from './section/ui/Section';
 import SectionHead from './section-head/ui/SectionHead';
@@ -21,5 +22,6 @@ export {
   Input,
   PageLoader,
   Tabs,
-  Accordion
+  Accordion,
+  List
 };

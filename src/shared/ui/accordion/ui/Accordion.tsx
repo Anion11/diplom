@@ -29,7 +29,7 @@ const Accordion: FC<IAccordion> = ({ title, children, mods }) => {
         onClick={() => setHeight(height === 0 ? 'auto' : 0)}
       >
         <Typography
-          type={ETypographyType.h4}
+          type={ETypographyType.h5}
           bold={700}
         >
           {title}

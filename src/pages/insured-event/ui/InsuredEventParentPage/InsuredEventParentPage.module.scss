@@ -1,0 +1,25 @@
+@use 'src/app/styles/utils/variables' as *;
+@use 'src/app/styles/utils/media' as *;
+
+.insured {
+  margin-top: 30px;
+
+  @include media-laptop {
+    margin-top: 25px;
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+
+    @include media-laptop {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    @include media-tablet {
+      grid-template-columns: 1fr;
+    }
+  }
+}

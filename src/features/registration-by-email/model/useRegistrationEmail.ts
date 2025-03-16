@@ -9,6 +9,7 @@ const useRegistrationEmail = () => {
   const [formError, setFormError] = useState<string | null>(null);
 
   const regRequest = async (data: IRegistrationFormEmail): Promise<void> => {
+    console.log(data);
     try {
       await $api.post('/api/reg', data);
     } catch (error) {

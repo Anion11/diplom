@@ -1,0 +1,81 @@
+@use 'src/app/styles/utils/variables' as *;
+@use 'src/app/styles/utils/media' as *;
+
+.contacts {
+  margin-top: 30px;
+
+  @include media-laptop {
+    margin-top: 25px;
+  }
+
+  &__content {
+    padding: 24px 30px;
+    background: $white;
+    border-radius: 8px;
+    box-shadow: $smallShadow;
+
+    @include media-tablet {
+      padding: 20px 18px;
+    }
+  }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    @include media-tablet {
+      gap: 8px;
+    }
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid $grey40;
+
+    @include media-tablet {
+      gap: 8px;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+    }
+
+    a {
+      color: $primary-50;
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    @include media-tablet {
+      gap: 6px;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    ul {
+      margin-top: 8px;
+
+      li {
+        &::before {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  &__foot {
+    color: $primary;
+    text-align: center;
+  }
+}

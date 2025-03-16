@@ -14,6 +14,7 @@ const useLoginEmail = () => {
   const [formError, setFormError] = useState<string | null>(null);
 
   const loginRequest = async (data: ILoginFormEmail): Promise<void> => {
+    console.log(data);
     try {
       const res: AxiosResponse<ILoginOutput> = await $api.post('/api/auth/login', data);
       if (login) {

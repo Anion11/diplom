@@ -35,12 +35,12 @@ const WidgetFooter: FC = () => {
             </Typography>
             <ul className={styles.footer__menu}>
               <li>
-                <Link to={'/'}>
+                <Link to={'/osago'}>
                   <Typography type={ETypographyType.p1}>ОСАГО</Typography>
                 </Link>
               </li>
               <li>
-                <Link to={'/'}>
+                <Link to={'/kasko'}>
                   <Typography type={ETypographyType.p1}>Квско</Typography>
                 </Link>
               </li>
@@ -55,12 +55,12 @@ const WidgetFooter: FC = () => {
             </Typography>
             <ul className={styles.footer__menu}>
               <li>
-                <Link to={'/'}>
+                <Link to={'/apartments-insurance'}>
                   <Typography type={ETypographyType.p1}>Страхование квартир</Typography>
                 </Link>
               </li>
               <li>
-                <Link to={'/'}>
+                <Link to={'/houses-insurance'}>
                   <Typography type={ETypographyType.p1}>Страхование домов</Typography>
                 </Link>
               </li>
@@ -75,14 +75,14 @@ const WidgetFooter: FC = () => {
             </Typography>
             <ul className={styles.footer__menu}>
               <li>
-                <Link to={'/'}>
+                <Link to={'/accident-insurance'}>
                   <Typography type={ETypographyType.p1}>
                     Страхование от несчастных случаев
                   </Typography>
                 </Link>
               </li>
               <li>
-                <Link to={'/'}>
+                <Link to={'/athletes-insurance'}>
                   <Typography type={ETypographyType.p1}>Страхование спортсменов</Typography>
                 </Link>
               </li>
