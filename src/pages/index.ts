@@ -1,3 +1,4 @@
+import { AboutPage } from '@/pages/about/ui';
 import { ContactsPage } from '@/pages/contacts/ui';
 import { FAQPage } from '@/pages/faq/ui';
 import { InsuredEventPage, InsuredEventParentPage } from '@/pages/insured-event/ui';
@@ -16,5 +17,6 @@ export {
   FAQPage,
   InsuredEventPage,
   InsuredEventParentPage,
-  ContactsPage
+  ContactsPage,
+  AboutPage
 };

@@ -1,4 +1,5 @@
 import Accordion from './accordion/ui/Accordion';
+import Banner from './banner/ui/Banner';
 import Button from './button/ui/Button';
 import HeaderDropdown from './header-dropdown/ui/HeaderDropdown';
 import Inner from './inner/ui/Inner';
@@ -23,5 +24,6 @@ export {
   PageLoader,
   Tabs,
   Accordion,
-  List
+  List,
+  Banner
 };

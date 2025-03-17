@@ -1,0 +1,65 @@
+@use '@/app/styles/utils/variables' as *;
+@use '@/app/styles/utils/media' as *;
+
+.banner {
+  color: $white;
+  background: $primary;
+
+  &__body {
+    position: relative;
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+
+    @include media-laptop {
+      gap: 15px;
+    }
+
+    @include media-tablet {
+      flex-direction: column-reverse;
+      gap: 0;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    max-width: 700px;
+    padding: 60px 0 60px;
+
+    @include media-laptop {
+      gap: 8px;
+      max-width: 500px;
+      padding: 40px 0 60px;
+    }
+
+    @include media-tablet {
+      max-width: unset;
+      padding: 0 0 30px;
+    }
+
+    h1 {
+      font-size: 48px;
+      line-height: 120%;
+
+      @include media-laptop {
+        font-size: 36px;
+      }
+
+      @include media-tablet {
+        font-size: 28px;
+      }
+    }
+  }
+
+  &__image {
+    align-self: center;
+    max-width: 480px;
+
+    @include media-laptop {
+      max-width: 350px;
+    }
+  }
+}

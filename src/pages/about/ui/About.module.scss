@@ -1,0 +1,84 @@
+@use 'src/app/styles/utils/variables' as *;
+@use 'src/app/styles/utils/media' as *;
+
+.about {
+  &__advantages {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    justify-content: space-between;
+
+    padding: 32px 0 32px 40px;
+
+    background: $white;
+    border-radius: 6px;
+
+    @include media-laptop {
+      gap: 20px;
+      padding: 16px 0 16px 20px;
+    }
+
+    @include media-tablet {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      padding: 16px 12px;
+    }
+  }
+
+  &__values {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+
+    @include media-laptop {
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @include media-tablet {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+  }
+
+  &__history {
+    p,
+    ul,
+    ol,
+    h3 {
+      margin: 0;
+
+      &:not(:last-child) {
+        margin-bottom: 15px;
+
+        @include media-laptop {
+          margin-bottom: 12px;
+        }
+
+        @include media-tablet {
+          margin-bottom: 10px;
+        }
+      }
+
+      li {
+        &::before {
+          color: $primary;
+        }
+      }
+    }
+
+    h3 {
+      &:not(:last-child) {
+        margin-top: 20px;
+
+        @include media-laptop {
+          margin-top: 18px;
+        }
+
+        @include media-tablet {
+          margin-top: 15px;
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import { RouteObject } from 'react-router-dom';
 
 import {
+  AboutPage,
   ContactsPage,
   FAQPage,
   InsuredEventPage,
@@ -31,7 +32,8 @@ const routes: RouteObject[] = [
         ]
       },
       { path: '/faq', element: <FAQPage /> },
-      { path: '/contacts', element: <ContactsPage /> }
+      { path: '/contacts', element: <ContactsPage /> },
+      { path: '/about', element: <AboutPage /> }
     ]
   },
   { path: '/login', element: <LoginPage /> },

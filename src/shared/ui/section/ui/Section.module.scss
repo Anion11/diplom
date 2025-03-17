@@ -13,4 +13,18 @@
       margin-top: 50px;
     }
   }
+
+  &_first {
+    &:not(:first-child) {
+      margin-top: 50px;
+
+      @include media-laptop {
+        margin-top: 40px;
+      }
+
+      @include media-tablet {
+        margin-top: 35px;
+      }
+    }
+  }
 }
