@@ -12,17 +12,17 @@ import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import { Button, Input, Typography } from '@/shared/ui';
 
 const LoginFormEmail = () => {
-  const { formError, clearFormError, loginRequest } = useLoginEmail();
+  const { formError, clearFormError, loginRequest, loading } = useLoginEmail();
 
   const defaultValues: ILoginFormEmail = {
-    email: '',
+    payload: '',
     password: ''
   };
 
   const {
     control,
     handleSubmit,
-    formState: { errors, isValid, touchedFields }
+    formState: { errors }
   } = useForm<ILoginFormEmail>({
     defaultValues,
     resolver: yupResolver(authEmailScheme),
@@ -41,7 +41,7 @@ const LoginFormEmail = () => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <Controller
-        name="email"
+        name="payload"
         control={control}
         render={({ field }) => (
           <Input
@@ -49,8 +49,9 @@ const LoginFormEmail = () => {
             type="email"
             {...field}
             placeholder="Введите E-mail"
-            error={touchedFields.email ? errors.email?.message : undefined}
+            error={errors.payload?.message}
             formError={formError}
+            autocomplete="email"
             onChange={e => {
               field.onChange(e);
               clearFormError();
@@ -67,8 +68,9 @@ const LoginFormEmail = () => {
             type="password"
             {...field}
             placeholder="Введите пароль"
-            error={touchedFields.password ? errors.password?.message : undefined}
+            error={errors.password?.message}
             formError={formError}
+            autocomplete="current-password"
             onChange={e => {
               field.onChange(e);
               clearFormError();
@@ -78,9 +80,9 @@ const LoginFormEmail = () => {
       />
       <div className={styles.form__btns}>
         <Button
+          loading={loading}
           className={styles.form__btn}
           text="Войти"
-          disabled={!isValid}
         ></Button>
         {formError && (
           <div className={styles.form__error}>

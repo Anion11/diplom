@@ -5,11 +5,16 @@
   display: flex;
   gap: 15px;
 
-  width: 500px;
-  padding: 30px 40px;
+  width: 800px;
+  padding: 40px 40px 30px;
 
   background-color: $white;
   border-radius: 10px;
+
+  @include media-laptop {
+    width: 680px;
+    padding: 35px 32px;
+  }
 
   @include media-tablet {
     width: 100%;

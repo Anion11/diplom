@@ -16,11 +16,7 @@ const App = (): ReactElement => {
 
   const { user } = useAuthContext();
   const routesMap = useMemo(() => (user ? authRoutes : routes), [user]);
-  const router = createBrowserRouter(routesMap, {
-    future: {
-      v7_startTransition: true
-    }
-  });
+  const router = createBrowserRouter(routesMap);
 
   return (
     <AppProvider>

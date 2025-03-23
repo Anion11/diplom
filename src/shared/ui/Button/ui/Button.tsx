@@ -10,7 +10,8 @@ import styles from './Button.module.scss';
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 
 const Button: FC<IButton> = props => {
-  const { text, leftIcon, rightIcon, type, onClick, link, className, mods, disabled } = props;
+  const { text, leftIcon, rightIcon, type, onClick, link, className, mods, disabled, loading } =
+    props;
 
   const renderButton = () => {
     switch (type) {
@@ -45,7 +46,8 @@ const Button: FC<IButton> = props => {
               Array.isArray(mods)
                 ? mods.map(mod => styles[`button_${mod}`]).join(' ')
                 : mods && styles[`button_${mods}`],
-              className && className
+              className && className,
+              loading && styles[`button_loading`]
             )}
             onClick={onClick}
             disabled={disabled}

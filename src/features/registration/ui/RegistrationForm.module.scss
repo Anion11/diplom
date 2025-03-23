@@ -2,15 +2,24 @@
 @use 'src/app/styles/utils/media' as *;
 
 .form {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
   width: 100%;
 
+  @include media-tablet {
+    grid-template-columns: 1fr;
+  }
+
   &__btns {
     display: flex;
+    grid-column: span 2;
     flex-direction: column;
     margin-top: 10px;
+
+    @include media-tablet {
+      grid-column: unset;
+    }
 
     button {
       padding: 10px 24px;

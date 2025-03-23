@@ -12,4 +12,5 @@ export interface IButton {
   onClick?: () => void;
   className?: string;
   disabled?: boolean;
+  loading?: boolean;
 }

@@ -1,4 +1,5 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import InputMask from 'react-input-mask';
 import clsx from 'clsx';
 
@@ -22,10 +23,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     error,
     disabled = false,
     formError,
-    onBlur
+    onBlur,
+    min,
+    max,
+    autocomplete
   } = props;
 
   const [showPassword, setShowPassword] = useState(false);
+  const [autoFill, setAutoFill] = useState(false);
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -37,20 +42,23 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
   const inputType = type === 'password' && showPassword ? 'text' : type;
 
+  useEffect(() => {
+    if (type === 'password') {
+      setShowPassword(false);
+    }
+  }, [type]);
+
   return (
     <div className={styles.inputWrapper}>
       <div
         className={clsx(
           styles.input,
-          error && styles.input_invalid,
-          formError && styles.input_invalid,
-          value && styles.input_filled,
+          (error || formError) && styles.input_invalid,
+          (value || autoFill || (!isMobile && type === 'date')) && styles.input_filled,
           type === 'password' && styles.input_password
         )}
       >
         {type === 'tel' ? (
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-expect-error
           <InputMask
             id={id}
             name={name}
@@ -62,6 +70,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             className={styles.input__field}
             inputRef={ref}
             onBlur={onBlur}
+            autoComplete={autocomplete}
+            inputMode="numeric"
+            onAnimationStart={e => {
+              if (e.animationName.includes('onAutoFillStart')) {
+                setAutoFill(true);
+              }
+            }}
           />
         ) : (
           <input
@@ -73,6 +88,15 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             onChange={handleChange}
             disabled={disabled}
             onBlur={onBlur}
+            min={min}
+            max={max}
+            autoComplete={autocomplete}
+            onAnimationStart={e => {
+              if (type === 'date') console.log(value);
+              if (e.animationName.includes('onAutoFillStart')) {
+                setAutoFill(true);
+              }
+            }}
           />
         )}
         <label htmlFor={id}>{placeholder}</label>

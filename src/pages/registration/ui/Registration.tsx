@@ -5,22 +5,11 @@ import styles from './Registration.module.scss';
 import Logo from '@/shared/assets/icon_logo.svg?react';
 import ArrowLeft from '@/shared/assets/icons/icon_arrow-left.svg?react';
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
-import { Button, Inner, Tabs, Typography, Wrapper } from '@/shared/ui';
-import { WidgetRegistrationEmail, WidgetRegistrationPhone } from '@/widgets';
+import { Button, Inner, Typography, Wrapper } from '@/shared/ui';
+import { WidgetRegistration } from '@/widgets';
 
 const Registration = () => {
   const navigate = useNavigate();
-
-  const tabs = [
-    {
-      label: 'Номер телефона',
-      content: <WidgetRegistrationPhone />
-    },
-    {
-      label: 'E-mail',
-      content: <WidgetRegistrationEmail />
-    }
-  ];
 
   const handleClickBack = () => {
     navigate(-1);
@@ -46,8 +35,8 @@ const Registration = () => {
               >
                 Регистрация в личном кабинете
               </Typography>
-              <div className={styles.reg__tabs}>
-                <Tabs tabs={tabs} />
+              <div className={styles.reg__form}>
+                <WidgetRegistration />
               </div>
               <Button
                 mods={['outline']}

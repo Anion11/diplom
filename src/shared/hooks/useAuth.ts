@@ -8,12 +8,14 @@ const useAuth = () => {
   const [token, setToken] = useState<string | null>(null);
   const [isAuth, setIsAuth] = useState<boolean>(false);
   const [user, setUser] = useState<IUserOutput | null>(null);
+
   const login = async (access: string) => {
-    const req: AxiosResponse<{ user: IUserOutput }> = await $api.get('api/auth/me', {
+    const req: AxiosResponse<{ user: IUserOutput }> = await $api.get('/api/user/me', {
       headers: {
         Authorization: `Bearer ${access}`
       }
     });
+    console.log(req?.data);
 
     setUser(req?.data.user);
     setToken(access);

@@ -12,16 +12,19 @@ const useLoginEmail = () => {
   const navigate = useNavigate();
   const { login } = useAuthContext();
   const [formError, setFormError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const loginRequest = async (data: ILoginFormEmail): Promise<void> => {
-    console.log(data);
     try {
-      const res: AxiosResponse<ILoginOutput> = await $api.post('/api/auth/login', data);
+      setLoading(true);
+      const res: AxiosResponse<ILoginOutput> = await $api.post('/api/auth/auth', data);
+      setLoading(false);
       if (login) {
         login(res.data.tokenOutput.access);
         navigate('/lk');
       }
     } catch (error) {
+      setLoading(false);
       if (error instanceof AxiosError)
         setFormError(error.response?.data.message || 'Неверно указана почта и/или пароль');
       else setFormError('Произошла ошибка при авторизации');
@@ -32,7 +35,7 @@ const useLoginEmail = () => {
     setFormError(null);
   };
 
-  return { loginRequest, formError, clearFormError };
+  return { loginRequest, formError, clearFormError, loading };
 };
 
 export default useLoginEmail;

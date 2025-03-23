@@ -98,7 +98,7 @@ const About: FC = () => {
             <div className={styles.about__history}>
               <Typography
                 tag="p"
-                type={ETypographyType.h5}
+                type={ETypographyType.p1}
               >
                 <b>InsureFlow</b> — это современная страховая компания, основанная в 2024 году. Мы
                 появились с целью изменить представление о страховании, сделав его простым, понятным
@@ -107,7 +107,7 @@ const About: FC = () => {
               </Typography>
               <Typography
                 tag="p"
-                type={ETypographyType.h5}
+                type={ETypographyType.p1}
               >
                 Наша команда состоит из профессионалов с многолетним опытом в страховой сфере. Мы
                 знаем, как важно чувствовать себя защищённым, и стремимся предложить решения,
@@ -116,7 +116,7 @@ const About: FC = () => {
               </Typography>
               <Typography
                 tag="p"
-                type={ETypographyType.h5}
+                type={ETypographyType.p1}
               >
                 С самого начала мы сделали ставку на технологии и клиентоориентированный подход.
                 Наша онлайн-платформа позволяет оформить полис всего за несколько минут. А если у
@@ -125,7 +125,7 @@ const About: FC = () => {
               </Typography>
               <Typography
                 tag="p"
-                type={ETypographyType.h5}
+                type={ETypographyType.p1}
               >
                 Сегодня <b>InsureFlow</b> предлагает широкий спектр услуг: от классического
                 страхования автомобилей и имущества до медицинского страхования. Мы понимаем, что у
@@ -141,29 +141,29 @@ const About: FC = () => {
               </Typography>
               <Typography
                 tag="p"
-                type={ETypographyType.h5}
+                type={ETypographyType.p1}
               >
                 Мы не останавливаемся на достигнутом. В планах компании:
               </Typography>
               <List>
                 <li>
-                  <Typography type={ETypographyType.h5}>
+                  <Typography type={ETypographyType.p1}>
                     Расширение географии присутствия
                   </Typography>
                 </li>
                 <li>
-                  <Typography type={ETypographyType.h5}>
+                  <Typography type={ETypographyType.p1}>
                     Запуск новых страховых продуктов
                   </Typography>
                 </li>
                 <li>
-                  <Typography type={ETypographyType.h5}>Улучшение сервиса</Typography>
+                  <Typography type={ETypographyType.p1}>Улучшение сервиса</Typography>
                 </li>
                 <li>
-                  <Typography type={ETypographyType.h5}>Выход на рынки других стран.</Typography>
+                  <Typography type={ETypographyType.p1}>Выход на рынки других стран.</Typography>
                 </li>
                 <li>
-                  <Typography type={ETypographyType.h5}>
+                  <Typography type={ETypographyType.p1}>
                     Программы лояльности — бонусы и скидки для постоянных клиентов.
                   </Typography>
                 </li>

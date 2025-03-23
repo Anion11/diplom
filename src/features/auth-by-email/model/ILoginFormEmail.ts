@@ -1,4 +1,4 @@
 export interface ILoginFormEmail {
-  email: string;
+  payload: string;
   password: string;
 }

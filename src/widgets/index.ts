@@ -6,8 +6,7 @@ import WidgetInsuredEvent from '@/widgets/WidgetInsuredEvent/ui/WidgetInsuredEve
 import WidgetLoginEmail from '@/widgets/WidgetLoginEmail/ui/WidgetLoginEmail';
 import WidgetLoginPhone from '@/widgets/WidgetLoginPhone/ui/WidgetLoginPhone';
 import WidgetNavbar from '@/widgets/WidgetNavbar/ui/WidgetNavbar';
-import WidgetRegistrationEmail from '@/widgets/WidgetRegistrationEmail/ui/WidgetRegistrationEmail';
-import WidgetRegistrationPhone from '@/widgets/WidgetRegistrationPhone/ui/WidgetRegistrationPhone';
+import WidgetRegistration from '@/widgets/WidgetRegistration/ui/WidgetRegistration';
 import WidgetSteps from '@/widgets/WidgetSteps/ui/WidgetSteps';
 
 export {
@@ -15,8 +14,7 @@ export {
   WidgetFooter,
   WidgetLoginEmail,
   WidgetLoginPhone,
-  WidgetRegistrationPhone,
-  WidgetRegistrationEmail,
+  WidgetRegistration,
   WidgetNavbar,
   WidgetInsuredEvent,
   WidgetSteps,

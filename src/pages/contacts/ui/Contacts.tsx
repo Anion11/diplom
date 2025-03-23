@@ -141,12 +141,13 @@ const Contacts: FC = () => {
                 >
                   <b>КПП:</b> 771301001
                 </Typography>
-                <Typography
-                  tag="p"
-                  type={ETypographyType.p1}
-                >
-                  <b>Банковские реквизиты:</b>
-                  <br />
+                <div>
+                  <Typography
+                    tag="p"
+                    type={ETypographyType.p1}
+                  >
+                    <b>Банковские реквизиты:</b>
+                  </Typography>
                   <List>
                     <li>
                       <Typography type={ETypographyType.p1}>
@@ -164,7 +165,7 @@ const Contacts: FC = () => {
                       </Typography>
                     </li>
                   </List>
-                </Typography>
+                </div>
               </div>
             </div>
             <div className={styles.contacts__foot}>
