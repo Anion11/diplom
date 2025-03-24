@@ -19,7 +19,7 @@ const useLoginPhone = () => {
       const res: AxiosResponse<ILoginOutput> = await $api.post('/api/auth/auth', data);
       setLoading(false);
       if (login) {
-        login(res.data.token);
+        await login(res.data.token);
         navigate('/lk');
       }
       setFormError(null);

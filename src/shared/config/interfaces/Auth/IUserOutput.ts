@@ -1,19 +1,16 @@
 import ERoles from '@/shared/config/enums/ERoles.ts';
 
-export interface IPerson {
-  id: number;
-  name: string;
-  secondName: string;
-  surname: string;
-}
-
 export interface IUserOutput {
   id: number;
   username: string;
-  createdAt: string;
-  roles: ERoles[];
+  name: string;
+  authorities: {
+    name: ERoles;
+  }[];
+  firstName: string;
+  secondName: string;
+  lastName: string;
   blocked: boolean;
   email: string;
-  phone: string;
-  person: IPerson;
+  phoneNumber: string;
 }

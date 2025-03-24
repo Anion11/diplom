@@ -10,5 +10,5 @@ export interface IRegistrationForm {
   role?: ERoles;
   password: string;
   passwordRepeat: string;
-  login?: string; // что это
+  login?: string;
 }
