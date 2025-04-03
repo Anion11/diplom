@@ -56,6 +56,21 @@
     @keyframes onAutoFillCancel {
     }
 
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      ~ label {
+        top: -15px;
+        left: 0;
+        transform: translateY(0);
+
+        font-size: 12px;
+
+        background: transparent;
+      }
+    }
+
     &:-webkit-autofill {
       animation-name: onAutoFillStart;
     }

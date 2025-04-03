@@ -1,9 +1,9 @@
 import { IUserOutput } from '@/shared/config/interfaces/Auth/IUserOutput.ts';
 
 export interface IAuthContext {
-  login?: (token: string) => void;
+  login?: (token: string) => Promise<void>;
   logout?: () => void;
   token: string | null;
   user: IUserOutput | null;
-  isAuth: boolean;
+  loading: boolean;
 }

@@ -4,14 +4,14 @@ import { AuthContext } from '@/shared/context/AuthContext.ts';
 import useAuth from '@/shared/hooks/useAuth.ts';
 
 const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const { login, isAuth, logout, token, user } = useAuth();
+  const { login, loading, logout, token, user } = useAuth();
 
   return (
     <AuthContext.Provider
       value={{
         login,
         logout,
-        isAuth,
+        loading,
         token,
         user
       }}

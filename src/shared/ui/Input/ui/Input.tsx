@@ -92,7 +92,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             max={max}
             autoComplete={autocomplete}
             onAnimationStart={e => {
-              if (type === 'date') console.log(value);
               if (e.animationName.includes('onAutoFillStart')) {
                 setAutoFill(true);
               }
