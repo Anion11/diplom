@@ -1,15 +1,16 @@
 import { FC } from 'react';
 import clsx from 'clsx';
 
+import { EButtonTypes } from '../../button/model/IButton';
 import { IBanner } from '../model/IBanner';
 
 import style from './Banner.module.scss';
 
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
-import { Inner, Typography } from '@/shared/ui';
+import { Button, Inner, Typography } from '@/shared/ui';
 
 const Banner: FC<IBanner> = props => {
-  const { title, descr, mods, image } = props;
+  const { title, descr, mods, image, btnLink, btnText } = props;
 
   return (
     <div
@@ -23,14 +24,23 @@ const Banner: FC<IBanner> = props => {
       <Inner>
         <div className={style.banner__body}>
           <div className={style.banner__content}>
-            <Typography
-              tag="h1"
-              type={ETypographyType.h1}
-              bold={700}
-            >
-              {title}
-            </Typography>
-            <Typography type={ETypographyType.p1}>{descr}</Typography>
+            <div className={style.banner__text}>
+              <Typography
+                tag="h1"
+                type={ETypographyType.h1}
+                bold={700}
+              >
+                {title}
+              </Typography>
+              <Typography type={ETypographyType.p1}>{descr}</Typography>
+            </div>
+            <Button
+              className={style.banner__button}
+              text={btnText}
+              mods={['white', 'pd-s']}
+              link={btnLink}
+              type={EButtonTypes.LINK}
+            />
           </div>
           <div className={style.banner__image}>
             <img

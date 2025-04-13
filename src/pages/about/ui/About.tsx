@@ -23,6 +23,8 @@ const About: FC = () => {
           title="О компании"
           descr="InsureFlow — это современная страховая компания, которая предлагает надежные и индивидуальные решения для защиты вашего здоровья и имущества. Мы работаем, чтобы сделать страхование простым, понятным и доступным для каждого."
           image={bannerImage}
+          btnText="Подробнее"
+          btnLink="#history"
         />
       </Section>
       <Section mods={'first'}>
@@ -86,7 +88,7 @@ const About: FC = () => {
               />
             </div>
           </Section>
-          <Section>
+          <Section id="history">
             <SectionHead sectionType={ESectionHeadType.SMALL}>
               <Typography
                 bold={700}

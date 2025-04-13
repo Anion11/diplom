@@ -24,18 +24,20 @@
   &__content {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 32px;
+    justify-content: space-between;
 
     max-width: 700px;
     padding: 60px 0 60px;
 
     @include media-laptop {
-      gap: 8px;
+      gap: 28px;
       max-width: 500px;
       padding: 40px 0 60px;
     }
 
     @include media-tablet {
+      gap: 20px;
       max-width: unset;
       padding: 0 0 30px;
     }
@@ -54,6 +56,16 @@
     }
   }
 
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    @include media-laptop {
+      gap: 8px;
+    }
+  }
+
   &__image {
     align-self: center;
     max-width: 480px;
@@ -61,5 +73,9 @@
     @include media-laptop {
       max-width: 350px;
     }
+  }
+
+  &__button {
+    width: fit-content;
   }
 }

@@ -10,11 +10,9 @@ const useRegistration = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const regRequest = async (data: IRegistrationForm): Promise<void> => {
-    console.log(data);
     try {
       setLoading(true);
-      const res = await $api.post('/api/auth/register', { ...data, login: 'qwe' });
-      console.log(res);
+      await $api.post('/api/auth/register', { ...data });
       setLoading(false);
     } catch (error) {
       setLoading(false);

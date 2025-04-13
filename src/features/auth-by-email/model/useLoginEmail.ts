@@ -20,9 +20,10 @@ const useLoginEmail = () => {
       const res: AxiosResponse<ILoginOutput> = await $api.post('/api/auth/auth', data);
       setLoading(false);
       if (login) {
-        login(res.data.tokenOutput.access);
+        await login(res.data.token);
         navigate('/lk');
       }
+      setFormError(null);
     } catch (error) {
       setLoading(false);
       if (error instanceof AxiosError)

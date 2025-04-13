@@ -6,6 +6,7 @@ import { authRoutes, routes } from './routes';
 import './styles/index.scss';
 
 import 'swiper/css';
+import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 import useInterceptor from '@/app/config/hooks/useInterceptor.ts';

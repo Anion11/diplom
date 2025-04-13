@@ -1,4 +1,5 @@
 import WidgetAboutCard from '@/widgets/WidgetAboutCard/ui/WidgetAboutCard';
+import WidgetBannerSwiper from '@/widgets/WidgetBannerSwiper/ui/WidgetBannerSwiper';
 import WidgetFooter from '@/widgets/WidgetFooter/ui/WidgetFooter';
 import WidgetHeader from '@/widgets/WidgetHeader/ui/WidgetHeader';
 import WidgetIconText from '@/widgets/WidgetIconText/ui/WidgetIconText';
@@ -19,5 +20,6 @@ export {
   WidgetInsuredEvent,
   WidgetSteps,
   WidgetIconText,
-  WidgetAboutCard
+  WidgetAboutCard,
+  WidgetBannerSwiper
 };

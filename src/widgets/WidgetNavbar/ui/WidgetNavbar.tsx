@@ -97,15 +97,15 @@ const WidgetNavbar: FC = () => {
             </button>
           </li>
           <li className={styles.navbar__item}>
-            <Link
-              to={'/help'}
+            <a
+              href="tel: 8 (800) 555-35-35"
               className={styles.navbar__button}
             >
               <div className={styles.navbar__icon}>
                 <HelpIcon />
               </div>
               <Typography type={ETypographyType.p4}>Помощь</Typography>
-            </Link>
+            </a>
           </li>
           <li className={styles.navbar__item}>
             {user ? (

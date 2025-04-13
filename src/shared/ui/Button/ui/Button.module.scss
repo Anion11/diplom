@@ -16,6 +16,7 @@
   color: $white;
   text-align: center;
   text-decoration: none;
+  text-decoration: none;
   text-wrap: nowrap;
 
   background: $primary-50;
@@ -32,6 +33,11 @@
   @include media-hover {
     text-decoration: none;
     background: $primary-40;
+  }
+
+  &:active,
+  &:hover {
+    text-decoration: none;
   }
 
   &[disabled] {
@@ -57,6 +63,10 @@
     }
   }
 
+  &_pd-s {
+    padding: 10px 36px;
+  }
+
   &_pd-xs {
     padding: 6px 20px;
   }
@@ -70,6 +80,26 @@
       color: $primary-50;
       background: transparent;
       border-color: $primary-50;
+    }
+
+    &.button_hover_filled {
+      @include media-hover {
+        color: $white;
+        background: $primary-40;
+        border-color: $primary-40;
+      }
+    }
+  }
+
+  &_white {
+    color: $primary-50;
+    background: $white;
+    border: 2px solid $white;
+
+    @include media-hover {
+      color: $primary;
+      background: $white;
+      box-shadow: $bigShadow;
     }
 
     &.button_hover_filled {
