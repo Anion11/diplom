@@ -2,7 +2,6 @@ import * as yup from 'yup';
 
 export const passwordScheme = yup
   .string()
-  .required('Обязательное поле')
   .min(8, 'Пароль должен содержать минимум 8 символов')
   .matches(
     /^[A-Za-z0-9!@#$%^&*()_+{}[\]:;<>,.?~\\/-]+$/,

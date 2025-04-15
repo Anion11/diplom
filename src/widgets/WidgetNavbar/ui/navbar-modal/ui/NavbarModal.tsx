@@ -28,7 +28,6 @@ const NavbarModal: FC = () => {
               mods="transparent"
             >
               <Link to={'/accident-insurance'}>Страхование от несчастных случаев</Link>
-              <Link to={'/athletes-insurance'}>Страхование спортсменов</Link>
             </Accordion>
           </div>
           <div className={styles.content__insuranceItem}>

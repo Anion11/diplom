@@ -6,6 +6,7 @@ import { ILoginFormEmail } from './ILoginFormEmail';
 
 import { $api } from '@/shared/api/api.ts';
 import { ILoginOutput } from '@/shared/config/interfaces/Auth/ILoginOutput.ts';
+import { IResponseError } from '@/shared/config/interfaces/ResponseError/IResponseError';
 import { useAuthContext } from '@/shared/hooks/useAuthContext.ts';
 
 const useLoginEmail = () => {
@@ -17,18 +18,28 @@ const useLoginEmail = () => {
   const loginRequest = async (data: ILoginFormEmail): Promise<void> => {
     try {
       setLoading(true);
-      const res: AxiosResponse<ILoginOutput> = await $api.post('/api/auth/auth', data);
-      setLoading(false);
-      if (login) {
-        await login(res.data.token);
-        navigate('/lk');
+      const res: AxiosResponse<ILoginOutput | IResponseError> = await $api.post(
+        '/api/auth/auth',
+        data
+      );
+
+      if ('token' in res.data) {
+        if (login) {
+          await login(res.data.token);
+          navigate('/lk');
+        }
+        setFormError(null);
+      } else {
+        setFormError(res.data.message || 'Неверно указан номер телефона и/или пароль');
       }
-      setFormError(null);
     } catch (error) {
+      if (error instanceof AxiosError) {
+        setFormError(error.message || 'Ошибка сервера');
+      } else {
+        setFormError('Произошла ошибка при авторизации');
+      }
+    } finally {
       setLoading(false);
-      if (error instanceof AxiosError)
-        setFormError(error.response?.data.message || 'Неверно указана почта и/или пароль');
-      else setFormError('Произошла ошибка при авторизации');
     }
   };
 

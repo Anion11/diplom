@@ -33,7 +33,12 @@ const routes: RouteObject[] = [
       },
       { path: '/faq', element: <FAQPage /> },
       { path: '/contacts', element: <ContactsPage /> },
-      { path: '/about', element: <AboutPage /> }
+      { path: '/about', element: <AboutPage /> },
+      { path: '/kasko', element: <div>Каско</div> },
+      { path: '/osago', element: <div>Осаго</div> },
+      { path: '/accident-insurance', element: <div>Страхование от несчастных случаев</div> },
+      { path: '/apartments-insurance', element: <div>Страхование квартир</div> },
+      { path: '/houses-insurance', element: <div>Страхование домов</div> }
     ]
   },
   { path: '/login', element: <LoginPage /> },

@@ -42,7 +42,7 @@ const RegistrationForm: FC = () => {
     control,
     handleSubmit,
     formState: { errors }
-  } = useForm<IRegistrationForm>({
+  } = useForm<Omit<IRegistrationForm, 'role'>>({
     defaultValues,
     resolver: yupResolver(RegistrationFormScheme),
     shouldUnregister: true,

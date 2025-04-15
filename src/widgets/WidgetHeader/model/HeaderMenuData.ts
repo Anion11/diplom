@@ -20,8 +20,7 @@ export const HeaderDropdownAutoData: IHeaderDropdownColumn[] = [
 
 export const HeaderDropdownHealthData: IHeaderDropdownColumn[] = [
   createDropdownData('Здоровье', [
-    { name: 'Страхование от несчастных случаев', link: '/accident-insurance' },
-    { name: 'Страхование спортсменов', link: '/athletes-insurance' }
+    { name: 'Страхование от несчастных случаев', link: '/accident-insurance' }
   ])
 ];
 

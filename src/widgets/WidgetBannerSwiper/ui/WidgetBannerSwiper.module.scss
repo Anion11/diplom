@@ -11,10 +11,6 @@
   &__slider {
     &_multiple {
       .container__slide {
-        & div {
-          height: 100%;
-        }
-
         > div {
           @include media-tablet {
             padding-bottom: 40px !important;
@@ -25,10 +21,8 @@
   }
 
   &__slide {
+    box-sizing: border-box;
     height: auto !important;
-  }
-
-  &__controls {
   }
 
   &__buttons {

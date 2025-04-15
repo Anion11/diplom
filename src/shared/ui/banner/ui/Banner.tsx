@@ -21,7 +21,7 @@ const Banner: FC<IBanner> = props => {
           : mods && style[`banner_${mods}`]
       )}
     >
-      <Inner>
+      <Inner className={style.banner__inner}>
         <div className={style.banner__body}>
           <div className={style.banner__content}>
             <div className={style.banner__text}>

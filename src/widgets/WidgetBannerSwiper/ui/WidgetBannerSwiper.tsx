@@ -54,16 +54,18 @@ const WidgetBannerSwiper: FC<IBannerSwiper> = props => {
           <SwiperSlide>{children}</SwiperSlide>
         )}
       </Swiper>
-      <div className={styles.container__buttons}>
-        <div
-          onClick={handlePrev}
-          className={styles.container__prev}
-        />
-        <div
-          onClick={handleNext}
-          className={styles.container__next}
-        />
-      </div>
+      {Array.isArray(children) && (
+        <div className={styles.container__buttons}>
+          <div
+            onClick={handlePrev}
+            className={styles.container__prev}
+          />
+          <div
+            onClick={handleNext}
+            className={styles.container__next}
+          />
+        </div>
+      )}
     </div>
   );
 };

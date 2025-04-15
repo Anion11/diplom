@@ -2,14 +2,22 @@
 @use '@/app/styles/utils/media' as *;
 
 .banner {
+  height: 100%;
   color: $white;
   background: $primary;
 
+  &__inner {
+    height: 100%;
+  }
+
   &__body {
     position: relative;
+
     display: flex;
     gap: 30px;
     justify-content: space-between;
+
+    height: 100%;
 
     @include media-laptop {
       gap: 15px;
@@ -18,6 +26,7 @@
     @include media-tablet {
       flex-direction: column-reverse;
       gap: 0;
+      justify-content: flex-end;
     }
   }
 
@@ -39,6 +48,7 @@
     @include media-tablet {
       gap: 20px;
       max-width: unset;
+      height: 100%;
       padding: 0 0 30px;
     }
 
@@ -67,11 +77,23 @@
   }
 
   &__image {
-    align-self: center;
+    display: flex;
+    flex-shrink: 0;
+    width: 100%;
     max-width: 480px;
 
     @include media-laptop {
       max-width: 350px;
+    }
+
+    @include media-tablet {
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    img {
+      width: 100%;
+      object-fit: contain;
     }
   }
 

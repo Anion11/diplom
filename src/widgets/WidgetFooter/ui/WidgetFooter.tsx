@@ -81,11 +81,6 @@ const WidgetFooter: FC = () => {
                   </Typography>
                 </Link>
               </li>
-              <li>
-                <Link to={'/athletes-insurance'}>
-                  <Typography type={ETypographyType.p1}>Страхование спортсменов</Typography>
-                </Link>
-              </li>
             </ul>
           </div>
         </div>
