@@ -32,7 +32,12 @@ const Banner: FC<IBanner> = props => {
               >
                 {title}
               </Typography>
-              <Typography type={ETypographyType.p1}>{descr}</Typography>
+              <Typography
+                tag="p"
+                type={ETypographyType.h5}
+              >
+                {descr}
+              </Typography>
             </div>
             <Button
               className={style.banner__button}
