@@ -26,7 +26,7 @@ export const RegistrationFormScheme: yup.ObjectSchema<Omit<IRegistrationForm, 'r
       .required('Обязательное поле')
       .concat(passwordScheme as yup.StringSchema<string>)
       .oneOf([yup.ref('password')], 'Пароли не совпадают'),
-    birthday: yup
+    birthDate: yup
       .string()
       .required('Обязательное поле')
       .test('is-adult', 'Вам должно быть больше 18 лет', value => {

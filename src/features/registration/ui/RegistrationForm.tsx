@@ -23,7 +23,7 @@ const RegistrationForm: FC = () => {
     lastName: '',
     secondName: '',
     role: ERoles.USER,
-    birthday: '',
+    birthDate: '',
     password: '',
     passwordRepeat: ''
   };
@@ -118,7 +118,7 @@ const RegistrationForm: FC = () => {
         )}
       />
       <Controller
-        name="birthday"
+        name="birthDate"
         control={control}
         render={({ field }) => (
           <Input
@@ -126,7 +126,7 @@ const RegistrationForm: FC = () => {
             type="date"
             {...field}
             placeholder="Введите дату рождения"
-            error={errors.birthday?.message}
+            error={errors.birthDate?.message}
             formError={formError}
             max={maxAgeDate}
             autocomplete="off"

@@ -1,5 +1,39 @@
 @use '@/app/styles/utils/variables' as *;
 @use '@/app/styles/utils/media' as *;
 
-.insuranceTypes {
+.container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+
+  &__item {
+    grid-column: span 2;
+
+    padding: 24px;
+
+    border-radius: 8px;
+    box-shadow: $smallShadow;
+
+    transition: all 0.3s;
+
+    &:hover {
+      transform: scale(1.02);
+      text-decoration: none;
+      box-shadow: $bigShadow;
+    }
+
+    &_colspan2 {
+      grid-column: span 3;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    p {
+      color: $grey80;
+    }
+  }
 }

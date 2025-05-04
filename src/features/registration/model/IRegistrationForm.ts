@@ -6,7 +6,7 @@ export interface IRegistrationForm {
   firstName: string;
   lastName: string;
   secondName?: string;
-  birthday: string;
+  birthDate: string;
   role?: ERoles;
   password: string;
   passwordRepeat: string;
