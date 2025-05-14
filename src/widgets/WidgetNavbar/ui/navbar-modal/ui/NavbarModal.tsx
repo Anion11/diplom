@@ -66,14 +66,14 @@ const NavbarModal: FC = () => {
         </div>
         <div className={styles.content__footer}>
           <a
-            href="tel:8 (800) 555-35-35"
+            href="tel:89603508485"
             className={styles.content__tel}
           >
             <Typography
               type={ETypographyType.h2}
               bold={700}
             >
-              8 (800) 555-35-35
+              8 (960) 350-84-85
             </Typography>
           </a>
           <Typography

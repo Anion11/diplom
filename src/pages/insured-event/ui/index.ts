@@ -4,5 +4,6 @@ const InsuredEventPage = lazy(() => import('./InsuredEvent'));
 const InsuredEventParentPage = lazy(
   () => import('./InsuredEventParentPage/InsuredEventParentPage')
 );
+const InsuredEventHousePage = lazy(() => import('./InsuredEventHousePage/InsuredEventHousePage'));
 
-export { InsuredEventPage, InsuredEventParentPage };
+export { InsuredEventPage, InsuredEventParentPage, InsuredEventHousePage };

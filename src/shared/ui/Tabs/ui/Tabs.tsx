@@ -8,11 +8,11 @@ import style from './Tabs.module.scss';
 
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 
-const Tabs: FC<ITabs> = ({ tabs }) => {
+const Tabs: FC<ITabs> = ({ tabs, mods }) => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className={style.tabs}>
+    <div className={clsx(style.tabs, mods && style['tabs_' + mods])}>
       <ul className={style.tabs__head}>
         {tabs.map((tab, index) => (
           <li

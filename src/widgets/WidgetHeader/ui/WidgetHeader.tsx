@@ -73,7 +73,7 @@ const WidgetHeader: FC = () => {
             </ul>
             <div className={styles.header__topRight}>
               <a
-                href="tel:8 (800) 555-35-35"
+                href="tel:89603508485"
                 className={styles.header__tel}
               >
                 <SmartPhone />
@@ -81,7 +81,7 @@ const WidgetHeader: FC = () => {
                   type={ETypographyType.h5}
                   bold={700}
                 >
-                  8 (800) 555-35-35
+                  8 (960) 350-84-85
                 </Typography>
               </a>
               <Link

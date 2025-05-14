@@ -19,8 +19,8 @@ const WidgetFooter: FC = () => {
             <Logo />
           </Link>
           <div className={styles.footer__tel}>
-            <a href="tel: 8 (800) 555-35-35">
-              <Typography type={ETypographyType.h4}>8 (800) 555-35-35</Typography>
+            <a href="tel: 889603508485">
+              <Typography type={ETypographyType.h4}>8 (960) 350-84-85</Typography>
             </a>
             <Typography type={ETypographyType.p2}>Телефон горячей линии</Typography>
           </div>

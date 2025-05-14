@@ -1,7 +1,11 @@
 import { AboutPage } from '@/pages/about/ui';
 import { ContactsPage } from '@/pages/contacts/ui';
 import { FAQPage } from '@/pages/faq/ui';
-import { InsuredEventPage, InsuredEventParentPage } from '@/pages/insured-event/ui';
+import {
+  InsuredEventHousePage,
+  InsuredEventPage,
+  InsuredEventParentPage
+} from '@/pages/insured-event/ui';
 import Layout from '@/pages/layout/ui/Layout';
 import { LoginPage } from '@/pages/login/ui';
 import { MainPage } from '@/pages/main/ui';
@@ -17,6 +21,7 @@ export {
   FAQPage,
   InsuredEventPage,
   InsuredEventParentPage,
+  InsuredEventHousePage,
   ContactsPage,
   AboutPage
 };

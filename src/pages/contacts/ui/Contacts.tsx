@@ -43,7 +43,7 @@ const Contacts: FC = () => {
                   tag="p"
                   type={ETypographyType.p1}
                 >
-                  <b>Горячая линия:</b> <a href="tel: 88005553535"> 8 (800) 555-35-35</a>
+                  <b>Горячая линия:</b> <a href="tel: 89603508485"> 8 (960) 350-84-85</a>
                 </Typography>
               </div>
             </div>

@@ -1,0 +1,64 @@
+@use 'src/app/styles/utils/variables' as *;
+@use 'src/app/styles/utils/media' as *;
+
+.container {
+  position: relative;
+
+  &__head {
+    margin-bottom: 18px;
+
+    @include media-tablet {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__body {
+    &:not(:last-child) {
+      margin-bottom: 50px;
+
+      @include media-laptop {
+        margin-bottom: 40px;
+      }
+
+      @include media-tablet {
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  ol {
+    > li {
+      &:not(:last-child) {
+        margin-bottom: 24px;
+
+        @include media-laptop {
+          margin-bottom: 18px;
+        }
+
+        @include media-tablet {
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+
+  &__listInner {
+    margin: 8px 0 20px;
+
+    @include media-laptop {
+      margin: 8px 0 16px;
+    }
+
+    @include media-tablet {
+      margin: 6px 0 14px;
+    }
+  }
+
+  &__link {
+    color: $primary;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

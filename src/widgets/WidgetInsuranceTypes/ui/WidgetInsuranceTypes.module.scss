@@ -6,6 +6,16 @@
   grid-template-columns: repeat(6, 1fr);
   gap: 20px;
 
+  @include media-laptop {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  @include media-tablet {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
   &__item {
     grid-column: span 2;
 
@@ -16,14 +26,39 @@
 
     transition: all 0.3s;
 
+    @include media-laptop {
+      grid-column: unset;
+      padding: 16px;
+    }
+
+    @include media-tablet {
+      padding: 12px;
+    }
+
     &:hover {
       transform: scale(1.02);
       text-decoration: none;
       box-shadow: $bigShadow;
     }
 
+    &:last-child {
+      &:nth-child(odd) {
+        @include media-laptop {
+          grid-column: span 2;
+        }
+
+        @include media-tablet {
+          grid-column: unset;
+        }
+      }
+    }
+
     &_colspan2 {
       grid-column: span 3;
+
+      @include media-laptop {
+        grid-column: unset;
+      }
     }
   }
 
@@ -34,6 +69,24 @@
 
     p {
       color: $grey80;
+    }
+  }
+
+  &__image {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+
+    @include media-laptop {
+      width: 72px;
+      height: 72px;
+      margin-bottom: 16px;
+    }
+
+    @include media-tablet {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 12px;
     }
   }
 }

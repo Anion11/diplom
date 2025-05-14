@@ -36,4 +36,10 @@
       }
     }
   }
+
+  &_grey {
+    .tabs__head {
+      background: $bg;
+    }
+  }
 }

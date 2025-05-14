@@ -98,7 +98,7 @@ const WidgetNavbar: FC = () => {
           </li>
           <li className={styles.navbar__item}>
             <a
-              href="tel: 8 (800) 555-35-35"
+              href="tel: 89603508485"
               className={styles.navbar__button}
             >
               <div className={styles.navbar__icon}>

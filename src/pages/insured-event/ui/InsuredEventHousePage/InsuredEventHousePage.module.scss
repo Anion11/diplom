@@ -1,0 +1,26 @@
+@use 'src/app/styles/utils/variables' as *;
+@use 'src/app/styles/utils/media' as *;
+
+.insured {
+  padding: 40px 30px;
+  background: #ffffff;
+  border-radius: 12px;
+
+  @include media-laptop {
+    padding: 25px 20px;
+  }
+
+  @include media-tablet {
+    padding: 20px 16px;
+  }
+
+  &__tabs {
+    > div > ul {
+      width: 300px;
+
+      @include media-tablet {
+        width: 100%;
+      }
+    }
+  }
+}

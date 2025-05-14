@@ -5,4 +5,5 @@ export interface ITabItem {
 
 export interface ITabs {
   tabs: ITabItem[];
+  mods?: string;
 }

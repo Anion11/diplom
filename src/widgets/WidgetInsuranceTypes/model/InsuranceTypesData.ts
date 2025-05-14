@@ -1,3 +1,9 @@
+import accident from '@/shared/assets/images/insurance-types/accident.png';
+import apartment from '@/shared/assets/images/insurance-types/apartment.png';
+import house from '@/shared/assets/images/insurance-types/house.png';
+import kasko from '@/shared/assets/images/insurance-types/kasko.png';
+import osago from '@/shared/assets/images/insurance-types/osago.png';
+
 interface IInsuranceTypesData {
   title: string;
   descr: string;
@@ -9,36 +15,34 @@ interface IInsuranceTypesData {
 export const InsuranceTypesData: IInsuranceTypesData[] = [
   {
     title: 'ОСАГО',
-    descr: 'Обязательное страхование ответственности на случай ДТП',
-    image: '',
-    link: ''
+    descr: 'Обязательное страховние гражданской ответственности владельцев транспортных средств',
+    image: osago,
+    link: '/osago'
   },
   {
     title: 'Каско',
-    descr: 'Полная защита автомобиля от повреждений, гибели и хищения',
-    image: '',
-    link: ''
+    descr: 'Комплексная страховка автомобиля от любых повреждений, угона и полной гибели',
+    image: kasko,
+    link: '/kasko'
   },
   {
     title: 'Страхование квартир',
-    descr:
-      'Защита жилья с возможность самостоятельно определить, что и на какую сумму застраховать',
-    image: '',
-    link: ''
+    descr: 'Индивидуальная защита жилья с гибким выбором страховых рисков и суммы покрытия',
+    image: apartment,
+    link: '/apartments-insurance'
   },
   {
     title: 'Страхование домов',
-    descr:
-      'Защита дома от пожара, затоплений, урагана, кражи драгоценных вещей, выбитых окон и других рисков',
-    image: '',
-    link: '',
+    descr: 'Комплексная защита частного дома от стихийных бедствий, краж и повреждений',
+    image: house,
+    link: '/houses-insurance',
     mods: 'container__item_colspan2'
   },
   {
     title: 'Страхование от несчастных случаев',
-    descr: 'Финансовая защита для разных ситуаций — от болезней до спортивных травм',
-    image: '',
-    link: '',
+    descr: 'Финансовая поддержка при травмах, заболеваниях и чрезвычайных ситуациях',
+    image: accident,
+    link: '/accident-insurance',
     mods: 'container__item_colspan2'
   }
 ];
