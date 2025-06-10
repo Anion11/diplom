@@ -1,0 +1,12 @@
+@use 'src/app/styles/utils/variables' as *;
+@use 'src/app/styles/utils/media' as *;
+
+.container {
+  @include media-laptop {
+    margin-top: 20px;
+  }
+
+  @include media-tablet {
+    margin-top: 10px;
+  }
+}

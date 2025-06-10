@@ -1,8 +1,10 @@
+import { IDocument } from './IDocument';
+
 export interface IPerson {
+  birthDate: Date;
+  documents: IDocument[];
   id: number;
   name: string;
-  surname: string;
   secondName: string;
-  birthDate: Date;
-  documents: []; // TODO
+  surname: string;
 }

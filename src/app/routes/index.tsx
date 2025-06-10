@@ -11,6 +11,7 @@ import {
   LoginPage,
   MainPage,
   NotFoundPage,
+  PersonalAccountPage,
   RegistrationPage
 } from '@/pages';
 
@@ -54,7 +55,7 @@ const authRoutes: RouteObject[] = [
       ...(routes[0].children as RouteObject[]),
       {
         path: '/lk',
-        element: <div>Личный кабинет</div>
+        element: <PersonalAccountPage />
       }
     ]
   }

@@ -1,3 +1,5 @@
+import { PersonalAccountPage } from './personal-account/ui';
+
 import { AboutPage } from '@/pages/about/ui';
 import { ContactsPage } from '@/pages/contacts/ui';
 import { FAQPage } from '@/pages/faq/ui';
@@ -23,5 +25,6 @@ export {
   InsuredEventParentPage,
   InsuredEventHousePage,
   ContactsPage,
-  AboutPage
+  AboutPage,
+  PersonalAccountPage
 };

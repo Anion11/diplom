@@ -1,0 +1,104 @@
+@use 'src/app/styles/utils/variables' as *;
+@use 'src/app/styles/utils/media' as *;
+
+.tabs {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 20px;
+
+  @include media-laptop {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 15px;
+  }
+
+  @include media-tablet {
+    gap: 10px;
+  }
+
+  &__head {
+    position: sticky;
+    top: 8px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-self: flex-start;
+
+    padding: 10px;
+
+    background: $white;
+    border-radius: 8px;
+    box-shadow: $lightSmallShadow;
+
+    @include media-laptop {
+      position: static;
+      width: 100%;
+      padding: 8px;
+    }
+
+    @include media-tablet {
+      padding: 6px;
+    }
+  }
+
+  &__item {
+    cursor: pointer;
+
+    padding: 10px;
+
+    text-align: center;
+    text-wrap: nowrap;
+
+    border-radius: 8px;
+
+    transition: all 0.3s;
+
+    @include media-laptop {
+      padding: 8px;
+    }
+
+    @include media-tablet {
+      padding: 6px;
+    }
+
+    &:hover {
+      color: $primary;
+      background: rgba(0 84 230 / 0.05);
+    }
+
+    &_active {
+      color: $primary;
+      background: rgba(0 84 230 / 0.07);
+
+      span {
+        font-weight: 700;
+      }
+    }
+
+    &_exit {
+      color: $error;
+      background: $error-10;
+
+      &:hover {
+        color: $error;
+        background: $error-20;
+      }
+    }
+  }
+
+  &__content {
+    padding: 30px 20px;
+    background: $white;
+    border-radius: 8px;
+    box-shadow: $lightSmallShadow;
+
+    @include media-laptop {
+      padding: 20px 16px;
+    }
+
+    @include media-tablet {
+      padding: 16px 12px;
+    }
+  }
+}

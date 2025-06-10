@@ -1,3 +1,7 @@
+:root {
+  --success: #00cf00;
+}
+
 // fonts
 $font: 'Circe', 'Arial', sans-serif;
 
@@ -13,9 +17,13 @@ $grey40: #e3e3e3;
 $grey50: #e2e1ec;
 $grey60: #a7a7a7;
 $grey80: #7d7d7d;
+$ghost: #d6dcea;
 $bg: #f6f7f8;
 $white: #ffffff;
 $error: rgb(244, 65, 65);
+$error-10: rgba(244 65 65 / 0.1);
+$error-20: rgba(244 65 65 / 0.2);
+$success: var(--success);
 
 // shadows
 $smallShadow: 0 3px 15px rgb(135 151 155 / 0.25);

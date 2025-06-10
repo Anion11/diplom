@@ -1,0 +1,66 @@
+@use '@/app/styles/utils/variables' as *;
+@use '@/app/styles/utils/media' as *;
+
+.partners {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  &::after,
+  &::before {
+    content: '';
+
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+    width: 169px;
+    height: 100%;
+
+    background: linear-gradient(90deg, #f3f3f3 0%, rgba(243, 243, 243, 0) 100%);
+
+    @include media-tablet {
+      width: 78px;
+    }
+  }
+
+  &::before {
+    right: 0;
+    left: unset;
+    transform: rotate(-180deg);
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 300px;
+    height: 197px;
+    padding: 20px;
+
+    background: #ffffff;
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+
+    @include media-tablet {
+      height: 130px;
+      padding: 12px;
+    }
+  }
+
+  &__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    max-width: 200px;
+
+    @include media-tablet {
+      max-width: 180px;
+    }
+  }
+}

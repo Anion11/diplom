@@ -1,0 +1,142 @@
+@use '@/app/styles/utils/variables' as *;
+@use '@/app/styles/utils/media' as *;
+
+.usefull {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 28px;
+
+  @include media-laptop {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @include media-tablet {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  &__item {
+    position: relative;
+
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    padding: 30px 24px 20px;
+
+    background: $white;
+    border-radius: 6px;
+
+    transition: 0.3s;
+
+    @include media-tablet {
+      padding: 20px 16px 20px;
+    }
+
+    &_blue {
+      align-items: center;
+
+      padding: 30px 24px 250px;
+
+      color: $white;
+      text-align: center;
+
+      background: $primary;
+
+      @include media-tablet {
+        padding: 20px 16px 200px;
+      }
+
+      .usefull__btn {
+        width: fit-content;
+        margin: auto auto 0;
+      }
+
+      .usefull__img {
+        position: absolute;
+        right: 50%;
+        bottom: 0;
+        transform: translateX(50%);
+
+        width: 100%;
+        max-width: 280px;
+
+        @include media-laptop {
+          max-width: 250px;
+        }
+
+        @include media-tablet {
+          max-width: 210px;
+        }
+      }
+
+      .usefull__content {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        max-width: 280px;
+        margin-bottom: 24px;
+      }
+    }
+
+    &_rowspan2 {
+      grid-row: span 2;
+
+      @include media-tablet {
+        grid-row: unset;
+      }
+    }
+
+    &_colspan2 {
+      grid-column: span 2;
+
+      @include media-tablet {
+        grid-column: unset;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    @include media-tablet {
+      margin-bottom: 50px;
+    }
+  }
+
+  &__img {
+    position: absolute;
+    right: 24px;
+    bottom: 20px;
+
+    width: 100%;
+    max-width: 80px;
+
+    @include media-laptop {
+      max-width: 64px;
+    }
+
+    @include media-tablet {
+      right: 16px;
+    }
+  }
+
+  &__link {
+    width: fit-content;
+    margin-top: auto;
+
+    color: $primary;
+    text-decoration: none;
+
+    transition: 0.3s;
+
+    &:hover {
+      color: $primary-50;
+      text-decoration: none;
+    }
+  }
+}

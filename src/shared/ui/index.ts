@@ -5,9 +5,11 @@ import HeaderDropdown from './header-dropdown/ui/HeaderDropdown';
 import Inner from './inner/ui/Inner';
 import Input from './input/ui/Input';
 import List from './list/ui/List';
+import Marquee from './marquee/ui/Marquee';
 import PageLoader from './page-loader/ui/PageLoader';
 import Section from './section/ui/Section';
 import SectionHead from './section-head/ui/SectionHead';
+import SideTabs from './side-tabs/ui/SideTabs';
 import Tabs from './tabs/ui/Tabs';
 import Typography from './typography/ui/Typography';
 import Wrapper from './wrapper/Wrapper';
@@ -25,5 +27,7 @@ export {
   Tabs,
   Accordion,
   List,
-  Banner
+  Banner,
+  Marquee,
+  SideTabs
 };
