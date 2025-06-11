@@ -12,7 +12,7 @@ import { Button, SectionHead, Typography } from '@/shared/ui';
 import { ESectionHeadType } from '@/shared/ui/section-head/model/ISectionHead';
 
 const WidgetGetWorkers: FC = () => {
-  const { loading, workers, getWorkers, hasMore } = useGetWorkers();
+  const { loading, getWorkers, hasMore } = useGetWorkers();
 
   const handleLoadMore = () => {
     if (!loading && hasMore) {

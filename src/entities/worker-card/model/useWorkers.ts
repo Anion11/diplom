@@ -12,6 +12,7 @@ const useWorkers = () => {
     try {
       setLoading(true);
       await $api.get(`/admin-api/block?id=${id}`);
+      setComplete(true); //FIX
     } catch (error) {
       if (error instanceof AxiosError) {
         setFormError(error.message || 'Ошибка сервера');

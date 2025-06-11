@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { IRegistrationWorkerForm } from '../model/IRegistrationWorkerForm';
