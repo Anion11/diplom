@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AxiosError, AxiosResponse } from 'axios';
 
-import { IDashboardProfile } from './IDashboardProfileForm';
+import { IDashboardProfileForm } from './IDashboardProfileForm';
 
 import { $api } from '@/shared/api/api.ts';
 import { IResponseError } from '@/shared/config/interfaces/ResponseError/IResponseError';
@@ -12,10 +12,11 @@ const useDashboardProfile = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [complete, setComplete] = useState<boolean>(false);
 
-  const updateRequest = async (data: IDashboardProfile): Promise<void> => {
+  const updateRequest = async (data: IDashboardProfileForm): Promise<void> => {
     try {
+      setComplete(false);
       setLoading(true);
-      const resReg: AxiosResponse<IUpdateProfileOutput | IResponseError> = await $api.post(
+      const resReg: AxiosResponse<IUpdateProfileOutput | IResponseError> = await $api.put(
         '/api/user/me/update',
         {
           ...data

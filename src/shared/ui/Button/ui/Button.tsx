@@ -29,12 +29,15 @@ const Button: FC<IButton> = props => {
             onClick={onClick}
           >
             {leftIcon && <div className={styles.button__icon}>{leftIcon}</div>}
-            <Typography
-              type={ETypographyType.p1}
-              className={styles.button__text}
-            >
-              {text}
-            </Typography>
+            {text && (
+              <Typography
+                type={ETypographyType.p1}
+                className={styles.button__text}
+              >
+                {text}
+              </Typography>
+            )}
+
             {rightIcon && <div className={styles.button__icon}>{rightIcon}</div>}
           </Link>
         );
@@ -53,12 +56,14 @@ const Button: FC<IButton> = props => {
             disabled={disabled}
           >
             {leftIcon && <div className={styles.button__icon}>{leftIcon}</div>}
-            <Typography
-              type={ETypographyType.p1}
-              className={styles.button__text}
-            >
-              {text}
-            </Typography>
+            {text && (
+              <Typography
+                type={ETypographyType.p1}
+                className={styles.button__text}
+              >
+                {text}
+              </Typography>
+            )}
             {rightIcon && <div className={styles.button__icon}>{rightIcon}</div>}
           </button>
         );

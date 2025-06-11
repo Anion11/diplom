@@ -12,9 +12,23 @@
   }
 
   &__wrapper {
+    position: relative;
+
     display: flex;
+    flex-direction: column;
     gap: 20px;
     align-items: flex-start;
+
+    padding: 12px 16px;
+
+    border: 1px solid $grey40;
+    border-radius: 12px;
+
+    @include media-tablet {
+      gap: 15px;
+      padding: 10px 14px;
+      border-radius: 8px;
+    }
   }
 
   &__colspan2 {
@@ -27,9 +41,8 @@
 
   &__btns {
     display: flex;
-    grid-column: span 2;
     flex-direction: column;
-    margin-top: 10px;
+    width: fit-content;
 
     @include media-tablet {
       grid-column: unset;
@@ -44,14 +57,40 @@
     }
   }
 
+  &__close {
+    cursor: pointer;
+    position: absolute;
+    top: 12px;
+    right: 16px;
+
+    @include media-tablet {
+      top: 10px;
+      right: 14px;
+    }
+  }
+
+  &__modal_buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+
+    button {
+      flex: 1;
+      padding: 10px 24px;
+
+      @include media-tablet {
+        padding: 8px 20px;
+      }
+    }
+  }
+
+  &__modal_title {
+    padding-right: 24px;
+  }
+
   &__error {
     margin-top: 12px;
     color: $error;
     text-align: center;
   }
-}
-
-.toast {
-  --toastify-color-progress-light: var(--success);
-  --toastify-color-progress-bgo: 0.1;
 }

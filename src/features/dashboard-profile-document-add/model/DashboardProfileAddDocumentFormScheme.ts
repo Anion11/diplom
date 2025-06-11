@@ -1,13 +1,14 @@
 import * as yup from 'yup';
 
-import { IDashboardProfileDocumentForm } from './IDashboardProfileDocumentForm';
+import { IDashboardProfileAddDocumentForm } from './IDashboardProfileAddDocumentForm';
 
+import EDocuments from '@/shared/config/enums/EDocuments';
 import {
   passportNumberScheme,
   passportSerialScheme
 } from '@/shared/config/schemas/AuthSchemas/PassportScheme';
 
-export const DashboardProfileDocumentFormScheme: yup.ObjectSchema<IDashboardProfileDocumentForm> =
+export const DashboardProfileAddDocumentFormScheme: yup.ObjectSchema<IDashboardProfileAddDocumentForm> =
   yup.object({
     serial: yup
       .string()
@@ -26,5 +27,6 @@ export const DashboardProfileDocumentFormScheme: yup.ObjectSchema<IDashboardProf
         const selectedDate = new Date(value);
         const currentDate = new Date();
         return selectedDate <= currentDate;
-      })
+      }),
+    type: yup.mixed<EDocuments>().oneOf(Object.values(EDocuments)).required()
   });

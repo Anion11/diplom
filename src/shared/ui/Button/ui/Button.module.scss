@@ -111,6 +111,26 @@
     }
   }
 
+  &_red {
+    color: $white;
+    background: $error;
+
+    @include media-hover {
+      color: $error;
+      background: $error-30;
+    }
+  }
+
+  &_red_text {
+    color: $white;
+    background: $error;
+
+    @include media-hover {
+      color: $error;
+      background: $error-30;
+    }
+  }
+
   &_outline {
     padding: 0;
     color: $primary;
@@ -150,6 +170,72 @@
 
     span {
       opacity: 0;
+    }
+  }
+
+  &_icon {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+
+    @include media-laptop {
+      width: 36px;
+      height: 36px;
+    }
+
+    @include media-tablet {
+      width: 30px;
+      height: 30px;
+    }
+
+    .button__icon {
+      width: 25px;
+      height: 25px;
+
+      @include media-laptop {
+        width: 24px;
+        height: 24px;
+      }
+
+      @include media-tablet {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  &_shadow_none {
+    box-shadow: none;
+  }
+
+  &_icon_xs {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+
+    @include media-laptop {
+      width: 32px;
+      height: 32px;
+    }
+
+    @include media-tablet {
+      width: 26px;
+      height: 26px;
+    }
+
+    .button__icon {
+      width: 22px;
+      height: 22px;
+
+      @include media-laptop {
+        width: 18px;
+        height: 18px;
+      }
+
+      @include media-tablet {
+        width: 16px;
+        height: 16px;
+      }
     }
   }
 }

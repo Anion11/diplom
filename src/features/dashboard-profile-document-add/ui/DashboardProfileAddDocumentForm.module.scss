@@ -11,6 +11,12 @@
     grid-template-columns: 1fr;
   }
 
+  &__wrapper {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
   &__colspan2 {
     grid-column: span 2;
 
@@ -42,5 +48,18 @@
     margin-top: 12px;
     color: $error;
     text-align: center;
+  }
+
+  .select {
+    grid-column: span 2;
+    height: 50px;
+
+    > div {
+      height: 100%;
+    }
+
+    @include media-tablet {
+      grid-column: unset;
+    }
   }
 }

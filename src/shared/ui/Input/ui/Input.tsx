@@ -48,17 +48,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     }
   }, [type]);
 
-  return (
-    <div className={styles.inputWrapper}>
-      <div
-        className={clsx(
-          styles.input,
-          (error || formError) && styles.input_invalid,
-          (value || autoFill || (!isMobile && type === 'date')) && styles.input_filled,
-          type === 'password' && styles.input_password
-        )}
-      >
-        {type === 'tel' ? (
+  const renderInput = () => {
+    switch (type) {
+      case 'tel':
+        return (
           <InputMask
             id={id}
             name={name}
@@ -78,7 +71,53 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
               }
             }}
           />
-        ) : (
+        );
+      case 'serial':
+        return (
+          <InputMask
+            id={id}
+            name={name}
+            value={value}
+            onChange={handleChange}
+            disabled={disabled}
+            mask="9999"
+            maskChar="_"
+            className={styles.input__field}
+            inputRef={ref}
+            onBlur={onBlur}
+            autoComplete={autocomplete}
+            inputMode="numeric"
+            onAnimationStart={e => {
+              if (e.animationName.includes('onAutoFillStart')) {
+                setAutoFill(true);
+              }
+            }}
+          />
+        );
+      case 'doc_number':
+        return (
+          <InputMask
+            id={id}
+            name={name}
+            value={value}
+            onChange={handleChange}
+            disabled={disabled}
+            mask="999999"
+            maskChar="_"
+            className={styles.input__field}
+            inputRef={ref}
+            onBlur={onBlur}
+            autoComplete={autocomplete}
+            inputMode="numeric"
+            onAnimationStart={e => {
+              if (e.animationName.includes('onAutoFillStart')) {
+                setAutoFill(true);
+              }
+            }}
+          />
+        );
+      default:
+        return (
           <input
             type={inputType}
             name={name}
@@ -97,7 +136,21 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
               }
             }}
           />
+        );
+    }
+  };
+
+  return (
+    <div className={styles.inputWrapper}>
+      <div
+        className={clsx(
+          styles.input,
+          (error || formError) && styles.input_invalid,
+          (value || autoFill || (!isMobile && type === 'date')) && styles.input_filled,
+          type === 'password' && styles.input_password
         )}
+      >
+        {renderInput()}
         <label htmlFor={id}>{placeholder}</label>
         {type === 'password' && (
           <button

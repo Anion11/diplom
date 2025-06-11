@@ -1,6 +1,6 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { DashboardProfileDocumentFormScheme } from '../model/DashboardProfileDocumentFormScheme';
@@ -9,11 +9,13 @@ import useDashboardProfileDocumentForm from '../model/useDashboardProfileDocumen
 
 import styles from './DashboardProfileDocumentForm.module.scss';
 
-import { IDashboardProfile } from '@/features/dashboard-profile/model/IDashboardProfileForm';
+import { IDashboardProfileForm } from '@/features/dashboard-profile/model/IDashboardProfileForm';
+import TrashSvg from '@/shared/assets/icons/icon_trash.svg?react';
+import { getDocumentLabel } from '@/shared/config/enums/EDocuments';
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import { IDocument } from '@/shared/config/interfaces/Person/IDocument';
 import { useAuthContext } from '@/shared/hooks/useAuthContext';
-import { Button, Input, Typography } from '@/shared/ui';
+import { Button, Input, Modal, Typography } from '@/shared/ui';
 
 interface IDashboardProfileDocumentFormProps {
   document: IDocument;
@@ -21,10 +23,11 @@ interface IDashboardProfileDocumentFormProps {
 
 const DashboardProfileDocumentForm: FC<IDashboardProfileDocumentFormProps> = ({ document }) => {
   const notify = () => toast('Данные были успешно изменены!');
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { formError, clearFormError, updateRequest, loading, complete } =
     useDashboardProfileDocumentForm();
 
-  const { user } = useAuthContext();
+  const { login, token, user } = useAuthContext();
 
   const defaultValues: IDashboardProfileDocumentForm = {
     serial: document.serial || '',
@@ -45,65 +48,115 @@ const DashboardProfileDocumentForm: FC<IDashboardProfileDocumentFormProps> = ({ 
     mode: 'onTouched'
   });
 
+  const currentDate = new Date().toISOString().split('T')[0];
+
   const onSubmit = (data: IDashboardProfileDocumentForm) => {
-    const documentIndex = user?.person.documents?.findIndex(doc => doc.id === document.id) ?? -1;
-    const updatedDocuments = user?.person.documents ? [...user.person.documents] : [];
+    const updatedDocuments =
+      user?.person.documents?.map(doc => {
+        if (doc.id === document.id) {
+          return {
+            ...doc,
+            serial: data.serial,
+            number: data.number,
+            authority: data.authority,
+            dateIssue: data.dateIssue
+          };
+        }
+        return doc;
+      }) || [];
 
-    if (documentIndex !== -1) {
-      updatedDocuments[documentIndex] = {
-        ...updatedDocuments[documentIndex],
-        ...data
-      };
-    }
-
-    const formData: IDashboardProfile = {
-      email: user?.email || '',
-      phoneNumber: user?.phone || '',
-      firstName: user?.person.name || '',
-      lastName: user?.person.surname || '',
+    const formData: IDashboardProfileForm = {
+      id: user?.id || 0,
+      name: user?.person.name || '',
+      surname: user?.person.surname || '',
       secondName: user?.person.secondName || '',
       birthDate: user?.person.birthDate
         ? new Date(user.person.birthDate).toISOString().split('T')[0]
         : '',
       role: user?.roles[0].name,
-      documents: updatedDocuments
+      email: user?.email || '',
+      phoneNumber: user?.phone || '',
+      documents: updatedDocuments as IDocument[]
     };
-
     updateRequest(formData);
   };
 
   useEffect(() => {
     if (complete) {
       notify();
-      reset({
-        ...defaultValues
-      });
       clearFormError();
+      if (login) login(token || '');
     }
   }, [complete, reset]);
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleDeleteDocument = () => {
+    const updatedDocuments = user?.person.documents?.filter(doc => doc.id !== document.id) || [];
+
+    const formData: IDashboardProfileForm = {
+      id: user?.id || 0,
+      name: user?.person.name || '',
+      surname: user?.person.surname || '',
+      secondName: user?.person.secondName || '',
+      birthDate: user?.person.birthDate
+        ? new Date(user.person.birthDate).toISOString().split('T')[0]
+        : '',
+      role: user?.roles[0].name,
+      email: user?.email || '',
+      phoneNumber: user?.phone || '',
+      documents: updatedDocuments as IDocument[]
+    };
+
+    updateRequest(formData);
+    setIsModalOpen(false);
+  };
+
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={3500}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        className={styles.toast}
-      />
       <div className={styles.form__wrapper}>
         <Typography
-          type={ETypographyType.h3}
+          type={ETypographyType.h4}
+          tag="h4"
           bold={700}
         >
-          {document.type}
+          {getDocumentLabel(document.type)}
         </Typography>
+        <Button
+          rightIcon={<TrashSvg />}
+          onClick={handleOpenModal}
+          mods={['red', 'icon_xs', 'shadow_none']}
+          className={styles.form__close}
+        />
+        <Modal
+          onClose={handleCloseModal}
+          isOpen={isModalOpen}
+        >
+          <Typography
+            type={ETypographyType.h5}
+            bold={700}
+            className={styles.form__modal_title}
+          >
+            Вы точно хотите удалить {getDocumentLabel(document.type)}?
+          </Typography>
+          <div className={styles.form__modal_buttons}>
+            <Button
+              onClick={handleDeleteDocument}
+              text="Да"
+            />
+            <Button
+              onClick={handleCloseModal}
+              mods={['red_text']}
+              text="Отмена"
+            />
+          </div>
+        </Modal>
         <form
           noValidate
           className={styles.form}
@@ -115,9 +168,9 @@ const DashboardProfileDocumentForm: FC<IDashboardProfileDocumentFormProps> = ({ 
             render={({ field }) => (
               <Input
                 id="serial"
-                type="text"
+                type="serial"
                 {...field}
-                placeholder="Введите серию"
+                placeholder="Серия"
                 error={errors.serial?.message}
                 formError={formError}
                 autocomplete="off"
@@ -134,9 +187,9 @@ const DashboardProfileDocumentForm: FC<IDashboardProfileDocumentFormProps> = ({ 
             render={({ field }) => (
               <Input
                 id="number"
-                type="text"
+                type="doc_number"
                 {...field}
-                placeholder="Введите номер"
+                placeholder="Номер"
                 error={errors.number?.message}
                 formError={formError}
                 autocomplete="off"
@@ -155,7 +208,7 @@ const DashboardProfileDocumentForm: FC<IDashboardProfileDocumentFormProps> = ({ 
                 id="authority"
                 type="text"
                 {...field}
-                placeholder="Введите кем выдан документ"
+                placeholder="Кем выдан"
                 error={errors.authority?.message}
                 formError={formError}
                 autocomplete="off"
@@ -174,7 +227,8 @@ const DashboardProfileDocumentForm: FC<IDashboardProfileDocumentFormProps> = ({ 
                 id="dateIssue"
                 type="date"
                 {...field}
-                placeholder="Введите дату выдачи"
+                placeholder="Дата выдачи"
+                max={currentDate}
                 error={errors.dateIssue?.message}
                 formError={formError}
                 autocomplete="off"

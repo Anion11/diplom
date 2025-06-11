@@ -1,3 +1,5 @@
+import { IWorker } from '@/shared/config/interfaces/Worker/IWorker';
+
 export interface IWorkerCard {
-  id: number;
+  data: IWorker;
 }

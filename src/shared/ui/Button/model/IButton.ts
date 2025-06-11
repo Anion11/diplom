@@ -9,7 +9,7 @@ export interface IButton {
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   link?: string;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent) => void;
   className?: string;
   disabled?: boolean;
   loading?: boolean;

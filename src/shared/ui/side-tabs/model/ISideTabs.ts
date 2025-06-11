@@ -8,4 +8,6 @@ export interface ISideTabItem {
 export interface ISideTabs {
   tabs: ISideTabItem[];
   mods?: string;
+  activeTab: number;
+  onTabChange: (index: number) => void;
 }

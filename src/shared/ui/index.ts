@@ -6,6 +6,7 @@ import Inner from './inner/ui/Inner';
 import Input from './input/ui/Input';
 import List from './list/ui/List';
 import Marquee from './marquee/ui/Marquee';
+import Modal from './modal/ui/Modal';
 import PageLoader from './page-loader/ui/PageLoader';
 import Section from './section/ui/Section';
 import SectionHead from './section-head/ui/SectionHead';
@@ -29,5 +30,6 @@ export {
   List,
   Banner,
   Marquee,
-  SideTabs
+  SideTabs,
+  Modal
 };

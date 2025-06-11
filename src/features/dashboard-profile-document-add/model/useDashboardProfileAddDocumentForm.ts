@@ -6,7 +6,7 @@ import { $api } from '@/shared/api/api.ts';
 import { IResponseError } from '@/shared/config/interfaces/ResponseError/IResponseError';
 import { IUpdateProfileOutput } from '@/shared/config/interfaces/UpdateProfile/IUpdateProfileOutput';
 
-const useDashboardProfileDocumentForm = () => {
+const useDashboardProfileAddDocumentForm = () => {
   const [formError, setFormError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [complete, setComplete] = useState<boolean>(false);
@@ -23,7 +23,9 @@ const useDashboardProfileDocumentForm = () => {
       );
 
       if ('statusCode' in resReg.data) {
-        setFormError(resReg.data.message);
+        setFormError(
+          resReg.data.message || 'Пользователь с таким логином или номером телефона уже существует'
+        );
       }
 
       setComplete(true);
@@ -45,4 +47,4 @@ const useDashboardProfileDocumentForm = () => {
   return { updateRequest, formError, clearFormError, loading, complete };
 };
 
-export default useDashboardProfileDocumentForm;
+export default useDashboardProfileAddDocumentForm;

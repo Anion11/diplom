@@ -1,0 +1,110 @@
+@use '@/app/styles/utils/variables' as *;
+@use '@/app/styles/utils/media' as *;
+
+.modal {
+  position: fixed;
+  z-index: 5;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  padding: 0 var(--inner-pd);
+
+  &__backdrop {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  &__body {
+    scrollbar-color: $black $grey40;
+    scrollbar-width: thin;
+
+    position: relative;
+    z-index: 2;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+
+    max-width: 1220px;
+    max-height: 60vh;
+    padding: 16px 20px;
+
+    background-color: $white;
+    border-radius: 16px;
+
+    *::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+
+    *::-webkit-scrollbar-track {
+      background: $grey40;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      background-color: $black;
+      border: 3px solid $grey40;
+      border-radius: 5px;
+    }
+
+    @include media-tablet {
+      padding: 10px 12px;
+    }
+  }
+
+  &__head {
+    display: flex;
+    margin-bottom: 16px;
+
+    @include media-tablet {
+      margin-bottom: 12px;
+    }
+  }
+
+  &__close {
+    cursor: pointer;
+
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    width: 20px;
+    height: 20px;
+
+    transition: 0.3s;
+
+    &:hover {
+      color: $error;
+    }
+
+    @include media-tablet {
+      top: 10px;
+      right: 12px;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+}

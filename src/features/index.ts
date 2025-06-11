@@ -1,5 +1,6 @@
 import DashboardProfileForm from './dashboard-profile/ui/DashboardProfileForm';
 import DashboardProfileDocumentForm from './dashboard-profile-document/ui/DashboardProfileDocumentForm';
+import DashboardProfileAddDocumentForm from './dashboard-profile-document-add/ui/DashboardProfileAddDocumentForm';
 import RegistrationWorkerForm from './registration-worker/ui/RegistrationWorkerForm';
 
 import LoginFormEmail from '@/features/auth-by-email/ui/LoginFormEmail';
@@ -12,5 +13,6 @@ export {
   RegistrationForm,
   RegistrationWorkerForm,
   DashboardProfileForm,
-  DashboardProfileDocumentForm
+  DashboardProfileDocumentForm,
+  DashboardProfileAddDocumentForm
 };

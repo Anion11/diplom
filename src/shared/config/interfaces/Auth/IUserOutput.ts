@@ -4,6 +4,7 @@ import ERoles from '@/shared/config/enums/ERoles.ts';
 
 export interface IRole {
   name: ERoles;
+  id?: number;
 }
 
 export interface IUserOutput {

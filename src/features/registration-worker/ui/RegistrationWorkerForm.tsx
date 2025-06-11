@@ -68,19 +68,6 @@ const RegistrationWorkerForm: FC = () => {
 
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={3500}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        className={styles.toast}
-      />
       <SectionHead sectionType={ESectionHeadType.SMALL}>
         <Typography
           type={ETypographyType.h3}

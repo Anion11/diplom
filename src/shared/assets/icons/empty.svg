@@ -1,0 +1,29 @@
+<svg
+xmlns="http://www.w3.org/2000/svg"
+width="48"
+height="49"
+viewBox="0 0 48 49"
+fill="none"
+>
+<path
+    d="M14 4.5H34"
+    stroke="#1F2937"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke='currentColor'
+></path>
+<path
+    d="M10 12.5H38"
+    stroke="#1F2937"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke='currentColor'
+></path>
+<path
+    d="M38 20.5H10C7.79086 20.5 6 22.2909 6 24.5V40.5C6 42.7091 7.79086 44.5 10 44.5H38C40.2091 44.5 42 42.7091 42 40.5V24.5C42 22.2909 40.2091 20.5 38 20.5Z"
+    stroke="#1F2937"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke='currentColor'
+></path>
+</svg>

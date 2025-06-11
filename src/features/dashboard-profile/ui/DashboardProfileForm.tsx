@@ -1,16 +1,15 @@
 import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { DashboardProfileFormScheme } from '../model/DashboardProfileFormScheme';
-import { IDashboardProfile, IDashboardProfileForm } from '../model/IDashboardProfileForm';
+import { IDashboardProfileForm } from '../model/IDashboardProfileForm';
 import useDashboardProfile from '../model/useDashboardProfile';
 
 import styles from './DashboardProfileForm.module.scss';
 
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
-import useAuth from '@/shared/hooks/useAuth';
 import { useAuthContext } from '@/shared/hooks/useAuthContext';
 import { Button, Input, SectionHead, Typography } from '@/shared/ui';
 import { ESectionHeadType } from '@/shared/ui/section-head/model/ISectionHead';
@@ -18,14 +17,13 @@ import { ESectionHeadType } from '@/shared/ui/section-head/model/ISectionHead';
 const DashboardProfileForm: FC = () => {
   const notify = () => toast('Данные были успешно изменены!');
   const { formError, clearFormError, updateRequest, loading, complete } = useDashboardProfile();
-  const { user } = useAuthContext();
-  const { login, token } = useAuth();
+  const { login, token, user } = useAuthContext();
 
-  const defaultValues: IDashboardProfileForm = {
+  const defaultValues: Omit<IDashboardProfileForm, 'documents' | 'id' | 'role'> = {
     email: user?.email || '',
     phoneNumber: user?.phone || '',
-    firstName: user?.person.name || '',
-    lastName: user?.person.surname || '',
+    name: user?.person.name || '',
+    surname: user?.person.surname || '',
     secondName: user?.person.secondName || '',
     birthDate: user?.person.birthDate
       ? new Date(user.person.birthDate).toISOString().split('T')[0]
@@ -47,7 +45,7 @@ const DashboardProfileForm: FC = () => {
     handleSubmit,
     formState: { errors, isDirty },
     reset
-  } = useForm<Omit<IDashboardProfileForm, 'role'>>({
+  } = useForm<Omit<IDashboardProfileForm, 'documents' | 'id' | 'role'>>({
     defaultValues,
     resolver: yupResolver(DashboardProfileFormScheme),
     shouldUnregister: true,
@@ -55,41 +53,40 @@ const DashboardProfileForm: FC = () => {
   });
 
   const onSubmit = (data: IDashboardProfileForm) => {
-    const formData: IDashboardProfile = {
+    const formData: IDashboardProfileForm = {
       ...data,
+      id: user?.id || 0,
       role: user?.roles[0].name,
       documents: user?.person.documents || []
     };
     updateRequest(formData);
-    // console.log(token);
-    // login(token || '');
   };
 
   useEffect(() => {
     if (complete) {
       notify();
-      reset({
-        ...defaultValues
-      });
       clearFormError();
+      if (login) login(token || '');
     }
   }, [complete, reset]);
 
+  useEffect(() => {
+    if (user) {
+      reset({
+        email: user.email || '',
+        phoneNumber: user.phone || '',
+        name: user.person.name || '',
+        surname: user.person.surname || '',
+        secondName: user.person.secondName || '',
+        birthDate: user.person.birthDate
+          ? new Date(user.person.birthDate).toISOString().split('T')[0]
+          : ''
+      });
+    }
+  }, [user, reset]);
+
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={3500}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        className={styles.toast}
-      />
       <SectionHead sectionType={ESectionHeadType.SMALL}>
         <Typography
           type={ETypographyType.h3}
@@ -104,15 +101,15 @@ const DashboardProfileForm: FC = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <Controller
-          name="firstName"
+          name="name"
           control={control}
           render={({ field }) => (
             <Input
-              id="firstName"
+              id="name"
               type="text"
               {...field}
               placeholder="Введите имя"
-              error={errors.firstName?.message}
+              error={errors.name?.message}
               formError={formError}
               autocomplete="off"
               onChange={e => {
@@ -123,15 +120,15 @@ const DashboardProfileForm: FC = () => {
           )}
         />
         <Controller
-          name="lastName"
+          name="surname"
           control={control}
           render={({ field }) => (
             <Input
-              id="lastName"
+              id="surname"
               type="text"
               {...field}
               placeholder="Введите фамилию"
-              error={errors.lastName?.message}
+              error={errors.surname?.message}
               formError={formError}
               autocomplete="off"
               onChange={e => {
