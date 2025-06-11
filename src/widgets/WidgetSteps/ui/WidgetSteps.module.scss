@@ -2,4 +2,119 @@
 @use '@/app/styles/utils/media' as *;
 
 .steps {
+  display: flex;
+  justify-content: center;
+
+  @include media-laptop {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__item {
+    width: 320px;
+    margin-right: 50px;
+    text-align: center;
+
+    @include media-laptop {
+      display: flex;
+
+      width: 100%;
+      max-width: 590px;
+      margin-right: 0;
+      margin-bottom: 45px;
+
+      text-align: left;
+    }
+
+    @include media-tablet {
+      margin-bottom: 40px;
+    }
+
+    &:nth-last-child(1) {
+      margin-right: 0;
+
+      @include media-laptop {
+        margin-bottom: 0;
+      }
+    }
+
+    &:last-child {
+      @include media-tablet {
+        min-height: auto;
+      }
+    }
+  }
+
+  &__head {
+    position: relative;
+    margin-bottom: 20px;
+
+    @include media-laptop {
+      margin-right: 20px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__count {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: block;
+
+    width: 44px;
+    height: 44px;
+
+    line-height: 44px;
+    color: $white;
+    text-align: center;
+
+    background: $primary;
+    border-radius: 50%;
+
+    transition: 0.3s;
+
+    @include media-laptop {
+      position: relative;
+      left: 0;
+      transform: none;
+    }
+  }
+
+  &__line {
+    position: absolute;
+    top: 22px;
+    left: 155px;
+
+    width: 370px;
+    height: 2px;
+
+    background: #ebebeb;
+    background: $grey40;
+
+    @include media-laptop {
+      top: 44px;
+      left: 22px;
+      width: 2px;
+      height: calc(100% + 1px);
+    }
+  }
+
+  &__decor {
+    position: relative;
+    transform: none;
+    height: 44px;
+
+    @include media-laptop {
+      position: relative;
+      top: 0;
+      right: unset;
+      left: 0;
+
+      width: auto;
+      height: 100%;
+    }
+  }
 }

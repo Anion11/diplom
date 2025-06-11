@@ -4,6 +4,7 @@ import {
   AboutPage,
   ContactsPage,
   FAQPage,
+  HomeInsurancePage,
   InsuredEventHousePage,
   InsuredEventPage,
   InsuredEventParentPage,
@@ -40,7 +41,7 @@ const routes: RouteObject[] = [
       { path: '/osago', element: <div>Осаго</div> },
       { path: '/accident-insurance', element: <div>Страхование от несчастных случаев</div> },
       { path: '/apartments-insurance', element: <div>Страхование квартир</div> },
-      { path: '/houses-insurance', element: <div>Страхование домов</div> }
+      { path: '/houses-insurance', element: <HomeInsurancePage /> }
     ]
   },
   { path: '/login', element: <LoginPage /> },

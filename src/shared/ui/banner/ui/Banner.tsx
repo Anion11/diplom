@@ -39,13 +39,15 @@ const Banner: FC<IBanner> = props => {
                 {descr}
               </Typography>
             </div>
-            <Button
-              className={style.banner__button}
-              text={btnText}
-              mods={['white', 'pd-s']}
-              link={btnLink}
-              type={EButtonTypes.LINK}
-            />
+            {btnText && (
+              <Button
+                className={style.banner__button}
+                text={btnText}
+                mods={['white', 'pd-s']}
+                link={btnLink}
+                type={EButtonTypes.LINK}
+              />
+            )}
           </div>
           <div className={style.banner__image}>
             <img

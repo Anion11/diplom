@@ -1,3 +1,4 @@
+import WidgetHomeInsuranceBanner from './HomeInsuranceBanner/ui/WidgetHomeInsuranceBanner';
 import WidgetDashboardDocuments from './WidgetDashboardDocuments/ui/WidgetDashboardDocuments';
 import WidgetDashboardProfile from './WidgetDashboardProfile/ui/WidgetDashboardProfile';
 import WidgetGetWorkers from './WidgetGetWorkers/ui/WidgetGetWorkers';
@@ -38,5 +39,6 @@ export {
   WidgetRegistrationWorker,
   WidgetGetWorkers,
   WidgetDashboardProfile,
-  WidgetDashboardDocuments
+  WidgetDashboardDocuments,
+  WidgetHomeInsuranceBanner
 };
