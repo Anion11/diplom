@@ -17,7 +17,7 @@ const useDashboardProfile = () => {
       setComplete(false);
       setLoading(true);
       const resReg: AxiosResponse<IUpdateProfileOutput | IResponseError> = await $api.put(
-        '/api/user/me/update',
+        '/auth-api/user/me/update',
         {
           ...data
         }
@@ -27,9 +27,9 @@ const useDashboardProfile = () => {
         setFormError(
           resReg.data.message || 'Пользователь с таким логином или номером телефона уже существует'
         );
+      } else {
+        setComplete(true);
       }
-
-      setComplete(true);
     } catch (error) {
       if (error instanceof AxiosError) {
         setFormError(error.message || 'Ошибка сервера');

@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '@/shared/hooks/useAuthContext';
 import { Inner, Section, SideTabs } from '@/shared/ui';
 import {
-  WidgetDashboardDocuments,
   WidgetDashboardProfile,
+  WidgetEditPassword,
   WidgetGetWorkers,
   WidgetRegistrationWorker
 } from '@/widgets';
@@ -33,8 +33,8 @@ const AdminDashboard: FC = () => {
       content: <WidgetDashboardProfile />
     },
     {
-      label: 'Документы',
-      content: <WidgetDashboardDocuments />
+      label: 'Пользователи',
+      content: <WidgetGetWorkers />
     },
     {
       label: 'Сотрудники',
@@ -43,6 +43,10 @@ const AdminDashboard: FC = () => {
     {
       label: 'Добавить сотрудника',
       content: <WidgetRegistrationWorker />
+    },
+    {
+      label: 'Изменить пароль',
+      content: <WidgetEditPassword />
     },
     {
       label: 'Выход',

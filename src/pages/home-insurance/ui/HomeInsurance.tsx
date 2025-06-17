@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import styles from './HomeInsurance.module.scss';
 
-import bannerHouseImage from '@/shared/assets/images/banner_insurance-house.png';
+import bannerApartmentsImage from '@/shared/assets/images/banner_insurance-apartments.png';
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import { Banner, Inner, Section, SectionHead, Typography } from '@/shared/ui';
 import { WidgetHomeInsuranceBanner, WidgetSteps } from '@/widgets';
@@ -12,9 +12,9 @@ const HomeInsurance: FC = () => {
     <>
       <Section>
         <Banner
-          title="Страхование домов"
-          descr="Защитите свой дом от&nbsp;пожаров, стихии и&nbsp;других рисков. Полис&nbsp;страхования недвижимости с&nbsp;гарантией быстрого урегулирования убытков."
-          image={bannerHouseImage}
+          title="Страхование квартир"
+          descr="Страхование квартиры – финансовая защита вашей недвижимости. Полное покрытие рисков: от&nbsp;повреждений до&nbsp;гражданской ответственности перед третьими лицами."
+          image={bannerApartmentsImage}
         />
       </Section>
       <Section>

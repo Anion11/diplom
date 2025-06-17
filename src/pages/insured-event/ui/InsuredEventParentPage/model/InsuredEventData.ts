@@ -7,11 +7,7 @@ export const insuredEventData: IWidgetInsuredEvent[] = [
     links: [
       {
         link: 'kasko',
-        title: 'Каско'
-      },
-      {
-        link: 'osago',
-        title: 'ОСАГО'
+        title: 'КАСКО'
       }
     ]
   },
@@ -21,7 +17,7 @@ export const insuredEventData: IWidgetInsuredEvent[] = [
     links: [
       {
         link: 'property',
-        title: 'Квартира и дом'
+        title: 'Квартира'
       }
     ]
   },
@@ -31,7 +27,7 @@ export const insuredEventData: IWidgetInsuredEvent[] = [
     links: [
       {
         link: 'health',
-        title: 'Несчастный случай'
+        title: '«Антиклещ»'
       }
     ]
   }

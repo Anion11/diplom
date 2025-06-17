@@ -16,11 +16,11 @@ const useRegistration = () => {
   const [formError, setFormError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const regRequest = async (data: IRegistrationForm): Promise<void> => {
+  const regRequest = async (data: Omit<IRegistrationForm, 'checkbox'>): Promise<void> => {
     try {
       setLoading(true);
       const resReg: AxiosResponse<IRegistrationOutput | IResponseError> = await $api.post(
-        '/api/auth/register',
+        '/auth-api/register',
         {
           ...data
         }
@@ -31,7 +31,7 @@ const useRegistration = () => {
           resReg.data.message || 'Пользователь с таким логином или номером телефона уже существует'
         );
       } else {
-        const resAuth: AxiosResponse<ILoginOutput> = await $api.post('/api/auth/auth', {
+        const resAuth: AxiosResponse<ILoginOutput> = await $api.post('/auth-api/register', {
           payload: data.email,
           password: data.password
         });

@@ -1,9 +1,9 @@
 import axios from 'axios';
 
+// 217.25.225.213 insureflow.ru
 export const $api = axios.create({
-  baseURL: 'http://217.25.225.213:8101'
-});
-
-export const $apiApp = axios.create({
-  baseURL: 'http://217.25.225.213:8102'
+  baseURL: 'https://insureflow.ru',
+  headers: {
+    Host: 'insureflow.ru'
+  }
 });

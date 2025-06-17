@@ -14,7 +14,7 @@ export const DashboardProfileFormScheme: yup.ObjectSchema<
     .string()
     .required('Обязательное поле')
     .concat(emailScheme as yup.StringSchema<string>),
-  phoneNumber: yup
+  phone: yup
     .string()
     .required('Обязательное поле')
     .concat(phoneScheme as yup.StringSchema<string>),

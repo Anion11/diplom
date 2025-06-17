@@ -24,9 +24,9 @@ const useDashboardProfileDocumentForm = () => {
 
       if ('statusCode' in resReg.data) {
         setFormError(resReg.data.message);
+      } else {
+        setComplete(true);
       }
-
-      setComplete(true);
     } catch (error) {
       if (error instanceof AxiosError) {
         setFormError(error.message || 'Ошибка сервера');

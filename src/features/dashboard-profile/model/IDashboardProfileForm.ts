@@ -10,5 +10,5 @@ export interface IDashboardProfileForm {
   documents?: IDocument[];
   role?: ERoles;
   email: string;
-  phoneNumber: string;
+  phone: string;
 }

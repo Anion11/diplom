@@ -30,6 +30,15 @@
     }
   }
 
+  &__checkbox {
+    grid-column: span 2;
+    max-width: 650px;
+
+    @include media-tablet {
+      grid-column: unset;
+    }
+  }
+
   &__foot {
     margin-top: 25px;
     padding-top: 20px;

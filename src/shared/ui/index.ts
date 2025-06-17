@@ -5,6 +5,7 @@ import HeaderDropdown from './header-dropdown/ui/HeaderDropdown';
 import Inner from './inner/ui/Inner';
 import Input from './input/ui/Input';
 import List from './list/ui/List';
+import Loader from './loader/ui/Loader';
 import Marquee from './marquee/ui/Marquee';
 import Modal from './modal/ui/Modal';
 import PageLoader from './page-loader/ui/PageLoader';
@@ -31,5 +32,6 @@ export {
   Banner,
   Marquee,
   SideTabs,
-  Modal
+  Modal,
+  Loader
 };

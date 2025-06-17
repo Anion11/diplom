@@ -82,9 +82,14 @@ const DashboardProfileAddDocumentForm: FC = () => {
 
   useEffect(() => {
     if (complete) {
-      notify();
       clearFormError();
-      if (login) login(token || '');
+      if (login) {
+        login(token || '').then(() => {
+          notify();
+        });
+      } else {
+        notify();
+      }
     }
     reset();
   }, [complete, reset]);

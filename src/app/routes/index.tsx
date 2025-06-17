@@ -28,7 +28,6 @@ const routes: RouteObject[] = [
         element: <InsuredEventPage />,
         children: [
           { index: true, element: <InsuredEventParentPage /> },
-          { path: 'osago', element: <div>осаго</div> },
           { path: 'kasko', element: <div>каско</div> },
           { path: 'property', element: <InsuredEventHousePage /> },
           { path: 'health', element: <div>здоровье</div> }
@@ -38,10 +37,8 @@ const routes: RouteObject[] = [
       { path: '/contacts', element: <ContactsPage /> },
       { path: '/about', element: <AboutPage /> },
       { path: '/kasko', element: <div>Каско</div> },
-      { path: '/osago', element: <div>Осаго</div> },
-      { path: '/accident-insurance', element: <div>Страхование от несчастных случаев</div> },
-      { path: '/apartments-insurance', element: <div>Страхование квартир</div> },
-      { path: '/houses-insurance', element: <HomeInsurancePage /> }
+      { path: '/antipincer-insurance', element: <div>Страхование антиклещ</div> },
+      { path: '/apartments-insurance', element: <HomeInsurancePage /> }
     ]
   },
   { path: '/login', element: <LoginPage /> },

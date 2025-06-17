@@ -10,4 +10,5 @@ export interface IRegistrationForm {
   role?: ERoles;
   password: string;
   passwordRepeat: string;
+  checkbox: boolean;
 }

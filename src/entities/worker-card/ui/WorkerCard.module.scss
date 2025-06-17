@@ -2,8 +2,6 @@
 @use 'src/app/styles/utils/media' as *;
 
 .card {
-  cursor: pointer;
-
   position: relative;
 
   padding: 16px;
@@ -12,18 +10,14 @@
   border: 1.5px solid $grey40;
   border-radius: 8px;
 
-  transition: 0.3s ease;
-
   @include media-tablet {
     padding: 12px;
   }
 
-  @include media-hover {
-    box-shadow: $lightBigShadow;
-  }
-
-  &__delete {
+  &__buttons {
+    display: flex;
     flex-shrink: 0;
+    gap: 8px;
   }
 
   &__name {

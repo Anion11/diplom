@@ -18,7 +18,7 @@ const useLoginPhone = () => {
     try {
       setLoading(true);
       const res: AxiosResponse<ILoginOutput | IResponseError> = await $api.post(
-        '/api/auth/auth',
+        '/auth-api/auth',
         data
       );
 

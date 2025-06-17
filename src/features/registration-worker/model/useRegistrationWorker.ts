@@ -16,7 +16,7 @@ const useRegistrationWorker = () => {
     try {
       setLoading(true);
       const resReg: AxiosResponse<IRegistrationOutput | IResponseError> = await $api.post(
-        '/api/auth/register',
+        '/auth-api/register',
         {
           ...data
         }
@@ -26,9 +26,9 @@ const useRegistrationWorker = () => {
         setFormError(
           resReg.data.message || 'Пользователь с таким логином или номером телефона уже существует'
         );
+      } else {
+        setComplete(true);
       }
-
-      setComplete(true);
     } catch (error) {
       if (error instanceof AxiosError) {
         setFormError(error.message || 'Ошибка сервера');

@@ -32,16 +32,16 @@ const FAQ: FC = () => {
             </Typography>
             <List>
               <li>
-                <Typography type={ETypographyType.p1}>Автострахование (КАСКО, ОСАГО)</Typography>
+                <Typography type={ETypographyType.p1}>Автострахование (ОСАГО)</Typography>
               </li>
               <li>
                 <Typography type={ETypographyType.p1}>
-                  Страхование недвижимости (квартиры, дома)
+                  Страхование недвижимости (квартиры)
                 </Typography>
               </li>
               <li>
                 <Typography type={ETypographyType.p1}>
-                  Медицинское страхование (страхование от несчастных случаев)
+                  Медицинское страхование (страхование от укуса клеща)
                 </Typography>
               </li>
             </List>
@@ -71,7 +71,7 @@ const FAQ: FC = () => {
               </li>
               <li>
                 <Typography type={ETypographyType.p1}>
-                  Документы на объект страхования (например, ПТС для авто, документы на
+                  Документы на объект страхования (например, СТС для авто, документы на
                   недвижимость)
                 </Typography>
               </li>

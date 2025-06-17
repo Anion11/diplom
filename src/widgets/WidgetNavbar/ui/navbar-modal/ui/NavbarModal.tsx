@@ -17,7 +17,6 @@ const NavbarModal: FC = () => {
               mods="transparent"
             >
               <div className={styles.content__insuranceLinks}>
-                <Link to={'/osago'}>ОСАГО</Link>
                 <Link to={'/kasko'}>Квско</Link>
               </div>
             </Accordion>
@@ -27,7 +26,7 @@ const NavbarModal: FC = () => {
               title="Здоровье"
               mods="transparent"
             >
-              <Link to={'/accident-insurance'}>Страхование от несчастных случаев</Link>
+              <Link to={'/antipincer-insurance'}>Страхование от укуса клеща</Link>
             </Accordion>
           </div>
           <div className={styles.content__insuranceItem}>
@@ -36,7 +35,6 @@ const NavbarModal: FC = () => {
               mods="transparent"
             >
               <Link to={'/apartments-insurance'}>Страхование квартир</Link>
-              <Link to={'/houses-insurance'}>Страхование домов</Link>
             </Accordion>
           </div>
         </div>

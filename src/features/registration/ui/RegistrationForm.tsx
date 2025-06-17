@@ -12,6 +12,7 @@ import styles from './RegistrationForm.module.scss';
 import ERoles from '@/shared/config/enums/ERoles';
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import { Button, Input, Typography } from '@/shared/ui';
+import Checkbox from '@/shared/ui/checkbox/ui/Checkbox';
 
 const RegistrationForm: FC = () => {
   const { formError, clearFormError, regRequest, loading } = useRegistration();
@@ -25,7 +26,8 @@ const RegistrationForm: FC = () => {
     role: ERoles.USER,
     birthDate: '',
     password: '',
-    passwordRepeat: ''
+    passwordRepeat: '',
+    checkbox: false
   };
 
   const currentDate = new Date();
@@ -50,8 +52,10 @@ const RegistrationForm: FC = () => {
   });
 
   const onSubmit = (data: IRegistrationForm) => {
-    const formData = { ...data, role: ERoles.USER };
-    regRequest(formData);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { checkbox, ...formData } = data;
+    const formDataWithCheckbox = { ...formData, role: ERoles.USER };
+    regRequest(formDataWithCheckbox);
   };
 
   return (
@@ -213,6 +217,41 @@ const RegistrationForm: FC = () => {
           />
         )}
       />
+      <div className={styles.form__checkbox}>
+        <Controller
+          name="checkbox"
+          control={control}
+          render={({ field }) => (
+            <Checkbox
+              id="checkbox"
+              {...field}
+              isChecked={field.value}
+              onChange={e => {
+                field.onChange(e.target.checked);
+                clearFormError();
+              }}
+              error={errors.checkbox?.message}
+              formError={formError}
+            >
+              Я согласен на обработку{' '}
+              <a
+                href="/privacy-data.pdf"
+                target="_blank"
+              >
+                персональных данных (ПД)
+              </a>{' '}
+              и ознакомился с&nbsp;
+              <a
+                href="/privacy.pdf"
+                target="_blank"
+              >
+                политикой обработки ПД
+              </a>
+            </Checkbox>
+          )}
+        />
+      </div>
+
       <div className={styles.form__btns}>
         <Button
           loading={loading}

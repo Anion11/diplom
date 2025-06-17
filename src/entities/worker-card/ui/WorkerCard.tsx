@@ -6,16 +6,17 @@ import useWorkers from '../model/useWorkers';
 
 import styles from './WorkerCard.module.scss';
 
+import EditWorkerForm from '@/features/edit-worker/ui/EditWorkerForm';
+import EditSvg from '@/shared/assets/icons/icon_edit.svg?react';
 import TrashSvg from '@/shared/assets/icons/icon_trash.svg?react';
-import { getDocumentLabel } from '@/shared/config/enums/EDocuments';
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
-import { Button, List, Modal, Typography } from '@/shared/ui';
+import { Button, Modal, Typography } from '@/shared/ui';
 
 const WorkerCard: FC<IWorkerCard> = ({ data }) => {
   const notify = () => toast('Пользователь был успешно удален!');
   const { person, email, phone, createdAt, username } = data;
 
-  const { deleteRequest } = useWorkers();
+  const { deleteRequest, loading } = useWorkers();
 
   const [isModalEditOpen, setIsModalEditOpen] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
@@ -48,9 +49,9 @@ const WorkerCard: FC<IWorkerCard> = ({ data }) => {
       <Modal
         onClose={handleCloseEditModal}
         isOpen={isModalEditOpen}
-        headText="Редактирование пользователя"
+        headText="Редактирование данных сотрудника"
       >
-        йцу
+        <EditWorkerForm worker={data} />
       </Modal>
       <Modal
         onClose={handleCloseDeleteModal}
@@ -67,6 +68,7 @@ const WorkerCard: FC<IWorkerCard> = ({ data }) => {
           <Button
             onClick={handleDeleteUser}
             text="Да"
+            loading={loading}
           />
           <Button
             onClick={handleCloseDeleteModal}
@@ -75,10 +77,7 @@ const WorkerCard: FC<IWorkerCard> = ({ data }) => {
           />
         </div>
       </Modal>
-      <div
-        className={styles.card}
-        onClick={handleOpenEditModal}
-      >
+      <div className={styles.card}>
         <div className={styles.card__name}>
           <div className={styles.card__text}>
             <Typography
@@ -100,13 +99,19 @@ const WorkerCard: FC<IWorkerCard> = ({ data }) => {
               <span>Создан:</span> {new Date(createdAt).toLocaleDateString()}
             </Typography>
           </div>
-
-          <Button
-            rightIcon={<TrashSvg />}
-            onClick={handleOpenDeleteModal}
-            mods={['red', 'icon_xs', 'shadow_none']}
-            className={styles.card__delete}
-          />
+          <div className={styles.card__buttons}>
+            <Button
+              className={styles.card__edit}
+              rightIcon={<EditSvg />}
+              onClick={handleOpenEditModal}
+              mods={['icon_xs', 'shadow_none']}
+            />
+            <Button
+              rightIcon={<TrashSvg />}
+              onClick={handleOpenDeleteModal}
+              mods={['red', 'icon_xs', 'shadow_none']}
+            />
+          </div>
         </div>
 
         <div className={styles.card__content}>
@@ -125,7 +130,7 @@ const WorkerCard: FC<IWorkerCard> = ({ data }) => {
               <b>Дата рождения:</b> {new Date(person.birthDate).toLocaleDateString()}
             </Typography>
           </div>
-          {person.documents && person.documents.length > 0 && (
+          {/* {person.documents && person.documents.length > 0 && (
             <div className={styles.card__item}>
               <Typography type={ETypographyType.p1}>
                 <b>Документы:</b>
@@ -136,7 +141,7 @@ const WorkerCard: FC<IWorkerCard> = ({ data }) => {
                 </List>
               </Typography>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </>

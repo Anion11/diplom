@@ -224,13 +224,8 @@
     }
 
     .button__icon {
-      width: 22px;
-      height: 22px;
-
-      @include media-laptop {
-        width: 18px;
-        height: 18px;
-      }
+      width: 18px;
+      height: 18px;
 
       @include media-tablet {
         width: 16px;

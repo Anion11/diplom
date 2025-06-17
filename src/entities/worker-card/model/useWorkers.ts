@@ -11,8 +11,8 @@ const useWorkers = () => {
   const deleteRequest = async (id: number): Promise<void> => {
     try {
       setLoading(true);
-      await $api.get(`/admin-api/block?id=${id}`);
-      setComplete(true); //FIX
+      await $api.get(`/auth-api/admin-api/block?id=${id}`);
+      setComplete(true);
     } catch (error) {
       if (error instanceof AxiosError) {
         setFormError(error.message || 'Ошибка сервера');

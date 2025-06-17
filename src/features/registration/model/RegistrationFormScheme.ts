@@ -39,6 +39,7 @@ export const RegistrationFormScheme: yup.ObjectSchema<Omit<IRegistrationForm, 'r
         );
 
         return selectedDate <= minAdultDate;
-      })
+      }),
+    checkbox: yup.boolean().required('Обязательное поле').oneOf([true], 'Обязательное поле')
   }
 );

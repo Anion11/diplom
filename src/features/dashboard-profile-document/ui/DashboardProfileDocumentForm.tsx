@@ -83,9 +83,14 @@ const DashboardProfileDocumentForm: FC<IDashboardProfileDocumentFormProps> = ({ 
 
   useEffect(() => {
     if (complete) {
-      notify();
       clearFormError();
-      if (login) login(token || '');
+      if (login) {
+        login(token || '').then(() => {
+          notify();
+        });
+      } else {
+        notify();
+      }
     }
   }, [complete, reset]);
 

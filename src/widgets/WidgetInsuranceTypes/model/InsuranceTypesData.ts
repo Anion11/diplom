@@ -1,8 +1,6 @@
 import accident from '@/shared/assets/images/insurance-types/accident.png';
 import apartment from '@/shared/assets/images/insurance-types/apartment.png';
-import house from '@/shared/assets/images/insurance-types/house.png';
 import kasko from '@/shared/assets/images/insurance-types/kasko.png';
-import osago from '@/shared/assets/images/insurance-types/osago.png';
 
 interface IInsuranceTypesData {
   title: string;
@@ -13,12 +11,6 @@ interface IInsuranceTypesData {
 }
 
 export const InsuranceTypesData: IInsuranceTypesData[] = [
-  {
-    title: 'ОСАГО',
-    descr: 'Обязательное страховние гражданской ответственности владельцев транспортных средств',
-    image: osago,
-    link: '/osago'
-  },
   {
     title: 'Каско',
     descr: 'Комплексная страховка автомобиля от любых повреждений, угона и полной гибели',
@@ -32,17 +24,10 @@ export const InsuranceTypesData: IInsuranceTypesData[] = [
     link: '/apartments-insurance'
   },
   {
-    title: 'Страхование домов',
-    descr: 'Комплексная защита частного дома от стихийных бедствий, краж и повреждений',
-    image: house,
-    link: '/houses-insurance',
-    mods: 'container__item_colspan2'
-  },
-  {
-    title: 'Страхование от несчастных случаев',
-    descr: 'Финансовая поддержка при травмах, заболеваниях и чрезвычайных ситуациях',
+    title: 'Страхование от укуса клеща',
+    descr:
+      'Финансовая защита на случай укуса клеща — покрытие расходов на медицинскую помощь, диагностику и лечение',
     image: accident,
-    link: '/accident-insurance',
-    mods: 'container__item_colspan2'
+    link: '/accident-insurance'
   }
 ];

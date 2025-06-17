@@ -21,7 +21,7 @@ const DashboardProfileForm: FC = () => {
 
   const defaultValues: Omit<IDashboardProfileForm, 'documents' | 'id' | 'role'> = {
     email: user?.email || '',
-    phoneNumber: user?.phone || '',
+    phone: user?.phone || '',
     name: user?.person.name || '',
     surname: user?.person.surname || '',
     secondName: user?.person.secondName || '',
@@ -64,9 +64,14 @@ const DashboardProfileForm: FC = () => {
 
   useEffect(() => {
     if (complete) {
-      notify();
       clearFormError();
-      if (login) login(token || '');
+      if (login) {
+        login(token || '').then(() => {
+          notify();
+        });
+      } else {
+        notify();
+      }
     }
   }, [complete, reset]);
 
@@ -74,7 +79,7 @@ const DashboardProfileForm: FC = () => {
     if (user) {
       reset({
         email: user.email || '',
-        phoneNumber: user.phone || '',
+        phone: user.phone || '',
         name: user.person.name || '',
         surname: user.person.surname || '',
         secondName: user.person.secondName || '',
@@ -197,7 +202,7 @@ const DashboardProfileForm: FC = () => {
           )}
         />
         <Controller
-          name="phoneNumber"
+          name="phone"
           control={control}
           render={({ field }) => (
             <Input
@@ -205,7 +210,7 @@ const DashboardProfileForm: FC = () => {
               type="tel"
               {...field}
               placeholder="Введите номер телефона"
-              error={errors.phoneNumber?.message}
+              error={errors.phone?.message}
               formError={formError}
               autocomplete="off"
               onChange={(value: string) => {

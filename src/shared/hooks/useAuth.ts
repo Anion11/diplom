@@ -9,20 +9,24 @@ const useAuth = () => {
   const [user, setUser] = useState<IUserOutput | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const login = async (access: string) => {
-    const req: AxiosResponse<IUserOutput> = await $api.get('/api/user/me', {
-      headers: {
-        Authorization: `Bearer ${access}`
-      }
-    });
+  const login = async (access: string): Promise<void> => {
     setLoading(true);
-    setUser(req?.data);
-    setToken(access);
-    localStorage.setItem('user', JSON.stringify(req?.data));
-    localStorage.setItem('authToken', access);
-    setTimeout(() => {
+    try {
+      const req: AxiosResponse<IUserOutput> = await $api.get('/auth-api/user/me', {
+        headers: {
+          Authorization: `Bearer ${access}`
+        }
+      });
+
+      setUser(req.data);
+      setToken(access);
+      localStorage.setItem('user', JSON.stringify(req.data));
+      localStorage.setItem('authToken', access);
+    } catch (e) {
+      console.error('Ошибка логина', e);
+    } finally {
       setLoading(false);
-    });
+    }
   };
 
   useEffect(() => {

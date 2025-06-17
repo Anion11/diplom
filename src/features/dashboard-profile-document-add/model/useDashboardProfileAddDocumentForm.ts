@@ -26,9 +26,9 @@ const useDashboardProfileAddDocumentForm = () => {
         setFormError(
           resReg.data.message || 'Пользователь с таким логином или номером телефона уже существует'
         );
+      } else {
+        setComplete(true);
       }
-
-      setComplete(true);
     } catch (error) {
       if (error instanceof AxiosError) {
         setFormError(error.message || 'Ошибка сервера');
