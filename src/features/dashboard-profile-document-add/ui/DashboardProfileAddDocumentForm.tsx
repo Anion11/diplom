@@ -74,7 +74,7 @@ const DashboardProfileAddDocumentForm: FC = () => {
         : '',
       role: user?.roles[0].name,
       email: user?.email || '',
-      phoneNumber: user?.phone || '',
+      phone: user?.phone || '',
       documents: updatedDocuments as IDocument[]
     };
     updateRequest(formData);
