@@ -1,8 +1,6 @@
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import styles from './UserDashboard.module.scss';
-
 import { useAuthContext } from '@/shared/hooks/useAuthContext';
 import { Inner, Section, SideTabs } from '@/shared/ui';
 import {
