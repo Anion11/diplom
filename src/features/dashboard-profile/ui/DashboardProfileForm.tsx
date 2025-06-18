@@ -2,6 +2,7 @@ import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
+import clsx from 'clsx';
 
 import { DashboardProfileFormScheme } from '../model/DashboardProfileFormScheme';
 import { IDashboardProfileForm } from '../model/IDashboardProfileForm';
@@ -9,9 +10,12 @@ import useDashboardProfile from '../model/useDashboardProfile';
 
 import styles from './DashboardProfileForm.module.scss';
 
+import AdminIcon from '@/shared/assets/icons/icon_admin.svg?react';
+import WorkerIcon from '@/shared/assets/icons/icon_worker.svg?react';
+import ERoles from '@/shared/config/enums/ERoles';
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import { useAuthContext } from '@/shared/hooks/useAuthContext';
-import { Button, Input, SectionHead, Typography } from '@/shared/ui';
+import { Button, CustomTooltip, Input, SectionHead, Typography } from '@/shared/ui';
 import { ESectionHeadType } from '@/shared/ui/section-head/model/ISectionHead';
 
 const DashboardProfileForm: FC = () => {
@@ -91,7 +95,24 @@ const DashboardProfileForm: FC = () => {
   }, [user, reset]);
 
   return (
-    <>
+    <div className={styles.formWrapper}>
+      {user?.roles[0].name !== ERoles.USER && (
+        <CustomTooltip
+          title={user?.roles[0].name === ERoles.ADMIN ? 'Администратор' : 'Сотрудник'}
+          arrow
+          placement="top"
+        >
+          <div
+            className={clsx(
+              styles.formWrapper__role,
+              user?.roles[0].name === ERoles.ADMIN && styles.formWrapper__role_admin,
+              user?.roles[0].name === ERoles.WORKER && styles.formWrapper__role_worker
+            )}
+          >
+            {user?.roles[0].name === ERoles.ADMIN ? <AdminIcon /> : <WorkerIcon />}
+          </div>
+        </CustomTooltip>
+      )}
       <SectionHead sectionType={ESectionHeadType.SMALL}>
         <Typography
           type={ETypographyType.h3}
@@ -235,7 +256,7 @@ const DashboardProfileForm: FC = () => {
           )}
         </div>
       </form>
-    </>
+    </div>
   );
 };
 
