@@ -1,13 +1,16 @@
 import ERoles from '@/shared/config/enums/ERoles';
+import { IDocument } from '@/shared/config/interfaces/Person/IDocument';
 
 export interface IEditWorkerForm {
-  email: string;
-  phoneNumber: string;
-  firstName: string;
-  lastName: string;
+  id?: number;
+  name: string;
+  surname: string;
   secondName?: string;
   birthDate: string;
+  documents?: IDocument[];
   role?: ERoles;
-  password: string;
-  passwordRepeat: string;
+  email: string;
+  phone: string;
+  password?: string;
+  passwordRepeat?: string;
 }

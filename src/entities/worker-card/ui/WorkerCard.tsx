@@ -6,13 +6,13 @@ import useWorkers from '../model/useWorkers';
 
 import styles from './WorkerCard.module.scss';
 
-import EditWorkerForm from '@/features/edit-worker/ui/EditWorkerForm';
+import { EditWorkerForm } from '@/features';
 import EditSvg from '@/shared/assets/icons/icon_edit.svg?react';
 import TrashSvg from '@/shared/assets/icons/icon_trash.svg?react';
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import { Button, Modal, Typography } from '@/shared/ui';
 
-const WorkerCard: FC<IWorkerCard> = ({ data }) => {
+const WorkerCard: FC<IWorkerCard> = ({ data, updateWorker }) => {
   const notify = () => toast('Пользователь был успешно удален!');
   const { person, email, phone, createdAt, username } = data;
 
@@ -51,7 +51,11 @@ const WorkerCard: FC<IWorkerCard> = ({ data }) => {
         isOpen={isModalEditOpen}
         headText="Редактирование данных сотрудника"
       >
-        <EditWorkerForm worker={data} />
+        <EditWorkerForm
+          worker={data}
+          closeModal={handleCloseEditModal}
+          updateWorker={updateWorker}
+        />
       </Modal>
       <Modal
         onClose={handleCloseDeleteModal}
@@ -130,18 +134,6 @@ const WorkerCard: FC<IWorkerCard> = ({ data }) => {
               <b>Дата рождения:</b> {new Date(person.birthDate).toLocaleDateString()}
             </Typography>
           </div>
-          {/* {person.documents && person.documents.length > 0 && (
-            <div className={styles.card__item}>
-              <Typography type={ETypographyType.p1}>
-                <b>Документы:</b>
-                <List className={styles.card__docs}>
-                  {person.documents.map((doc, index) => (
-                    <li key={index}>{getDocumentLabel(doc.type)}</li>
-                  ))}
-                </List>
-              </Typography>
-            </div>
-          )} */}
         </div>
       </div>
     </>

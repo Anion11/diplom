@@ -2,6 +2,8 @@ import DashboardEditPasswordForm from './dashboard-edit-password/ui/DashboardEdi
 import DashboardProfileForm from './dashboard-profile/ui/DashboardProfileForm';
 import DashboardProfileDocumentForm from './dashboard-profile-document/ui/DashboardProfileDocumentForm';
 import DashboardProfileAddDocumentForm from './dashboard-profile-document-add/ui/DashboardProfileAddDocumentForm';
+import EditUserForm from './edit-user/ui/EditUserForm';
+import EditWorkerForm from './edit-worker/ui/EditWorkerForm';
 import RegistrationWorkerForm from './registration-worker/ui/RegistrationWorkerForm';
 
 import LoginFormEmail from '@/features/auth-by-email/ui/LoginFormEmail';
@@ -16,5 +18,7 @@ export {
   DashboardProfileForm,
   DashboardProfileDocumentForm,
   DashboardProfileAddDocumentForm,
-  DashboardEditPasswordForm
+  DashboardEditPasswordForm,
+  EditWorkerForm,
+  EditUserForm
 };

@@ -4,7 +4,6 @@ import { AxiosError, AxiosResponse } from 'axios';
 import { IEditWorkerForm } from './IEditWorkerForm';
 
 import { $api } from '@/shared/api/api.ts';
-import { IRegistrationOutput } from '@/shared/config/interfaces/Registration/IRegistrationOutput';
 import { IResponseError } from '@/shared/config/interfaces/ResponseError/IResponseError';
 
 const useEditWorker = () => {
@@ -12,11 +11,12 @@ const useEditWorker = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [complete, setComplete] = useState<boolean>(false);
 
-  const regRequest = async (data: IEditWorkerForm): Promise<void> => {
+  const updateRequest = async (data: IEditWorkerForm): Promise<void> => {
     try {
+      setComplete(false);
       setLoading(true);
-      const resReg: AxiosResponse<IRegistrationOutput | IResponseError> = await $api.post(
-        '/auth-api/register',
+      const resReg: AxiosResponse<Omit<IEditWorkerForm, 'role'> | IResponseError> = await $api.put(
+        '/auth-api/user/me/update',
         {
           ...data
         }
@@ -24,7 +24,7 @@ const useEditWorker = () => {
 
       if ('statusCode' in resReg.data) {
         setFormError(
-          resReg.data.message || 'Пользователь с таким логином или номером телефона уже существует'
+          resReg.data.message || 'Пользователь с такой почтой или номером телефона уже существует'
         );
       } else {
         setComplete(true);
@@ -33,7 +33,7 @@ const useEditWorker = () => {
       if (error instanceof AxiosError) {
         setFormError(error.message || 'Ошибка сервера');
       } else {
-        setFormError('Произошла ошибка при регистрации');
+        setFormError('Произошла ошибка при изменении данных');
       }
     } finally {
       setLoading(false);
@@ -44,7 +44,7 @@ const useEditWorker = () => {
     setFormError(null);
   };
 
-  return { regRequest, formError, clearFormError, loading, complete };
+  return { updateRequest, formError, clearFormError, loading, complete };
 };
 
 export default useEditWorker;

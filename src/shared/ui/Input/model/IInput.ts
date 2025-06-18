@@ -1,10 +1,10 @@
 export interface InputProps {
   type?: string;
-  name: string;
+  name?: string;
   placeholder?: string;
   value?: string;
   onChange: (value: string) => void;
-  onBlur: () => void;
+  onBlur?: () => void;
   error?: string;
   disabled?: boolean;
   id?: string;

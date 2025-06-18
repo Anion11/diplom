@@ -5,10 +5,17 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+
   width: 100%;
+  min-width: 50vw;
+
+  @include media-laptop {
+    min-width: 70vw;
+  }
 
   @include media-tablet {
     grid-template-columns: 1fr;
+    min-width: 80vw;
   }
 
   &__wrapper {
@@ -52,10 +59,13 @@
 
   .select {
     grid-column: span 2;
-    height: 50px;
 
     > div {
-      height: 100%;
+      height: 50px;
+
+      ~ div {
+        height: fit-content;
+      }
     }
 
     @include media-tablet {

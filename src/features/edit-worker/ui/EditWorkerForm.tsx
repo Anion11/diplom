@@ -1,11 +1,11 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { EditWorkerFormScheme } from '../model/EditWorkerFormScheme';
 import { IEditWorkerForm } from '../model/IEditWorkerForm';
-import useRegistrationWorker from '../model/useEditWorker';
+import useEditWorker from '../model/useEditWorker';
 
 import styles from './EditWorkerForm.module.scss';
 
@@ -16,18 +16,21 @@ import { Button, Input, Typography } from '@/shared/ui';
 
 interface IEditWorkerFormProps {
   worker: IWorker;
+  closeModal?: () => void;
+  updateWorker: (worker: IWorker) => void;
 }
 
 const EditWorkerForm: FC<IEditWorkerFormProps> = props => {
-  const { worker } = props;
-  const notify = () => toast('Данные сотрудника были  успешно обновлены!');
-  const { formError, clearFormError, regRequest, loading, complete } = useRegistrationWorker();
+  const { worker, closeModal, updateWorker } = props;
+  const notify = () => toast('Данные сотрудника были успешно обновлены!');
+  const { formError, clearFormError, updateRequest, loading, complete } = useEditWorker();
+  const submittedDataRef = useRef<IEditWorkerForm | null>(null);
 
   const defaultValues: IEditWorkerForm = {
     email: worker.email,
-    phoneNumber: worker.phone,
-    firstName: worker.person.name,
-    lastName: worker.person.surname,
+    phone: worker.phone,
+    name: worker.person.name,
+    surname: worker.person.surname,
     secondName: worker.person.secondName,
     role: ERoles.WORKER,
     birthDate: new Date(worker.person.birthDate).toISOString().split('T')[0],
@@ -48,7 +51,7 @@ const EditWorkerForm: FC<IEditWorkerFormProps> = props => {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty },
     reset
   } = useForm<Omit<IEditWorkerForm, 'role'>>({
     defaultValues,
@@ -58,8 +61,15 @@ const EditWorkerForm: FC<IEditWorkerFormProps> = props => {
   });
 
   const onSubmit = (data: IEditWorkerForm) => {
-    const formData = { ...data, role: ERoles.WORKER };
-    regRequest(formData);
+    submittedDataRef.current = data;
+
+    const formData: Omit<IEditWorkerForm, 'passwordRepeat'> = {
+      ...data,
+      id: worker.id,
+      role: ERoles.WORKER,
+      documents: []
+    };
+    updateRequest(formData);
   };
 
   useEffect(() => {
@@ -69,6 +79,28 @@ const EditWorkerForm: FC<IEditWorkerFormProps> = props => {
         ...defaultValues
       });
       clearFormError();
+      if (closeModal) {
+        closeModal();
+      }
+
+      const submitted = submittedDataRef.current;
+
+      if (submitted) {
+        updateWorker({
+          ...worker,
+          ...(submitted.password ? { password: submitted.password } : {}),
+          email: submitted.email,
+          phone: submitted.phone,
+          person: {
+            ...worker.person,
+            birthDate: new Date(submitted.birthDate),
+            documents: [],
+            name: submitted.name,
+            secondName: submitted.secondName ?? '',
+            surname: submitted.surname
+          }
+        });
+      }
     }
   }, [complete, reset]);
 
@@ -80,15 +112,15 @@ const EditWorkerForm: FC<IEditWorkerFormProps> = props => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <Controller
-          name="firstName"
+          name="name"
           control={control}
           render={({ field }) => (
             <Input
-              id="firstName"
+              id="name"
               type="text"
               {...field}
               placeholder="Введите имя"
-              error={errors.firstName?.message}
+              error={errors.name?.message}
               formError={formError}
               autocomplete="off"
               onChange={e => {
@@ -99,15 +131,15 @@ const EditWorkerForm: FC<IEditWorkerFormProps> = props => {
           )}
         />
         <Controller
-          name="lastName"
+          name="surname"
           control={control}
           render={({ field }) => (
             <Input
-              id="lastName"
+              id="surname"
               type="text"
               {...field}
               placeholder="Введите фамилию"
-              error={errors.lastName?.message}
+              error={errors.surname?.message}
               formError={formError}
               autocomplete="off"
               onChange={e => {
@@ -176,7 +208,7 @@ const EditWorkerForm: FC<IEditWorkerFormProps> = props => {
           )}
         />
         <Controller
-          name="phoneNumber"
+          name="phone"
           control={control}
           render={({ field }) => (
             <Input
@@ -184,7 +216,7 @@ const EditWorkerForm: FC<IEditWorkerFormProps> = props => {
               type="tel"
               {...field}
               placeholder="Введите номер телефона"
-              error={errors.phoneNumber?.message}
+              error={errors.phone?.message}
               formError={formError}
               autocomplete="off"
               onChange={(value: string) => {
@@ -237,7 +269,8 @@ const EditWorkerForm: FC<IEditWorkerFormProps> = props => {
           <Button
             loading={loading}
             className={styles.form__btn}
-            text="Добавить сотрудника"
+            disabled={!isDirty}
+            text="Сохранить изменения"
           ></Button>
           {formError && (
             <div className={styles.form__error}>

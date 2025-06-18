@@ -6,6 +6,7 @@ import { Inner, Section, SideTabs } from '@/shared/ui';
 import {
   WidgetDashboardProfile,
   WidgetEditPassword,
+  WidgetGetUsers,
   WidgetGetWorkers,
   WidgetRegistrationWorker
 } from '@/widgets';
@@ -33,8 +34,8 @@ const AdminDashboard: FC = () => {
       content: <WidgetDashboardProfile />
     },
     {
-      label: 'Пользователи',
-      content: <WidgetGetWorkers />
+      label: 'Клиенты',
+      content: <WidgetGetUsers />
     },
     {
       label: 'Сотрудники',

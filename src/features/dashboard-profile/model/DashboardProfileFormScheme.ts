@@ -4,12 +4,24 @@ import { IDashboardProfileForm } from './IDashboardProfileForm';
 
 import { emailScheme, phoneScheme } from '@/shared/config/schemas';
 
+const nameRegex = /^[А-Яа-яA-Za-zёЁ-]{2,}(?:\s[А-Яа-яA-Za-zёЁ-]{2,})?$/;
+
 export const DashboardProfileFormScheme: yup.ObjectSchema<
   Omit<IDashboardProfileForm, 'documents' | 'id' | 'role'>
 > = yup.object({
-  name: yup.string().required('Обязательное поле'),
-  surname: yup.string().required('Обязательное поле'),
-  secondName: yup.string(),
+  name: yup.string().required('Обязательное поле').trim().matches(nameRegex, 'Некорректное имя'),
+  surname: yup
+    .string()
+    .required('Обязательное поле')
+    .trim()
+    .matches(nameRegex, 'Некорректная фамилия'),
+  secondName: yup
+    .string()
+    .transform(value => value?.trim() || '')
+    .test('secondName-validation', 'Некорректное отчество', value => {
+      if (!value) return true;
+      return nameRegex.test(value);
+    }),
   email: yup
     .string()
     .required('Обязательное поле')

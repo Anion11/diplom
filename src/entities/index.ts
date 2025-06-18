@@ -1,4 +1,4 @@
-// import ArticlePreview from '@/entity/ArticlePreview/ui/ArticlePreview.tsx';
-// import UserInfo from '@/entity/UserInfo/ui/UserInfo.tsx';
+import UserCard from './user-card/ui/UserCard';
+import WorkerCard from './worker-card/ui/WorkerCard';
 
-// export { UserInfo, ArticlePreview };
+export { UserCard, WorkerCard };

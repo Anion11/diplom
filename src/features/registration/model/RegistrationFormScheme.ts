@@ -4,11 +4,27 @@ import { IRegistrationForm } from './IRegistrationForm';
 
 import { emailScheme, passwordScheme, phoneScheme } from '@/shared/config/schemas';
 
+const nameRegex = /^[А-Яа-яA-Za-zёЁ-]{2,}(?:\s[А-Яа-яA-Za-zёЁ-]{2,})?$/;
+
 export const RegistrationFormScheme: yup.ObjectSchema<Omit<IRegistrationForm, 'role'>> = yup.object(
   {
-    firstName: yup.string().required('Обязательное поле'),
-    lastName: yup.string().required('Обязательное поле'),
-    secondName: yup.string(),
+    firstName: yup
+      .string()
+      .required('Обязательное поле')
+      .trim()
+      .matches(nameRegex, 'Некорректное имя'),
+    lastName: yup
+      .string()
+      .required('Обязательное поле')
+      .trim()
+      .matches(nameRegex, 'Некорректная фамилия'),
+    secondName: yup
+      .string()
+      .transform(value => value?.trim() || '')
+      .test('secondName-validation', 'Некорректное отчество', value => {
+        if (!value) return true;
+        return nameRegex.test(value);
+      }),
     email: yup
       .string()
       .required('Обязательное поле')

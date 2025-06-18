@@ -16,7 +16,7 @@ const useDashboardProfileAddDocumentForm = () => {
       setComplete(false);
       setLoading(true);
       const resReg: AxiosResponse<IUpdateProfileOutput | IResponseError> = await $api.put(
-        '/api/user/me/update',
+        '/auth-api/user/me/update',
         {
           ...data
         }

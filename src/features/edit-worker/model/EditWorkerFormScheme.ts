@@ -4,31 +4,36 @@ import { IEditWorkerForm } from './IEditWorkerForm';
 
 import { emailScheme, passwordScheme, phoneScheme } from '@/shared/config/schemas';
 
-export const EditWorkerFormScheme: yup.ObjectSchema<Omit<IEditWorkerForm, 'role'>> = yup.object({
-  firstName: yup.string().required('Обязательное поле'),
-  lastName: yup.string().required('Обязательное поле'),
-  secondName: yup.string(),
+const nameRegex = /^[А-Яа-яA-Za-zёЁ-]{2,}(?:\s[А-Яа-яA-Za-zёЁ-]{2,})?$/;
+
+export const EditWorkerFormScheme: yup.ObjectSchema<
+  Omit<IEditWorkerForm, 'documents' | 'id' | 'role'>
+> = yup.object({
+  name: yup.string().required('Обязательное поле').trim().matches(nameRegex, 'Некорректное имя'),
+  surname: yup
+    .string()
+    .required('Обязательное поле')
+    .trim()
+    .matches(nameRegex, 'Некорректная фамилия'),
+  secondName: yup
+    .string()
+    .transform(value => value?.trim() || '')
+    .test('secondName-validation', 'Некорректное отчество', value => {
+      if (!value) return true;
+      return nameRegex.test(value);
+    }),
   email: yup
     .string()
     .required('Обязательное поле')
     .concat(emailScheme as yup.StringSchema<string>),
-  phoneNumber: yup
+  phone: yup
     .string()
     .required('Обязательное поле')
     .concat(phoneScheme as yup.StringSchema<string>),
-  password: yup
-    .string()
-    .required('Обязательное поле')
-    .concat(passwordScheme as yup.StringSchema<string>),
-  passwordRepeat: yup
-    .string()
-    .required('Обязательное поле')
-    .concat(passwordScheme as yup.StringSchema<string>)
-    .oneOf([yup.ref('password')], 'Пароли не совпадают'),
   birthDate: yup
     .string()
     .required('Обязательное поле')
-    .test('is-adult', 'Вам должно быть больше 18 лет', value => {
+    .test('is-adult', 'Сотруднику должно быть больше 18 лет', value => {
       const selectedDate = new Date(value);
       const currentDate = new Date();
       const minAdultDate = new Date(
@@ -38,5 +43,32 @@ export const EditWorkerFormScheme: yup.ObjectSchema<Omit<IEditWorkerForm, 'role'
       );
 
       return selectedDate <= minAdultDate;
+    }),
+  password: yup
+    .string()
+    .notRequired()
+    .nonNullable()
+    .test('password', value => {
+      if (!value) return true;
+      try {
+        passwordScheme.validateSync(value);
+        return true;
+      } catch (err) {
+        const error = err as yup.ValidationError;
+        return new yup.ValidationError(error.errors[0], value, 'password');
+      }
+    }),
+  passwordRepeat: yup
+    .string()
+    .notRequired()
+    .nonNullable()
+    .test('password-repeat', 'Пароли не совпадают', function (value) {
+      const { password } = this.parent;
+
+      if (!password) {
+        return true;
+      }
+
+      return value === password;
     })
 });

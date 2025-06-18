@@ -2,7 +2,8 @@ import { FC } from 'react';
 
 import styles from './WidgetGetWorkers.module.scss';
 
-import WorkerCard from '@/entities/worker-card/ui/WorkerCard';
+import { WorkerCard } from '@/entities';
+import SearchInput from '@/features/search-imput/ui/SearchInput';
 import EmptySvg from '@/shared/assets/icons/empty.svg?react';
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import useGetWorkers from '@/shared/hooks/useGetWorkers';
@@ -10,17 +11,27 @@ import { Button, Loader, SectionHead, Typography } from '@/shared/ui';
 import { ESectionHeadType } from '@/shared/ui/section-head/model/ISectionHead';
 
 const WidgetGetWorkers: FC = () => {
-  const { loading, workers, loadMore, hasMore } = useGetWorkers();
+  const { loading, workers, loadMore, hasMore, search, handleChange, searchWorkers, updateWorker } =
+    useGetWorkers();
 
   return (
     <div className={styles.container}>
-      <SectionHead sectionType={ESectionHeadType.SMALL}>
+      <SectionHead
+        sectionType={ESectionHeadType.SMALL}
+        className={styles.container__head}
+      >
         <Typography
           type={ETypographyType.h3}
           bold={700}
         >
           Список сотрудников
         </Typography>
+        <SearchInput
+          value={search}
+          onChange={handleChange}
+          onSearch={searchWorkers}
+          placeholder="Поиск по номеру телефона/почте"
+        />
       </SectionHead>
       {loading ? (
         <Loader />
@@ -31,6 +42,7 @@ const WidgetGetWorkers: FC = () => {
               <WorkerCard
                 key={index}
                 data={worker}
+                updateWorker={updateWorker}
               />
             ))}
           </div>

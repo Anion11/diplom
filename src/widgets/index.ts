@@ -2,6 +2,7 @@ import WidgetHomeInsuranceBanner from './HomeInsuranceBanner/ui/WidgetHomeInsura
 import WidgetDashboardDocuments from './WidgetDashboardDocuments/ui/WidgetDashboardDocuments';
 import WidgetDashboardProfile from './WidgetDashboardProfile/ui/WidgetDashboardProfile';
 import WidgetEditPassword from './WidgetEditPassword/ui/WidgetEditPassword';
+import WidgetGetUsers from './WidgetGetUsers/ui/WidgetGetUsers';
 import WidgetGetWorkers from './WidgetGetWorkers/ui/WidgetGetWorkers';
 import WidgetMainContactsBanner from './WidgetMainContactsBanner/ui/WidgetMainContactsBanner';
 import WidgetMainPartners from './WidgetMainPartners/ui/WidgetMainPartners';
@@ -42,5 +43,6 @@ export {
   WidgetDashboardProfile,
   WidgetDashboardDocuments,
   WidgetHomeInsuranceBanner,
-  WidgetEditPassword
+  WidgetEditPassword,
+  WidgetGetUsers
 };

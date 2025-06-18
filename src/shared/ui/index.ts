@@ -13,6 +13,7 @@ import Section from './section/ui/Section';
 import SectionHead from './section-head/ui/SectionHead';
 import SideTabs from './side-tabs/ui/SideTabs';
 import Tabs from './tabs/ui/Tabs';
+import CustomTooltip from './tooltip/ui/CustomTooltip';
 import Typography from './typography/ui/Typography';
 import Wrapper from './wrapper/Wrapper';
 
@@ -33,5 +34,6 @@ export {
   Marquee,
   SideTabs,
   Modal,
-  Loader
+  Loader,
+  CustomTooltip
 };

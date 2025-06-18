@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
+import clsx from 'clsx';
 
 import { DashboardProfileDocumentFormScheme } from '../model/DashboardProfileDocumentFormScheme';
 import { IDashboardProfileDocumentForm } from '../model/IDashboardProfileDocumentForm';
@@ -10,12 +11,14 @@ import useDashboardProfileDocumentForm from '../model/useDashboardProfileDocumen
 import styles from './DashboardProfileDocumentForm.module.scss';
 
 import { IDashboardProfileForm } from '@/features/dashboard-profile/model/IDashboardProfileForm';
+import Negative from '@/shared/assets/icons/icon_document_negative.svg?react';
+import Positive from '@/shared/assets/icons/icon_document_positive.svg?react';
 import TrashSvg from '@/shared/assets/icons/icon_trash.svg?react';
 import { getDocumentLabel } from '@/shared/config/enums/EDocuments';
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import { IDocument } from '@/shared/config/interfaces/Person/IDocument';
 import { useAuthContext } from '@/shared/hooks/useAuthContext';
-import { Button, Input, Modal, Typography } from '@/shared/ui';
+import { Button, CustomTooltip, Input, Modal, Typography } from '@/shared/ui';
 
 interface IDashboardProfileDocumentFormProps {
   document: IDocument;
@@ -258,6 +261,23 @@ const DashboardProfileDocumentForm: FC<IDashboardProfileDocumentFormProps> = ({ 
               </div>
             )}
           </div>
+
+          <CustomTooltip
+            title={document.isApproved ? 'Документ верифицирован' : 'Документ не верифицирован.'}
+            arrow
+            placement="top"
+          >
+            <div
+              className={clsx(
+                styles.form__approve,
+                document.isApproved && styles.form__approve_active
+              )}
+            >
+              <Typography type={ETypographyType.p2}>
+                {document.isApproved ? <Positive /> : <Negative />}
+              </Typography>
+            </div>
+          </CustomTooltip>
         </form>
       </div>
     </>
