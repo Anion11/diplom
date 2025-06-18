@@ -28,12 +28,17 @@ const WorkerDashboard: FC = () => {
       content: <WidgetDashboardProfile />
     },
     {
-      label: 'Заявки',
-      content: <div>Заявки</div>
+      label: 'Активные заявки',
+      content: <div>Активные заявки</div>
     },
     {
-      label: 'Полисы',
-      content: <div>Полисы</div>
+      label: 'Проверка документов',
+      content: (
+        <div>
+          Список пользователей, нажимая на карточку пользователя можно будет изменить статус
+          верификации документа + поиск по пользователям
+        </div>
+      )
     },
     {
       label: 'Изменить пароль',

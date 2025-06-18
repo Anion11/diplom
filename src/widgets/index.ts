@@ -1,4 +1,5 @@
 import WidgetHomeInsuranceBanner from './HomeInsuranceBanner/ui/WidgetHomeInsuranceBanner';
+import WidgetAuthBanner from './WidgetAuthBanner/ui/WidgetAuthBanner';
 import WidgetDashboardDocuments from './WidgetDashboardDocuments/ui/WidgetDashboardDocuments';
 import WidgetDashboardProfile from './WidgetDashboardProfile/ui/WidgetDashboardProfile';
 import WidgetEditPassword from './WidgetEditPassword/ui/WidgetEditPassword';
@@ -44,5 +45,6 @@ export {
   WidgetDashboardDocuments,
   WidgetHomeInsuranceBanner,
   WidgetEditPassword,
-  WidgetGetUsers
+  WidgetGetUsers,
+  WidgetAuthBanner
 };

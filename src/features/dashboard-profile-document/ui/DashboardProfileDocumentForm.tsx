@@ -12,6 +12,7 @@ import styles from './DashboardProfileDocumentForm.module.scss';
 
 import { IDashboardProfileForm } from '@/features/dashboard-profile/model/IDashboardProfileForm';
 import Negative from '@/shared/assets/icons/icon_document_negative.svg?react';
+import Pending from '@/shared/assets/icons/icon_document_pending.svg?react';
 import Positive from '@/shared/assets/icons/icon_document_positive.svg?react';
 import TrashSvg from '@/shared/assets/icons/icon_trash.svg?react';
 import { getDocumentLabel } from '@/shared/config/enums/EDocuments';
@@ -263,20 +264,34 @@ const DashboardProfileDocumentForm: FC<IDashboardProfileDocumentFormProps> = ({ 
           </div>
 
           <CustomTooltip
-            title={document.isApproved ? 'Документ верифицирован' : 'Документ не верифицирован.'}
+            title={
+              !document.userApproved
+                ? 'Документ ожидает верификации'
+                : document.isApproved
+                  ? 'Документ верифицирован'
+                  : 'Документ не верифицирован.'
+            }
             arrow
             placement="top"
           >
-            <div
-              className={clsx(
-                styles.form__approve,
-                document.isApproved && styles.form__approve_active
-              )}
-            >
-              <Typography type={ETypographyType.p2}>
-                {document.isApproved ? <Positive /> : <Negative />}
-              </Typography>
-            </div>
+            {!document.userApproved ? (
+              <div className={clsx(styles.form__approve, styles.form__approve_pending)}>
+                <Typography type={ETypographyType.p2}>
+                  <Pending />
+                </Typography>
+              </div>
+            ) : (
+              <div
+                className={clsx(
+                  styles.form__approve,
+                  document.isApproved && styles.form__approve_active
+                )}
+              >
+                <Typography type={ETypographyType.p2}>
+                  {document.isApproved ? <Positive /> : <Negative />}
+                </Typography>
+              </div>
+            )}
           </CustomTooltip>
         </form>
       </div>

@@ -1,0 +1,79 @@
+@use '@/app/styles/utils/variables' as *;
+@use '@/app/styles/utils/media' as *;
+
+.container {
+  position: relative;
+
+  padding: 30px 390px 30px 40px;
+
+  color: $white;
+
+  background: $primary-30;
+  border-radius: 10px;
+
+  @include media-laptop {
+    padding: 25px 330px 25px 30px;
+  }
+
+  @include media-tablet {
+    padding: 20px 20px 240px;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include media-laptop {
+      gap: 12px;
+    }
+
+    a {
+      display: inline;
+      text-decoration: underline;
+    }
+  }
+
+  &__descr {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 656px;
+
+    @include media-laptop {
+      gap: 6px;
+    }
+  }
+
+  &__image {
+    position: absolute;
+    right: 40px;
+    bottom: 0;
+
+    width: 100%;
+    max-width: 300px;
+
+    @include media-laptop {
+      right: 30px;
+      max-width: 280px;
+    }
+
+    @include media-tablet {
+      right: 50%;
+      transform: translateX(50%);
+      max-width: 250px;
+    }
+  }
+
+  &__btn {
+    margin-top: 40px;
+
+    @include media-laptop {
+      margin-top: 30px;
+    }
+
+    @include media-tablet {
+      margin-top: 24px;
+    }
+  }
+}

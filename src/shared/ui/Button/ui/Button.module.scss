@@ -67,6 +67,14 @@
     padding: 10px 36px;
   }
 
+  &_long {
+    padding: 10px 64px;
+
+    @include media-laptop {
+      padding: 8px 32px;
+    }
+  }
+
   &_pd-xs {
     padding: 6px 20px;
   }
