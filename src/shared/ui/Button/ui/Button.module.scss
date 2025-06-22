@@ -241,6 +241,16 @@
       }
     }
   }
+
+  &_green {
+    color: $white;
+    background: $success;
+
+    @include media-hover {
+      color: $success;
+      background: $success-20;
+    }
+  }
 }
 
 @keyframes rotation {

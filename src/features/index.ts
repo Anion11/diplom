@@ -4,6 +4,7 @@ import DashboardProfileDocumentForm from './dashboard-profile-document/ui/Dashbo
 import DashboardProfileAddDocumentForm from './dashboard-profile-document-add/ui/DashboardProfileAddDocumentForm';
 import EditUserForm from './edit-user/ui/EditUserForm';
 import EditWorkerForm from './edit-worker/ui/EditWorkerForm';
+import HouseApplicationForm from './house-application-form/ui/HouseApplicationForm';
 import RegistrationWorkerForm from './registration-worker/ui/RegistrationWorkerForm';
 
 import LoginFormEmail from '@/features/auth-by-email/ui/LoginFormEmail';
@@ -20,5 +21,6 @@ export {
   DashboardProfileAddDocumentForm,
   DashboardEditPasswordForm,
   EditWorkerForm,
-  EditUserForm
+  EditUserForm,
+  HouseApplicationForm
 };

@@ -47,11 +47,12 @@
 
   &__image {
     position: absolute;
-    right: 40px;
-    bottom: 0;
+    right: 110px;
+    bottom: 50%;
+    transform: translateY(50%);
 
     width: 100%;
-    max-width: 300px;
+    max-width: 320px;
 
     @include media-laptop {
       right: 30px;

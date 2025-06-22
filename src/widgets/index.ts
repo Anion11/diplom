@@ -1,7 +1,11 @@
 import WidgetHomeInsuranceBanner from './HomeInsuranceBanner/ui/WidgetHomeInsuranceBanner';
 import WidgetAuthBanner from './WidgetAuthBanner/ui/WidgetAuthBanner';
+import WidgetCheckDocuments from './WidgetCheckDocuments/ui/WidgetCheckDocuments';
+import WidgetDashboardApplications from './WidgetDashboardApplications/ui/WidgetDashboardApplications';
 import WidgetDashboardDocuments from './WidgetDashboardDocuments/ui/WidgetDashboardDocuments';
+import WidgetDashboardPolice from './WidgetDashboardPolice/ui/WidgetDashboardPolice';
 import WidgetDashboardProfile from './WidgetDashboardProfile/ui/WidgetDashboardProfile';
+import WidgetDashboardWorkerApplications from './WidgetDashboardWorkerApplications/ui/WidgetDashboardWorkerApplications';
 import WidgetEditPassword from './WidgetEditPassword/ui/WidgetEditPassword';
 import WidgetGetUsers from './WidgetGetUsers/ui/WidgetGetUsers';
 import WidgetGetWorkers from './WidgetGetWorkers/ui/WidgetGetWorkers';
@@ -46,5 +50,9 @@ export {
   WidgetHomeInsuranceBanner,
   WidgetEditPassword,
   WidgetGetUsers,
-  WidgetAuthBanner
+  WidgetAuthBanner,
+  WidgetCheckDocuments,
+  WidgetDashboardApplications,
+  WidgetDashboardPolice,
+  WidgetDashboardWorkerApplications
 };

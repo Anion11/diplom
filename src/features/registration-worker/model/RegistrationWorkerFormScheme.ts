@@ -50,5 +50,6 @@ export const RegistrationWorkerFormScheme: yup.ObjectSchema<Omit<IRegistrationWo
         );
 
         return selectedDate <= minAdultDate;
-      })
+      }),
+    role: yup.string().required('Обязательное поле')
   });

@@ -11,8 +11,17 @@ import { Button, Loader, SectionHead, Typography } from '@/shared/ui';
 import { ESectionHeadType } from '@/shared/ui/section-head/model/ISectionHead';
 
 const WidgetGetWorkers: FC = () => {
-  const { loading, workers, loadMore, hasMore, search, handleChange, searchWorkers, updateWorker } =
-    useGetWorkers();
+  const {
+    loading,
+    workers,
+    loadMore,
+    hasMore,
+    search,
+    handleChange,
+    searchWorkers,
+    updateWorker,
+    fetchWorkers
+  } = useGetWorkers();
 
   return (
     <div className={styles.container}>
@@ -43,6 +52,7 @@ const WidgetGetWorkers: FC = () => {
                 key={index}
                 data={worker}
                 updateWorker={updateWorker}
+                fetchWorkers={fetchWorkers}
               />
             ))}
           </div>

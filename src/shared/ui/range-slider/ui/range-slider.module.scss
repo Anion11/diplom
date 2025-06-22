@@ -1,0 +1,137 @@
+@use 'src/app/styles/utils/variables' as *;
+@use 'src/app/styles/utils/media' as *;
+
+.rangeWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.topLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sliderContainer {
+  width: 100%;
+}
+
+.bottomLabels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 4px;
+
+  color: $grey80;
+}
+
+/* Base rc-slider styles */
+
+.sliderBase :global(.rc-slider-rail) {
+  background-color: $grey40;
+}
+
+.sliderBase :global(.rc-slider-handle) {
+  opacity: 1;
+}
+
+.sliderBase :global(.rc-slider-handle-dragging) {
+  outline: 2px solid rgba(0, 0, 0, 0.1);
+  box-shadow: none !important;
+}
+
+/* Sizes */
+
+.sliderSm {
+  :global(.rc-slider-rail),
+  :global(.rc-slider-track) {
+    height: 2px;
+  }
+
+  :global(.rc-slider-handle) {
+    width: 12px;
+    height: 12px;
+    border: 3px solid;
+  }
+}
+
+.sliderMd {
+  :global(.rc-slider-rail),
+  :global(.rc-slider-track) {
+    height: 4px;
+  }
+
+  :global(.rc-slider-handle) {
+    width: 16px;
+    height: 16px;
+    margin-top: -6px;
+    border: 4px solid;
+  }
+}
+
+.sliderLg {
+  :global(.rc-slider-rail),
+  :global(.rc-slider-track) {
+    height: 8px;
+  }
+
+  :global(.rc-slider-handle) {
+    width: 20px;
+    height: 20px;
+    margin-top: -6px;
+    border: 5px solid;
+  }
+}
+
+/* Colors */
+
+.primary {
+  :global(.rc-slider-track) {
+    background-color: $primary;
+  }
+
+  :global(.rc-slider-handle),
+  :global(.rc-slider-handle:hover),
+  :global(.rc-slider-handle-dragging) {
+    border-color: $primary-30;
+  }
+}
+
+.secondary {
+  :global(.rc-slider-track) {
+    background-color: $secondary;
+  }
+
+  :global(.rc-slider-handle),
+  :global(.rc-slider-handle:hover),
+  :global(.rc-slider-handle-dragging) {
+    border-color: $secondary-2;
+  }
+}
+
+.danger {
+  :global(.rc-slider-track) {
+    background-color: $error;
+  }
+
+  :global(.rc-slider-handle),
+  :global(.rc-slider-handle:hover),
+  :global(.rc-slider-handle-dragging) {
+    border-color: $error-30;
+  }
+}
+
+.success {
+  :global(.rc-slider-track) {
+    background-color: $success;
+  }
+
+  :global(.rc-slider-handle),
+  :global(.rc-slider-handle:hover),
+  :global(.rc-slider-handle-dragging) {
+    border-color: $success;
+  }
+}

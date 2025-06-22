@@ -1,0 +1,136 @@
+@use 'src/app/styles/utils/variables' as *;
+@use 'src/app/styles/utils/media' as *;
+
+.card {
+  position: relative;
+
+  padding: 16px;
+
+  background-color: $white;
+  border: 1.5px solid $grey40;
+  border-radius: 8px;
+
+  @include media-tablet {
+    padding: 12px;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-shrink: 0;
+    gap: 8px;
+  }
+
+  &__name {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+
+    border-bottom: 1px solid $grey40;
+
+    @include media-tablet {
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__item {
+    &_inner {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+
+      span {
+        position: relative;
+        display: block;
+        padding-left: 24px;
+
+        &::before {
+          content: '';
+
+          position: absolute;
+          top: calc((0.6em + 6px) / 2);
+          left: 5px;
+
+          width: 6px;
+          height: 6px;
+
+          background: $primary;
+          border-radius: 50%;
+        }
+
+        a {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  &__date {
+    color: $grey80;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__docs {
+    margin-top: 4px;
+    margin-left: 12px;
+
+    li {
+      &::before {
+        color: $primary;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 4px;
+      }
+    }
+  }
+
+  &__status {
+    &_pending {
+      span {
+        // color: #f6b06b;
+        color: $success;
+      }
+    }
+  }
+
+  &__btn {
+    width: fit-content;
+    margin-top: 20px;
+  }
+}
+
+.modal {
+  &__buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+
+    button {
+      flex: 1;
+      padding: 10px 24px;
+
+      @include media-tablet {
+        padding: 8px 20px;
+      }
+    }
+  }
+
+  &__title {
+    padding-right: 24px;
+  }
+}

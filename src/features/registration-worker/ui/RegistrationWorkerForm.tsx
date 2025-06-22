@@ -1,7 +1,9 @@
 import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import Select, { SingleValue } from 'react-select';
 import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
+import clsx from 'clsx';
 
 import { IRegistrationWorkerForm } from '../model/IRegistrationWorkerForm';
 import { RegistrationWorkerFormScheme } from '../model/RegistrationWorkerFormScheme';
@@ -14,8 +16,14 @@ import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import { Button, Input, SectionHead, Typography } from '@/shared/ui';
 import { ESectionHeadType } from '@/shared/ui/section-head/model/ISectionHead';
 
+interface SelectOption {
+  value: ERoles;
+  label: string;
+  isDisabled?: boolean;
+}
+
 const RegistrationWorkerForm: FC = () => {
-  const notify = () => toast('Сотрудник был добавлен!');
+  const notify = () => toast('Пользователь был добавлен!');
   const { formError, clearFormError, regRequest, loading, complete } = useRegistrationWorker();
 
   const defaultValues: IRegistrationWorkerForm = {
@@ -24,7 +32,7 @@ const RegistrationWorkerForm: FC = () => {
     firstName: '',
     lastName: '',
     secondName: '',
-    role: ERoles.WORKER,
+    role: '',
     birthDate: '',
     password: ''
   };
@@ -44,7 +52,7 @@ const RegistrationWorkerForm: FC = () => {
     handleSubmit,
     formState: { errors },
     reset
-  } = useForm<Omit<IRegistrationWorkerForm, 'role'>>({
+  } = useForm<IRegistrationWorkerForm>({
     defaultValues,
     resolver: yupResolver(RegistrationWorkerFormScheme),
     shouldUnregister: true,
@@ -52,7 +60,7 @@ const RegistrationWorkerForm: FC = () => {
   });
 
   const onSubmit = (data: IRegistrationWorkerForm) => {
-    const formData = { ...data, role: ERoles.WORKER };
+    const formData = { ...data };
     regRequest(formData);
   };
 
@@ -66,6 +74,23 @@ const RegistrationWorkerForm: FC = () => {
     }
   }, [complete, reset]);
 
+  const getAvailableDocumentOptions = (): SelectOption[] => {
+    return [
+      {
+        value: ERoles.USER,
+        label: 'Клиент',
+        isDisabled: false
+      },
+      {
+        value: ERoles.WORKER,
+        label: 'Сотрудник',
+        isDisabled: false
+      }
+    ];
+  };
+
+  const options = getAvailableDocumentOptions();
+
   return (
     <>
       <SectionHead sectionType={ESectionHeadType.SMALL}>
@@ -73,7 +98,7 @@ const RegistrationWorkerForm: FC = () => {
           type={ETypographyType.h3}
           bold={700}
         >
-          Добавление нового сотрудника
+          Добавление нового пользователя
         </Typography>
       </SectionHead>
       <form
@@ -81,6 +106,38 @@ const RegistrationWorkerForm: FC = () => {
         className={styles.form}
         onSubmit={handleSubmit(onSubmit)}
       >
+        <div className={styles.form__colspan2}>
+          <Controller
+            name="role"
+            control={control}
+            render={({ field }) => (
+              <>
+                <Select
+                  options={options}
+                  value={options.find(option => option.value === field.value)}
+                  onChange={(selectedOption: SingleValue<SelectOption>) => {
+                    if (!selectedOption?.isDisabled) {
+                      field.onChange(selectedOption?.value);
+                      clearFormError();
+                    }
+                  }}
+                  className={clsx(styles.select, errors.role?.message && styles.select_error)}
+                  isSearchable={false}
+                  placeholder="Выберите роль..."
+                />
+                {errors.role?.message && (
+                  <Typography
+                    tag="p"
+                    type={ETypographyType.p2}
+                    className={styles.form__field_error}
+                  >
+                    {errors.role?.message}
+                  </Typography>
+                )}
+              </>
+            )}
+          />
+        </div>
         <Controller
           name="firstName"
           control={control}
@@ -222,7 +279,7 @@ const RegistrationWorkerForm: FC = () => {
           <Button
             loading={loading}
             className={styles.form__btn}
-            text="Добавить сотрудника"
+            text="Добавить пользователя"
           ></Button>
           {formError && (
             <div className={styles.form__error}>

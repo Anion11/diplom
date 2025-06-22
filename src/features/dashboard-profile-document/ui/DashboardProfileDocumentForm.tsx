@@ -63,7 +63,9 @@ const DashboardProfileDocumentForm: FC<IDashboardProfileDocumentFormProps> = ({ 
             serial: data.serial,
             number: data.number,
             authority: data.authority,
-            dateIssue: data.dateIssue
+            dateIssue: data.dateIssue,
+            isApproved: false,
+            approved: false
           };
         }
         return doc;
@@ -267,7 +269,7 @@ const DashboardProfileDocumentForm: FC<IDashboardProfileDocumentFormProps> = ({ 
             title={
               !document.userApproved
                 ? 'Документ ожидает верификации'
-                : document.isApproved
+                : document.approved
                   ? 'Документ верифицирован'
                   : 'Документ не верифицирован.'
             }
@@ -284,11 +286,11 @@ const DashboardProfileDocumentForm: FC<IDashboardProfileDocumentFormProps> = ({ 
               <div
                 className={clsx(
                   styles.form__approve,
-                  document.isApproved && styles.form__approve_active
+                  document.approved && styles.form__approve_active
                 )}
               >
                 <Typography type={ETypographyType.p2}>
-                  {document.isApproved ? <Positive /> : <Negative />}
+                  {document.approved ? <Positive /> : <Negative />}
                 </Typography>
               </div>
             )}

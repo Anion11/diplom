@@ -94,7 +94,8 @@ const useGetUsers = () => {
     clearSearch,
     search,
     searchUsers,
-    updateUser
+    updateUser,
+    fetchUsers
   };
 };
 

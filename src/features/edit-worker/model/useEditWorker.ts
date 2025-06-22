@@ -16,7 +16,7 @@ const useEditWorker = () => {
       setComplete(false);
       setLoading(true);
       const resReg: AxiosResponse<Omit<IEditWorkerForm, 'role'> | IResponseError> = await $api.put(
-        '/auth-api/user/me/update',
+        '/auth-api/admin-api/user/update',
         {
           ...data
         }

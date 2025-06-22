@@ -24,7 +24,7 @@ const useRegistrationWorker = () => {
 
       if ('statusCode' in resReg.data) {
         setFormError(
-          resReg.data.message || 'Пользователь с таким логином или номером телефона уже существует'
+          resReg.data.message || 'Пользователь с такой почтой или номером телефона уже существует'
         );
       } else {
         setComplete(true);

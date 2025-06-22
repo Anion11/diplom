@@ -3,7 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAuthContext } from '@/shared/hooks/useAuthContext';
 import { Inner, Section, SideTabs } from '@/shared/ui';
-import { WidgetDashboardProfile, WidgetEditPassword } from '@/widgets';
+import {
+  WidgetCheckDocuments,
+  WidgetDashboardProfile,
+  WidgetDashboardWorkerApplications,
+  WidgetEditPassword
+} from '@/widgets';
 
 const WorkerDashboard: FC = () => {
   const navigate = useNavigate();
@@ -29,16 +34,11 @@ const WorkerDashboard: FC = () => {
     },
     {
       label: 'Активные заявки',
-      content: <div>Активные заявки</div>
+      content: <WidgetDashboardWorkerApplications />
     },
     {
       label: 'Проверка документов',
-      content: (
-        <div>
-          Список пользователей, нажимая на карточку пользователя можно будет изменить статус
-          верификации документа + поиск по пользователям
-        </div>
-      )
+      content: <WidgetCheckDocuments />
     },
     {
       label: 'Изменить пароль',

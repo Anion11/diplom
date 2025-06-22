@@ -11,8 +11,17 @@ import { Button, Loader, SectionHead, Typography } from '@/shared/ui';
 import { ESectionHeadType } from '@/shared/ui/section-head/model/ISectionHead';
 
 const WidgetGetUsers: FC = () => {
-  const { loading, users, loadMore, hasMore, search, handleChange, searchUsers, updateUser } =
-    useGetUsers();
+  const {
+    loading,
+    users,
+    loadMore,
+    hasMore,
+    search,
+    handleChange,
+    searchUsers,
+    updateUser,
+    fetchUsers
+  } = useGetUsers();
 
   return (
     <div className={styles.container}>
@@ -43,6 +52,7 @@ const WidgetGetUsers: FC = () => {
                 key={index}
                 data={user}
                 updateUser={updateUser}
+                fetchUsers={fetchUsers}
               />
             ))}
           </div>

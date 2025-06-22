@@ -96,7 +96,8 @@ const useGetWorkers = () => {
     clearSearch,
     search,
     searchWorkers,
-    updateWorker
+    updateWorker,
+    fetchWorkers
   };
 };
 

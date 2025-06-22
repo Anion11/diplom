@@ -42,7 +42,7 @@ const AdminDashboard: FC = () => {
       content: <WidgetGetWorkers />
     },
     {
-      label: 'Добавить сотрудника',
+      label: 'Добавить пользователя',
       content: <WidgetRegistrationWorker />
     },
     {

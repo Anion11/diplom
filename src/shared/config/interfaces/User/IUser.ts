@@ -1,5 +1,4 @@
 import ERoles from '../../enums/ERoles';
-import { IDocument } from '../Person/IDocument';
 import { IPerson } from '../Person/IPerson';
 
 export interface IUser {
@@ -15,5 +14,4 @@ export interface IUser {
   person: IPerson;
   isBlocked: boolean;
   blocked: boolean;
-  documents: IDocument[];
 }

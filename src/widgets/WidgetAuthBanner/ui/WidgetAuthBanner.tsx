@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './WidgetAuthBanner.module.scss';
 
+import WidgetAuthBannerImage from '@/shared/assets/images/widget_auth_banner.png';
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import { Button, Typography } from '@/shared/ui';
 import { EButtonTypes } from '@/shared/ui/button/model/IButton';
@@ -24,7 +25,7 @@ const WidgetAuthBanner: FC<IWidgetAuthBannerProps> = ({ isAuth }) => {
           </Typography>
           <div className={styles.container__descr}>
             <Typography type={ETypographyType.p1}>
-              Для оформления полиса требуется авторизироваться в&nbsp;свем личном кабинете
+              Для оформления полиса требуется авторизироваться в&nbsp;своем личном кабинете
               и&nbsp;подтвердить личность с помощью паспортных данных в разделе <b>«Документы»</b>.
               Если у&nbsp;вас ещё нет личного кабинета, вы&nbsp;можете зарегистрироваться{' '}
               <Link to={'/registration'}>по ссылке</Link>.
@@ -44,7 +45,7 @@ const WidgetAuthBanner: FC<IWidgetAuthBannerProps> = ({ isAuth }) => {
       </div>
       <div className={styles.container__image}>
         <img
-          src={''}
+          src={WidgetAuthBannerImage}
           alt=""
         />
       </div>

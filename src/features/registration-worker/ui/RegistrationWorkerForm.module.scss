@@ -43,9 +43,36 @@
     color: $error;
     text-align: center;
   }
+
+  &__field_error {
+    margin-top: 12px;
+    color: $error;
+  }
 }
 
 .toast {
   --toastify-color-progress-light: var(--success);
   --toastify-color-progress-bgo: 0.1;
+}
+
+.select {
+  > div {
+    height: 50px;
+
+    ~ div {
+      height: fit-content;
+    }
+  }
+
+  &_error {
+    > div {
+      border-color: $error;
+
+      > div {
+        > div {
+          color: $error;
+        }
+      }
+    }
+  }
 }

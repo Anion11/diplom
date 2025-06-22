@@ -1,0 +1,86 @@
+@use 'src/app/styles/utils/variables' as *;
+@use 'src/app/styles/utils/media' as *;
+
+.container {
+  position: relative;
+  height: 100%;
+
+  &__head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    align-items: center;
+    justify-content: space-between;
+
+    @include media-laptop {
+      flex-direction: column;
+      gap: 20px;
+      align-items: flex-start;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    @include media-custom(1023px) {
+      gap: 10px;
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+
+    @include media-custom(1023px) {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+
+    margin-top: 60px;
+
+    text-align: center;
+
+    @include media-laptop {
+      margin-top: 0;
+    }
+
+    @include media-tablet {
+      gap: 8px;
+    }
+
+    svg {
+      width: 70px;
+      height: 70px;
+
+      @include media-tablet {
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+    &Text {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+
+  &__btn {
+    margin: 0 auto;
+    padding: 12px 52px;
+
+    @include media-tablet {
+      padding: 8px 24px;
+    }
+  }
+}

@@ -12,7 +12,7 @@ import TrashSvg from '@/shared/assets/icons/icon_trash.svg?react';
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import { Button, Modal, Typography } from '@/shared/ui';
 
-const WorkerCard: FC<IWorkerCard> = ({ data, updateWorker }) => {
+const WorkerCard: FC<IWorkerCard> = ({ data, updateWorker, fetchWorkers }) => {
   const notify = () => toast('Пользователь был успешно удален!');
   const { person, email, phone, createdAt, username } = data;
 
@@ -42,6 +42,7 @@ const WorkerCard: FC<IWorkerCard> = ({ data, updateWorker }) => {
     deleteRequest(person.id);
     setIsModalDeleteOpen(false);
     notify();
+    fetchWorkers();
   };
 
   return (

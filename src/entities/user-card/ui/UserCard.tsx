@@ -14,7 +14,7 @@ import { getDocumentLabel } from '@/shared/config/enums/EDocuments';
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import { Button, List, Modal, Typography } from '@/shared/ui';
 
-const UserCard: FC<IUserCard> = ({ data, updateUser }) => {
+const UserCard: FC<IUserCard> = ({ data, updateUser, fetchUsers }) => {
   const notify = () => toast('Пользователь был успешно удален!');
   const { person, email, phone, createdAt, username } = data;
 
@@ -44,6 +44,7 @@ const UserCard: FC<IUserCard> = ({ data, updateUser }) => {
     deleteRequest(person.id);
     setIsModalDeleteOpen(false);
     notify();
+    fetchUsers();
   };
 
   return (

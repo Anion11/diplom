@@ -7,6 +7,6 @@ export interface IRegistrationWorkerForm {
   lastName: string;
   secondName?: string;
   birthDate: string;
-  role?: ERoles;
+  role?: ERoles | string;
   password: string;
 }

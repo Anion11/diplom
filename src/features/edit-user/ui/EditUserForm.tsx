@@ -67,7 +67,7 @@ const EditUserForm: FC<IEditUserFormProps> = props => {
       ...data,
       id: user.id,
       role: ERoles.USER,
-      documents: user.documents
+      documents: user.person.documents
     };
     updateRequest(formData);
   };
@@ -94,7 +94,7 @@ const EditUserForm: FC<IEditUserFormProps> = props => {
           person: {
             ...user.person,
             birthDate: new Date(submitted.birthDate),
-            documents: user.documents,
+            documents: user.person.documents,
             name: submitted.name,
             secondName: submitted.secondName ?? '',
             surname: submitted.surname

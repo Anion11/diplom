@@ -31,6 +31,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [autoFill, setAutoFill] = useState(false);
+  const [files, setFiles] = useState<File[]>([]);
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -71,6 +72,29 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
               }
             }}
           />
+        );
+      case 'file':
+        return (
+          <>
+            <input
+              type="file"
+              name={name}
+              id={id}
+              ref={ref}
+              onChange={e => {
+                const selectedFiles = e.target.files ? Array.from(e.target.files) : [];
+                const newFiles = [...files, ...selectedFiles];
+
+                setFiles(newFiles);
+                onChange(newFiles);
+              }}
+              disabled={disabled}
+              className={clsx(styles.input__field)}
+              onBlur={onBlur}
+              autoComplete={autocomplete}
+              multiple
+            />
+          </>
         );
       case 'serial':
         return (
@@ -147,11 +171,36 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           styles.input,
           (error || formError) && styles.input_invalid,
           (value || autoFill || (!isMobile && type === 'date')) && styles.input_filled,
-          type === 'password' && styles.input_password
+          type === 'password' && styles.input_password,
+          type === 'file' && styles.input_file
         )}
       >
         {renderInput()}
         <label htmlFor={id}>{placeholder}</label>
+        {type === 'file' && (
+          <div className={styles.input__files}>
+            {files.map((file, index) => (
+              <div
+                key={index}
+                className={styles.input__file}
+              >
+                <span className={styles['input__file-name']}>{file.name}</span>
+                <button
+                  type="button"
+                  className={styles['input__file-delete']}
+                  onClick={() => {
+                    const newFiles = [...files];
+                    newFiles.splice(index, 1);
+                    setFiles(newFiles);
+                    onChange(newFiles);
+                  }}
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
         {type === 'password' && (
           <button
             type="button"

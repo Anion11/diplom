@@ -31,7 +31,7 @@ const useRegistration = () => {
           resReg.data.message || 'Пользователь с таким логином или номером телефона уже существует'
         );
       } else {
-        const resAuth: AxiosResponse<ILoginOutput> = await $api.post('/auth-api/register', {
+        const resAuth: AxiosResponse<ILoginOutput> = await $api.post('/auth-api/auth', {
           payload: data.email,
           password: data.password
         });

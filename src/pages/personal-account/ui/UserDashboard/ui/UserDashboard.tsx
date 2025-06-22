@@ -3,7 +3,13 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAuthContext } from '@/shared/hooks/useAuthContext';
 import { Inner, Section, SideTabs } from '@/shared/ui';
-import { WidgetDashboardDocuments, WidgetDashboardProfile, WidgetEditPassword } from '@/widgets';
+import {
+  WidgetDashboardApplications,
+  WidgetDashboardDocuments,
+  WidgetDashboardPolice,
+  WidgetDashboardProfile,
+  WidgetEditPassword
+} from '@/widgets';
 
 const UserDashboard: FC = () => {
   const navigate = useNavigate();
@@ -33,11 +39,11 @@ const UserDashboard: FC = () => {
     },
     {
       label: 'Заявки',
-      content: <div>Заявки</div>
+      content: <WidgetDashboardApplications />
     },
     {
       label: 'Полисы',
-      content: <div>Полисы</div>
+      content: <WidgetDashboardPolice />
     },
     {
       label: 'Изменить пароль',
