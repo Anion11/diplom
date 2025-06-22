@@ -1,10 +1,10 @@
 # Запуск исправлений линтеров
-yarn format
+; yarn format
 
-# Добавление всех исправленных файлов в коммит
-git add .
+; # Добавление всех исправленных файлов в коммит
+; git add .
 
-# Проверка, есть ли изменения для коммита
-if [ -n "$(git diff --cached)" ]; then
-  git commit --amend --no-edit
-fi
+; # Проверка, есть ли изменения для коммита
+; if [ -n "$(git diff --cached)" ]; then
+;   git commit --amend --no-edit
+; fi
