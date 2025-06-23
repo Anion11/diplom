@@ -145,10 +145,7 @@ const UserCard: FC<IUserCard> = ({ data, updateUser, fetchUsers }) => {
                   {person.documents.map((doc, index) => (
                     <li
                       key={index}
-                      className={clsx(
-                        styles.card__doc,
-                        doc.isApproved && styles.card__doc_approved
-                      )}
+                      className={clsx(styles.card__doc, doc.approved && styles.card__doc_approved)}
                     >
                       {getDocumentLabel(doc.type)} {doc.approved}
                     </li>

@@ -29,9 +29,10 @@ const DocumentCard: FC<IDocumentCard> = ({ data, fetchUsers }) => {
   };
 
   const handleDisApprove = () => {
-    approveRequest(document.id, false);
-    notifyDisApprove();
-    fetchUsers();
+    approveRequest(document.id, false).then(() => {
+      notifyDisApprove();
+      fetchUsers();
+    });
   };
 
   return (
@@ -43,7 +44,7 @@ const DocumentCard: FC<IDocumentCard> = ({ data, fetchUsers }) => {
               type={ETypographyType.h5}
               bold={700}
             >
-              {person.name} {person.secondName} {person.surname}
+              {person.name} {person.surname} {person.secondName}
             </Typography>
             <div className={styles.card__item}>
               <Typography type={ETypographyType.p2}>

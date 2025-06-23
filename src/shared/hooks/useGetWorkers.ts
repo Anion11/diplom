@@ -22,7 +22,9 @@ const useGetWorkers = () => {
       const res: AxiosResponse<IWorker[]> = await $api.get(
         '/auth-api/admin-api/list?page=0&size=64342146'
       );
-      const filtered = res.data.filter(worker => worker.roles?.[0]?.role === ERoles.WORKER);
+      const filtered = res.data.filter(
+        worker => worker.roles?.[0]?.role === ERoles.WORKER && !worker.blocked
+      );
       setAllWorkers(filtered);
       const initialSlice = filtered.slice(0, BATCH_SIZE);
       setVisibleWorkers(initialSlice);

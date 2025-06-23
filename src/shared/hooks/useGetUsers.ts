@@ -22,7 +22,9 @@ const useGetUsers = () => {
       const res: AxiosResponse<IUser[]> = await $api.get(
         '/auth-api/admin-api/list?page=0&size=64342146'
       );
-      const filtered = res.data.filter(user => user.roles?.[0]?.role === ERoles.USER);
+      const filtered = res.data.filter(
+        user => user.roles?.[0]?.role === ERoles.USER && !user.blocked
+      );
       setAllUsers(filtered);
       const initialSlice = filtered.slice(0, BATCH_SIZE);
       setVisibleUsers(initialSlice);

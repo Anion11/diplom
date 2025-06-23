@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AxiosResponse } from 'axios';
 
 import EDocuments from '../config/enums/EDocuments';
@@ -7,7 +7,7 @@ import { IUser } from '../config/interfaces/User/IUser';
 
 import { $api } from '@/shared/api/api.ts';
 
-const BATCH_SIZE = 1;
+const BATCH_SIZE = 4;
 
 const useGetDocumentsUsers = () => {
   const [loading, setLoading] = useState(false);
@@ -16,12 +16,7 @@ const useGetDocumentsUsers = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [search, setSearch] = useState('');
   const [isSearchActive, setIsSearchActive] = useState(false);
-
-  const usersWithUnapprovedPassports = useMemo(() => {
-    return allUsers.filter(user =>
-      user.person?.documents?.some(doc => doc.type === EDocuments.PASSPORT && !doc.isApproved)
-    );
-  }, [allUsers]);
+  const [usersWithUnapprovedPassports, setusersWithUnapprovedPassports] = useState<IUser[]>([]);
 
   const fetchUsers = async () => {
     setLoading(true);
@@ -29,9 +24,15 @@ const useGetDocumentsUsers = () => {
       const res: AxiosResponse<IUser[]> = await $api.get(
         '/auth-api/admin-api/list?page=0&size=64342146'
       );
-      const filtered = res.data.filter(user => user.roles?.[0]?.role === ERoles.USER);
+      const filtered = res.data.filter(
+        user => user.roles?.[0]?.role === ERoles.USER && !user.blocked
+      );
       setAllUsers(filtered);
-      const initialSlice = usersWithUnapprovedPassports.slice(0, BATCH_SIZE);
+      const filteredUsers = filtered.filter(user =>
+        user.person?.documents?.some(doc => doc.type === EDocuments.PASSPORT && !doc.userApproved)
+      );
+      setusersWithUnapprovedPassports(filteredUsers);
+      const initialSlice = filteredUsers.slice(0, BATCH_SIZE);
       setVisibleUsers(initialSlice);
       setCurrentIndex(initialSlice.length);
     } catch (error) {
