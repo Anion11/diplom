@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { AxiosResponse } from 'axios';
 
-import { IApplication } from '../config/interfaces/Application/IApplication';
+import { EApplicationStatus } from '../config/enums/EApplicationStatus';
+import type { IApplication } from '../config/interfaces/Application/IApplication';
 
 import { $api } from '@/shared/api/api.ts';
 
@@ -16,13 +17,22 @@ const useGetApplications = () => {
   const fetchApplications = async () => {
     setLoading(true);
     try {
-      const res: AxiosResponse<IApplication[]> = await $api.get(
-        '/application-api/worker/list?type=HOUSE'
-      );
-      setAllApplications(res.data);
-      const initialSlice = res.data.slice(0, BATCH_SIZE);
-      setVisibleApplications(initialSlice);
-      setCurrentIndex(initialSlice.length);
+      await $api
+        .get('/application-api/worker/list?type=HOUSE')
+        .then(res => {
+          console.log('res.data', res.data);
+          return res.data.filter(item =>
+            [EApplicationStatus.PENDING, EApplicationStatus.IN_ANALYZE].includes(
+              item.details.status
+            )
+          );
+        })
+        .then(res => {
+          setAllApplications(res);
+          const initialSlice = res.slice(0, BATCH_SIZE);
+          setVisibleApplications(initialSlice);
+          setCurrentIndex(initialSlice.length);
+        });
     } catch (error) {
       console.error('Ошибка при получении заявок:', error);
     } finally {
