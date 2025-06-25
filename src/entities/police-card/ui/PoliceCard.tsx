@@ -1,8 +1,8 @@
-import { FC, useEffect, useState } from 'react';
+import { type FC, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import clsx from 'clsx';
 
-import { IPoliceCard } from '../model/IPoliceCard';
+import type { IPoliceCard } from '../model/IPoliceCard';
 import useApplications from '../model/usePolice';
 
 import styles from './PoliceCard.module.scss';

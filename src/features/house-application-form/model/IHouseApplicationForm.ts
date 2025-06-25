@@ -1,4 +1,4 @@
-import { EPeriod } from '@/shared/config/enums/EPeriod';
+import type { EPeriod } from '@/shared/config/enums/EPeriod';
 
 export interface IHouseApplicationForm {
   fiasAddress: string;
