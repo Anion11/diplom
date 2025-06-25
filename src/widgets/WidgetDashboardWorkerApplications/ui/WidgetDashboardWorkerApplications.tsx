@@ -31,10 +31,10 @@ const WidgetDashboardWorkerApplications: FC = () => {
       ) : applications && applications.length > 0 ? (
         <div className={styles.container__wrapper}>
           <div className={styles.container__content}>
-            {applications.map((applications, index) => (
+            {applications.map(application => (
               <ApplicationWorkerCard
-                key={index}
-                data={applications}
+                key={application.id}
+                data={application}
                 fetchApplications={fetchApplications}
               />
             ))}

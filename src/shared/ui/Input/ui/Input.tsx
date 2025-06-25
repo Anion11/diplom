@@ -1,10 +1,11 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import type React from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import InputMask from 'react-input-mask';
 import clsx from 'clsx';
 
 import Typography from '../../typography/ui/Typography';
-import { InputProps } from '../model/IInput';
+import type { InputProps } from '../model/IInput';
 
 import styles from './Input.module.scss';
 

@@ -1,9 +1,9 @@
-import { FC, useEffect, useMemo } from 'react';
+import { type FC, useEffect, useMemo, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { IHouseApplicationForm } from '../model/IHouseApplicationForm';
+import type { IHouseApplicationForm } from '../model/IHouseApplicationForm';
 import useHouseApplication from '../model/useHouseApplication';
 
 import styles from './HouseApplicationForm.module.scss';
@@ -44,10 +44,6 @@ const HouseApplicationForm: FC = () => {
     mode: 'onTouched'
   });
 
-  const onSubmit = (data: IHouseApplicationForm) => {
-    applicationRequest(data);
-  };
-
   useEffect(() => {
     if (complete) {
       notify();
@@ -70,6 +66,10 @@ const HouseApplicationForm: FC = () => {
       monthly: Math.round(monthly)
     };
   }, [watchFields]);
+
+  const onSubmit = (data: IHouseApplicationForm) => {
+    applicationRequest({ ...data, cost: yearly });
+  };
 
   return (
     <>
@@ -188,8 +188,12 @@ const HouseApplicationForm: FC = () => {
                   id="document"
                   type="file"
                   placeholder="Прикрепите два файла: онлайн-выписку из ЕГРН (.pdf) и файл электронной цифровой подписи (.sig)."
-                  onChange={function (value: string): void {
-                    throw new Error('Function not implemented.');
+                  onChange={e => {
+                    const formData = new FormData();
+                    Array.from(e).forEach(file => {
+                      formData.append('files', file);
+                    });
+                    console.log(e);
                   }}
                 />
               )}

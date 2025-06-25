@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError } from 'axios';
 
-import { IHouseApplicationForm } from './IHouseApplicationForm';
+import type { IHouseApplicationForm } from './IHouseApplicationForm';
 
 import { $api } from '@/shared/api/api.ts';
-import { IRegistrationOutput } from '@/shared/config/interfaces/Registration/IRegistrationOutput';
-import { IResponseError } from '@/shared/config/interfaces/ResponseError/IResponseError';
+import { EPeriod } from '@/shared/config/enums/EPeriod';
 
 const useHouseApplication = () => {
   const [formError, setFormError] = useState<string | null>(null);
@@ -15,17 +14,25 @@ const useHouseApplication = () => {
   const applicationRequest = async (data: IHouseApplicationForm): Promise<void> => {
     try {
       setLoading(true);
-      const resReg: AxiosResponse<IRegistrationOutput | IResponseError> = await $api.post('', {
-        ...data
-      });
-
-      if ('statusCode' in resReg.data) {
-        setFormError(
-          resReg.data.message || 'Пользователь с таким логином или номером телефона уже существует'
-        );
-      } else {
-        setComplete(true);
-      }
+      await $api
+        .post('/house/register', {
+          ...data,
+          periodic: EPeriod.YEAR
+        })
+        .then(registrationRes => {
+          if ('statusCode' in registrationRes.data) {
+            setFormError(registrationRes.data.message || 'Произошла ошибка при регистрации полиса');
+          } else {
+            $api.post(`/house/add-docs?id=${registrationRes.data.details.id}`).then(addDocsRes => {
+              if ('statusCode' in addDocsRes.data) {
+                setFormError(addDocsRes.data.message || 'Произошла ошибка при отправке файлов');
+              } else {
+                $api.post(`house/process?id=${registrationRes.data.details.id}&status=IN_ANALYZE`);
+                setComplete(true);
+              }
+            });
+          }
+        });
     } catch (error) {
       if (error instanceof AxiosError) {
         setFormError(error.message || 'Ошибка сервера');

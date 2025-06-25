@@ -1,8 +1,8 @@
-import { FC, useEffect, useState } from 'react';
+import { type FC, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import clsx from 'clsx';
 
-import { IApplicationCard } from '../model/IApplicationCard';
+import type { IApplicationCard } from '../model/IApplicationCard';
 import useApplications from '../model/useApplications';
 
 import styles from './ApplicationWorkerCard.module.scss';
