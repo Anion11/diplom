@@ -34,9 +34,14 @@
 
   &__body {
     display: grid;
-    grid-template-columns: 840px 1fr;
+    grid-template-columns: 65% auto;
     gap: 80px;
     align-items: start;
+
+    @include media-custom(1200px) {
+      grid-template-columns: auto;
+      gap: 20px;
+    }
   }
 
   &__left {
