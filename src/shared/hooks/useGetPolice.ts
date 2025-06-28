@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { AxiosResponse } from 'axios';
 
 import { EApplicationStatus } from '../config/enums/EApplicationStatus';
 import type { IApplication } from '../config/interfaces/Application/IApplication';
@@ -17,16 +16,15 @@ const useGetPolice = () => {
   const fetchApplications = async () => {
     setLoading(true);
     try {
-      await $api.get('/application-api/house/list').then(res =>
-        res.data
-          .filter(item => [EApplicationStatus.SUCCESS].includes(item.details.status))
-          .then(res => {
-            setAllApplications(res.data);
-            const initialSlice = res.data.slice(0, BATCH_SIZE);
-            setVisibleApplications(initialSlice);
-            setCurrentIndex(initialSlice.length);
-          })
-      );
+      await $api.get('/application-api/house/list').then(res => {
+        const test = res.data.filter(item =>
+          [EApplicationStatus.SUCCESS].includes(item.details.status)
+        );
+        setAllApplications(test);
+        const initialSlice = test.slice(0, BATCH_SIZE);
+        setVisibleApplications(initialSlice);
+        setCurrentIndex(initialSlice.length);
+      });
     } catch (error) {
       console.error('Ошибка при получении заявок:', error);
     } finally {

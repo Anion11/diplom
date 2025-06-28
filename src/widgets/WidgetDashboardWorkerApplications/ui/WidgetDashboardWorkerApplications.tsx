@@ -28,7 +28,7 @@ const WidgetDashboardWorkerApplications: FC = () => {
 
       {loading ? (
         <Loader />
-      ) : applications && applications.length > 0 ? (
+      ) : applications?.length ? (
         <div className={styles.container__wrapper}>
           <div className={styles.container__content}>
             {applications.map(application => (

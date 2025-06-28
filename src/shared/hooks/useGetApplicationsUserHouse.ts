@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import type { AxiosResponse } from 'axios';
 
 import { EApplicationStatus } from '../config/enums/EApplicationStatus';
 import type { IApplication } from '../config/interfaces/Application/IApplication';

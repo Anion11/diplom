@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { AxiosResponse } from 'axios';
 
 import { EApplicationStatus } from '../config/enums/EApplicationStatus';
 import type { IApplication } from '../config/interfaces/Application/IApplication';
@@ -20,7 +19,6 @@ const useGetApplications = () => {
       await $api
         .get('/application-api/worker/list?type=HOUSE')
         .then(res => {
-          console.log('res.data', res.data);
           return res.data.filter(item =>
             [EApplicationStatus.PENDING, EApplicationStatus.IN_ANALYZE].includes(
               item.details.status

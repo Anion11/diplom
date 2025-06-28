@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { AxiosError } from 'axios';
+import { useState } from 'react';
 
 import type { IHouseApplicationForm } from './IHouseApplicationForm';
 
@@ -15,7 +15,7 @@ const useHouseApplication = () => {
     try {
       setLoading(true);
       await $api
-        .post('/house/register', {
+        .post('/application-api/house/register', {
           ...data,
           periodic: EPeriod.YEAR
         })
@@ -23,14 +23,10 @@ const useHouseApplication = () => {
           if ('statusCode' in registrationRes.data) {
             setFormError(registrationRes.data.message || 'Произошла ошибка при регистрации полиса');
           } else {
-            $api.post(`/house/add-docs?id=${registrationRes.data.details.id}`).then(addDocsRes => {
-              if ('statusCode' in addDocsRes.data) {
-                setFormError(addDocsRes.data.message || 'Произошла ошибка при отправке файлов');
-              } else {
-                $api.post(`house/process?id=${registrationRes.data.details.id}&status=IN_ANALYZE`);
-                setComplete(true);
-              }
-            });
+            $api.post(
+              `/application-api/house/add-docs?id=${registrationRes.data.id}`,
+              data.documents
+            );
           }
         });
     } catch (error) {

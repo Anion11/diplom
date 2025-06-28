@@ -2,7 +2,7 @@ import type { FC } from 'react';
 
 import styles from './WidgetDashboardPolice.module.scss';
 
-import { ApplicationCard, PoliceCard } from '@/entities';
+import { ApplicationCard } from '@/entities';
 import EmptySvg from '@/shared/assets/icons/empty.svg?react';
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import useGetPolice from '@/shared/hooks/useGetPolice';
@@ -11,6 +11,7 @@ import { ESectionHeadType } from '@/shared/ui/section-head/model/ISectionHead';
 
 const WidgetDashboardPolice: FC = () => {
   const { loading, applications, loadMore, hasMore, fetchApplications } = useGetPolice();
+  console.log(applications);
 
   return (
     <div className={styles.container}>
@@ -28,13 +29,14 @@ const WidgetDashboardPolice: FC = () => {
 
       {loading ? (
         <Loader />
-      ) : applications && applications.length > 0 ? (
+      ) : applications?.length ? (
         <div className={styles.container__wrapper}>
           <div className={styles.container__content}>
-            {applications.map((applications, index) => (
+            {applications.map(application => (
               <ApplicationCard
-                key={index}
-                data={applications}
+                isPolice
+                key={application.id}
+                data={application}
                 fetchApplications={fetchApplications}
               />
             ))}

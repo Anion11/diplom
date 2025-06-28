@@ -1,7 +1,6 @@
-import { type FC, useEffect, useMemo, useState } from 'react';
+import { type FC, useEffect, useMemo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { yupResolver } from '@hookform/resolvers/yup';
 
 import type { IHouseApplicationForm } from '../model/IHouseApplicationForm';
 import useHouseApplication from '../model/useHouseApplication';
@@ -47,9 +46,9 @@ const HouseApplicationForm: FC = () => {
   useEffect(() => {
     if (complete) {
       notify();
-      reset({
-        ...defaultValues
-      });
+      // reset({
+      //   ...defaultValues
+      // });
       clearFormError();
     }
   }, [complete, reset]);
@@ -193,7 +192,7 @@ const HouseApplicationForm: FC = () => {
                     Array.from(e).forEach(file => {
                       formData.append('files', file);
                     });
-                    console.log(e);
+                    field.onChange(formData);
                   }}
                 />
               )}

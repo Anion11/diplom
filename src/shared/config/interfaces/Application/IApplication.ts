@@ -1,18 +1,18 @@
-import { EApplicationStatus } from '../../enums/EApplicationStatus';
-import { EApplicationType } from '../../enums/EApplicationType';
-import { IAdditionalPersons } from '../AdditionalPersons/IAdditionalPersons';
-import { IDocumentFile } from '../DocumentFile/IDocumentFile';
-import { IWorker } from '../Worker/IWorker';
+import type { EApplicationStatus } from '../../enums/EApplicationStatus';
+import type { EApplicationType } from '../../enums/EApplicationType';
+import type { IAdditionalPersons } from '../AdditionalPersons/IAdditionalPersons';
+import type { IDocumentFile } from '../DocumentFile/IDocumentFile';
+import type { IWorker } from '../Worker/IWorker';
 
 export interface IApplicationDetails {
-  type: EApplicationType; //FIXME
-  status: EApplicationStatus; //FIXME
   id: number;
+  type: EApplicationType; //FIXME
+  worker: IWorker | null;
   serial: string;
+  status: EApplicationStatus; //FIXME
   num: string;
   comment: string;
   price: number; //что это
-  workerId: IWorker;
 }
 
 export interface IApplication {
@@ -24,7 +24,7 @@ export interface IApplication {
   monthCost: number;
   fiasAddress: string;
   egrn: string;
-  dociments: IDocumentFile[];
+  documents: IDocumentFile[];
   details: IApplicationDetails;
   additionalPersons: IAdditionalPersons;
 }

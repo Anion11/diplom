@@ -9,4 +9,5 @@ export interface IHouseApplicationForm {
   cost: number;
   person: number;
   periodic: EPeriod;
+  documents: File[];
 }

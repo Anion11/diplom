@@ -1,35 +1,25 @@
-import { FC, useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 import clsx from 'clsx';
+import { type FC, useEffect, useMemo, useState } from 'react';
+import { toast } from 'react-toastify';
 
-import { IApplicationCard } from '../model/IApplicationCard';
+import type { IApplicationCard } from '../model/IApplicationCard';
 import useApplications from '../model/useApplications';
 
 import styles from './ApplicationCard.module.scss';
 
 import ArrowRightSvg from '@/shared/assets/icons/icon_arrow-right.svg?react';
+import DownloadSvg from '@/shared/assets/icons/icon_download.svg?react';
 import TrashSvg from '@/shared/assets/icons/icon_trash.svg?react';
+import { EApplicationStatus } from '@/shared/config/enums/EApplicationStatus';
 import ETypographyType from '@/shared/config/enums/ETypgraphyType';
 import { Button, Modal, Typography } from '@/shared/ui';
 import { EButtonTypes } from '@/shared/ui/button/model/IButton';
 
-const ApplicationCard: FC<IApplicationCard> = ({ data, fetchApplications }) => {
-  const notify = () => toast('Заявка была удалена!');
-  const {
-    id,
-    finishingCost,
-    structuralElCost,
-    neighborsCost,
-    household,
-    monthCost,
-    fiasAddress,
-    egrn,
-    dociments,
-    details,
-    additionalPersons
-  } = data;
+const ApplicationCard: FC<IApplicationCard> = ({ data, fetchApplications, isPolice = false }) => {
+  const successDeleteNotify = () => toast('Заявка была удалена!');
+  const errorDeleteNotify = () => toast('Ошибка при удалении заявки');
 
-  const { deleteRequest, loading, complete } = useApplications();
+  const { deleteRequest, loading, complete, handlePayment } = useApplications();
 
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
@@ -43,16 +33,51 @@ const ApplicationCard: FC<IApplicationCard> = ({ data, fetchApplications }) => {
   };
 
   const handleDeleteApplication = () => {
-    deleteRequest(id);
+    deleteRequest(data.id);
     setIsModalDeleteOpen(false);
   };
 
   useEffect(() => {
+    if (complete === null) return;
+
     if (complete) {
+      successDeleteNotify();
       fetchApplications();
-      notify();
+    } else {
+      errorDeleteNotify();
     }
   }, [complete]);
+
+  const term = useMemo(() => {
+    const start = new Date(data.startDate);
+    const end = new Date(data.endDate);
+    const months =
+      (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+    return months;
+  }, [data.startDate]);
+
+  const createdAt = useMemo(
+    () =>
+      new Date(new Date(data.startDate).getTime() + 3 * 60 * 60 * 1000)
+        .toLocaleDateString('ru-RU', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        })
+        .replace(/\//g, '.'),
+    [data.startDate]
+  );
+  const endDate = useMemo(
+    () =>
+      new Date(new Date(data.endDate).getTime() + 3 * 60 * 60 * 1000).toLocaleDateString('ru-RU', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      }),
+    [data.endDate]
+  );
+
+  const sum = data.finishingCost + data.structuralElCost + data.neighborsCost;
 
   return (
     <>
@@ -65,7 +90,7 @@ const ApplicationCard: FC<IApplicationCard> = ({ data, fetchApplications }) => {
           bold={700}
           className={styles.modal__title}
         >
-          Вы точно хотите заявку?
+          Вы точно хотите удалить заявку?
         </Typography>
         <div className={styles.modal__buttons}>
           <Button
@@ -89,21 +114,42 @@ const ApplicationCard: FC<IApplicationCard> = ({ data, fetchApplications }) => {
             >
               Заявка на «Страхование квартиры»
             </Typography>
+            {isPolice && (
+              <Typography
+                className={styles.card__date}
+                type={ETypographyType.p2}
+              >
+                <span>Номер полиса {data.details.num}</span>
+              </Typography>
+            )}
             <Typography
               className={styles.card__date}
               type={ETypographyType.p2}
             >
-              {/* <span>Создана:</span> {new Date().toLocaleString()} */}
-              <span>Создана:</span> 07.06.2025
+              {isPolice ? (
+                <span>
+                  Срок действия полиса с {createdAt} по {endDate}
+                </span>
+              ) : (
+                <span>Создана: {createdAt}</span>
+              )}
             </Typography>
-            <div className={clsx(styles.card__status, styles.card__status_pending)}>
-              <Typography
-                tag="p"
-                type={ETypographyType.p2}
-              >
-                <b>Статус заявки:</b> <span>Ожидает оплаты</span>
-              </Typography>
-            </div>
+
+            {!isPolice && (
+              <div className={clsx(styles.card__status, styles.card__status_pending)}>
+                <Typography
+                  tag="p"
+                  type={ETypographyType.p2}
+                >
+                  <b>Статус заявки:</b>{' '}
+                  <span>
+                    {data.details.status === EApplicationStatus.WAIT_PAYMENT
+                      ? 'Ожидает оплаты'
+                      : 'Заявка в обработке'}
+                  </span>
+                </Typography>
+              </div>
+            )}
           </div>
           <div className={styles.card__buttons}>
             <Button
@@ -115,38 +161,42 @@ const ApplicationCard: FC<IApplicationCard> = ({ data, fetchApplications }) => {
         </div>
 
         <div className={styles.card__content}>
+          {!isPolice && (
+            <>
+              <div className={styles.card__item}>
+                <Typography type={ETypographyType.p1}>
+                  <b>Срок страхования:</b> {term} мес.
+                </Typography>
+              </div>
+              <div className={styles.card__item}>
+                <Typography type={ETypographyType.p1}>
+                  <b>Платеж в год:</b> {Number(data.cost).toLocaleString('ru-RU')} ₽
+                </Typography>
+              </div>
+            </>
+          )}
           <div className={styles.card__item}>
             <Typography type={ETypographyType.p1}>
-              <b>Срок страхования:</b> 12 мес.
-            </Typography>
-          </div>
-          <div className={styles.card__item}>
-            <Typography type={ETypographyType.p1}>
-              <b>Платеж в год:</b> 10 500 ₽
-            </Typography>
-          </div>
-          <div className={styles.card__item}>
-            <Typography type={ETypographyType.p1}>
-              <b>Общая сумма страхования:</b> 2 100 000 ₽
+              <b>Общая сумма страхования:</b> {sum.toLocaleString('ru-RU')} ₽
             </Typography>
           </div>
           <div className={clsx(styles.card__item, styles.card__item_inner)}>
             <Typography type={ETypographyType.p2}>
-              <b>Внутренняя отделка:</b> 600 000 ₽
+              <b>Внутренняя отделка:</b> {data.finishingCost.toLocaleString('ru-RU')} ₽
             </Typography>
             <Typography type={ETypographyType.p2}>
-              <b>Конструктивные элементы:</b> 0 ₽
+              <b>Конструктивные элементы:</b> {data.structuralElCost.toLocaleString('ru-RU')} ₽
             </Typography>
             <Typography type={ETypographyType.p2}>
-              <b>Гражданская ответственность:</b> 700 000 ₽
+              <b>Гражданская ответственность:</b> {data.neighborsCost.toLocaleString('ru-RU')} ₽
             </Typography>
             <Typography type={ETypographyType.p2}>
-              <b>Домашнее имущество:</b> 800 000 ₽
+              <b>Домашнее имущество:</b> {data.household.toLocaleString('ru-RU')} ₽
             </Typography>
           </div>
           <div className={styles.card__item}>
             <Typography type={ETypographyType.p1}>
-              <b>Адрес:</b> г. Воронеж, ул. 20-летия Октября, д 42, кв. 20
+              <b>Адрес:</b> {data.fiasAddress}
             </Typography>
           </div>
 
@@ -154,22 +204,41 @@ const ApplicationCard: FC<IApplicationCard> = ({ data, fetchApplications }) => {
             <Typography type={ETypographyType.p1}>
               <b>Прикрепленные документы:</b>
             </Typography>
-            <div className={clsx(styles.card__item, styles.card__item_inner)}>
-              <Typography type={ETypographyType.p2}>
-                <a href="">Onlayn-vypiska_zemelny_uchastok_pdf_13_40_55.sig</a>
-              </Typography>
-              <Typography type={ETypographyType.p2}>
-                <a href="">Onlayn-vypiska_zemelny_uchastok_13_36_53.pdf</a>
-              </Typography>
-            </div>
+            <ul className={clsx(styles.card__item, styles.card__item_inner)}>
+              {data.documents.map(doc => (
+                <li key={doc.uri}>
+                  <Typography type={ETypographyType.p2}>
+                    <a
+                      href={`http://insure-max-life-flow.ru/s3/${doc.uri}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {doc.filename}
+                    </a>
+                  </Typography>
+                </li>
+              ))}
+            </ul>
           </div>
-          <Button
-            className={styles.card__btn}
-            type={EButtonTypes.LINK}
-            text="Оплатить"
-            rightIcon={<ArrowRightSvg />}
-            link="#"
-          />
+          {data.details.status === EApplicationStatus.WAIT_PAYMENT && (
+            <Button
+              className={styles.card__btn}
+              type={EButtonTypes.LINK}
+              text="Оплатить"
+              onClick={() => handlePayment(data.details.id)}
+              rightIcon={<ArrowRightSvg />}
+              link="#"
+            />
+          )}
+          {data.details.status === EApplicationStatus.SUCCESS && (
+            <Button
+              className={styles.card__btn}
+              type={EButtonTypes.LINK}
+              text="Скачать полис"
+              rightIcon={isPolice ? <DownloadSvg /> : <ArrowRightSvg />}
+              link="#"
+            />
+          )}
         </div>
       </div>
     </>
